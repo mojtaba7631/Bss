@@ -1,0 +1,45 @@
+@media (max-width:1365px) {
+    #main_bg {
+        width: auto;
+        height: 100%;
+        position: fixed;
+        top: 0px;
+        right: -10px;
+        z-index: -1;
+    }
+}
+
+@media (min-width:798px) and (max-width:996px) {
+    #main_bg {
+        width: 120%;
+        height: auto;
+        position: fixed;
+        top: 0px;
+        right: -15px;
+        z-index: -1;
+    }
+}
+
+@media (max-width:996px) {
+    .bl_div {
+        background: rgba(0, 0, 0, .7);
+        border-radius: 20px;
+        width: max-content;
+        text-align: center;
+        margin: auto;
+        position: static;
+        right: auto;
+        left: auto;
+        top: auto;
+        padding: 15px 11px;
+        margin-top: 100px;
+    }
+
+    .logo {
+        max-width: 70%;
+    }
+
+    .support_box {
+        display: none;
+    }
+}

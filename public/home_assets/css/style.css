@@ -1,0 +1,148 @@
+:root {
+    --brown: #725E54;
+    --green: #44CB7F;
+}
+
+@font-face {
+    font-family: 'IS';
+    src: url("../fonts/IRANSans-Regular.ttf") format("truetype");
+}
+
+body {
+    font-family: "IS", sans-serif;
+    font-size: 10pt;
+    direction: rtl;
+}
+
+* {
+    outline: 0;
+}
+
+a,
+a:link,
+a:hover {
+    text-decoration: none;
+    color: #000;
+}
+
+ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.text_11pt {
+    font-size: 11pt;
+}
+
+#main_bg {
+    width: 100%;
+    position: fixed;
+    top: 0;
+    right: 0;
+    z-index: -1;
+}
+
+.menu_btn {
+    width: max-content;
+}
+
+.menu_btn i {
+    float: right;
+    margin-top: 5px;
+    margin-left: 10px;
+}
+
+.menu_btn span {
+    float: right;
+}
+
+.logo {
+    margin: 0 auto;
+    max-width: 90%;
+    animation: rotate360 6s infinite linear;
+}
+
+@keyframes rotate360 {
+    0% {
+        transform: rotate(0);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.overflow-hidden {
+    overflow: hidden;
+}
+
+.logo_text {
+    width: 95%;
+    max-width: 95%;
+    margin: 0 auto;
+}
+
+.bl_div{
+    background: rgba(0, 0, 0, .7);
+    padding: 15px 30px;
+    border-radius: 20px;
+    width: max-content;
+    text-align: center;
+    position: fixed;
+    left: 100px;
+    bottom: 70px;
+}
+
+.bl_div img {
+    width: 80px;
+    margin: 5px 15px;
+}
+
+.support_box {
+    position: fixed;
+    left: 100px;
+    top: 30px;
+    margin: auto;
+    background: #0798ab;
+    height: max-content;
+    text-align: center;
+    border-radius: 50%;
+    box-shadow: 0 0 15px rgba(0,0,0,.2);
+    transition: .5s;
+}
+
+.support_first {
+    padding: 15px;
+    border-radius: 50%;
+    transition: .5s;
+}
+
+.support_second {
+    left: 44px;
+    position: absolute;
+    transition: .5s;
+    top: 0;
+    z-index: -2;
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+    display: none;
+    background: #0798ab;
+}
+
+.support_box img {
+    width: 50px;
+    border-radius: 50%;
+    transition: .5s;
+}
+
+.support_box a {
+    background: #0798ab;
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+    color: #fff;
+    font-size: 15pt;
+    padding: 25px 35px 22px 70px;
+    display: block;
+    width: max-content;
+}
