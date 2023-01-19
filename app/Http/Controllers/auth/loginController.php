@@ -100,7 +100,10 @@ class loginController extends Controller
             $redirect = route('deputy_plan_program_index');
         }   elseif ($user_selected_role == 16) {
             $redirect = route('support_manager_index');
-        } else {
+        }
+        elseif ($user_selected_role == 18) {
+            $redirect = route('relations_manager_index');
+        }else {
             return response()->json([
                 'status' => true,
                 'message' => 'شما سطح دسترسی لازم جهت ورود را ندارید.',

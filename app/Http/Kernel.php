@@ -79,5 +79,6 @@ class Kernel extends HttpKernel
         'personnel' => \App\Http\Middleware\personnel::class,
         'deputy_plan_program' => \App\Http\Middleware\deputy_plan_program::class,
         'support_manager' => \App\Http\Middleware\support_manager::class,
+        'relations_manager' => \App\Http\Middleware\relations_manager::class,
     ];
 }

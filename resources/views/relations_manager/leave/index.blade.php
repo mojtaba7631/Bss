@@ -1,4 +1,4 @@
-@extends('deputy_plan_program.layout.deputy_plan_program_layout')
+@extends('relations_manager.layout.relations_manager_layout')
 @section('title',"لیست درخواست های مرخصی")
 @section('css')
 @endsection
