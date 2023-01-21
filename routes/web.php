@@ -95,6 +95,7 @@ use App\Http\Controllers\support_manager\leaveController as leaveSupportManagerC
 
 
 use App\Http\Controllers\relations_manager\dashboardController as dashboardRelationsManagerController;
+use App\Http\Controllers\relations_manager\leaveController as leaveRelationManagerController;
 
 use App\Http\Controllers\support_expert\dashboardController as dashboardSupport_expertController;
 
@@ -995,10 +996,10 @@ Route::group(['prefix' => 'support-manager-access/dashboard', 'middleware' => 's
 
 Route::group(['prefix' => 'relations-manager-access/dashboard', 'middleware' => 'relations_manager'], function () {
     Route::get('/',[dashboardRelationsManagerController::class,'index'])->name('relations_manager_index');
-//    Route::get('leave_deputy',[leave_deputy_planController::class,'index'])->name('leave_deputy_index');
-//    Route::get('leave_deputy_confirmation', [leave_deputy_planController::class, 'confirmation'])->name('leave_deputy_confirmation');
-//    Route::get('leave_deputy_create',[leave_deputy_planController::class,'create'])->name('leave_deputy_create');
-//    Route::post('leave_deputy_store',[leave_deputy_planController::class,'store'])->name('leave_deputy_store');
+    Route::get('leave_relations_manager',[leaveRelationManagerController::class,'index'])->name('leave_relations_manager_index');
+    Route::get('leave_relations_manager_confirmation', [leaveRelationManagerController::class, 'confirmation'])->name('leave_relations_manager_confirmation');
+    Route::get('leave_relations_manager_create',[leaveRelationManagerController::class,'create'])->name('leave_relations_manager_create');
+    Route::post('leave_relations_manager_store',[leaveRelationManagerController::class,'store'])->name('leave_relations_manager_store');
 //    Route::post('deputy_leave_agreement',[leave_deputy_planController::class,'agreement'])->name('deputy_leave_agreement');
 
 });
