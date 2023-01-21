@@ -62,9 +62,15 @@
             </div>
             <div class="drp dropdown">
                 <a href="#" class=" user-name" data-toggle="dropdown">
-                    <span class="span_panel_name">
-                        {{$users->name . ' ' . $users->family}}
-                    </span>
+                    @if($users->type == 1)
+                        <span class="span_panel_name">
+                            {{$users->ceo_name . ' ' . $users->ceo_family}}
+                        </span>
+                    @else
+                        <span class="span_panel_name">
+                            {{$users->name . ' ' . $users->family}}
+                        </span>
+                    @endif
                 </a>
                 <strong>مدیر پشتیبانی</strong>
             </div>
