@@ -49,7 +49,10 @@
                                             @foreach($leaves as $leave)
                                                 <tr>
                                                     <td>
-                                                        1
+
+
+ggggg
+                                                        11
                                                         {{convertToPersianNumber($row)}}
                                                     </td>
                                                     <td>
