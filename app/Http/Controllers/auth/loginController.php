@@ -103,6 +103,8 @@ class loginController extends Controller
         }
         elseif ($user_selected_role == 18) {
             $redirect = route('relations_manager_index');
+        }elseif ($user_selected_role == 17) {
+            $redirect = route('support_expert_index');
         }else {
             return response()->json([
                 'status' => true,
