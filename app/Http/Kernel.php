@@ -83,6 +83,7 @@ class Kernel extends HttpKernel
         'support_expert' => \App\Http\Middleware\support_expert::class,
         'special_expert' => \App\Http\Middleware\special_expert::class,
         'discourse_expert' => \App\Http\Middleware\discourse_expert::class,
+        'innovation_expert' => \App\Http\Middleware\innovation_expert::class,
 
 
     ];

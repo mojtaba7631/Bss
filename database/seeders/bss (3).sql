@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 21, 2023 at 01:06 PM
+-- Generation Time: Jan 21, 2023 at 01:46 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -116,7 +116,8 @@ INSERT INTO `accounts` (`id`, `account_number`, `shaba_number`, `user_id`, `bank
 (103, '1111', '111111111111', 97, '1', NULL, '2023-01-18 12:27:37', '2023-01-18 12:27:37'),
 (104, '1111111111111111', '1111', 98, '1', NULL, '2023-01-21 08:29:25', '2023-01-21 08:29:25'),
 (105, '1111111111111111', '1111', 99, '1', NULL, '2023-01-21 09:42:00', '2023-01-21 09:42:00'),
-(106, '1111111111111111', '1111', 100, '1', NULL, '2023-01-21 11:21:18', '2023-01-21 11:21:18');
+(106, '1111111111111111', '1111', 100, '1', NULL, '2023-01-21 11:21:18', '2023-01-21 11:21:18'),
+(107, '1111111111111111', '1111', 101, '1', NULL, '2023-01-21 12:13:56', '2023-01-21 12:13:56');
 
 -- --------------------------------------------------------
 
@@ -3245,7 +3246,7 @@ INSERT INTO `role` (`id`, `title`, `route_title`, `parent`, `remember_token`, `c
 (18, 'مدیر روابط عمومی', 'relations_manager_index', 23, NULL, '2023-01-10 07:18:07', NULL),
 (19, 'کارشناس ارشد مرکز عملیات ویژه', 'special_expert_index', 12, NULL, '2023-01-10 07:20:33', NULL),
 (20, 'کارشناس مرکز گفتمان سازی', 'discourse_expert_index', 13, NULL, '2023-01-10 07:20:33', NULL),
-(21, 'کارشناس مرکز نوآوری', 'innovation_expert', 14, NULL, '2023-01-10 07:21:35', NULL),
+(21, 'کارشناس مرکز نوآوری', 'innovation_expert_index', 14, NULL, '2023-01-10 07:21:35', NULL),
 (22, 'کارشناس مالی', 'mali_expert', 6, NULL, '2023-01-10 07:27:10', NULL),
 (23, 'معاون طرح و برنامه', 'deputy_plan_program_index', 5, NULL, '2023-01-15 11:19:32', NULL);
 
@@ -3539,7 +3540,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `type`, `name`, `family`, `center_name`, `national_code`, `email`, `sex`, `id_code`, `birth_date`, `national_code_img`, `image`, `Signature_img`, `stamp_img`, `evidence`, `field_study`, `address`, `phone`, `mobile`, `social_no`, `co_name`, `co_reg_number`, `co_reg_date`, `co_national_id`, `co_statute_image`, `co_phone`, `co_post_code`, `co_id_code`, `ceo_name`, `ceo_family`, `father_name`, `ceo_national_code`, `ceo_id_code`, `password`, `p_without_hash`, `username`, `unique_code`, `active`, `remember_token`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(1, 0, 'مدیر', 'سایت', NULL, '0079234046', NULL, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '09128383357', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0079234046', NULL, '$2y$10$T9TQ3ZyNCFLVWsCg/UFwGeEUpRQBbH.TQ99L805rJxngpYuKePY3u', NULL, 'hamed.kazemi67', NULL, 1, 'qxcnFAZHS7yEVhRcF9buYKyvmWaErCInMu0iJZnkyVP1LWmHb1lRx3cS4nXb', '2022-04-04 19:30:00', NULL, NULL),
+(1, 0, 'مدیر', 'سایت', NULL, '0079234046', NULL, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '09128383357', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0079234046', NULL, '$2y$10$T9TQ3ZyNCFLVWsCg/UFwGeEUpRQBbH.TQ99L805rJxngpYuKePY3u', NULL, 'hamed.kazemi67', NULL, 1, 'FsoN06S7iUadYX728OoaDHH8c8bQjFaYSLmXdlRhdCvZBMgC7fbyn8QQQOR0', '2022-04-04 19:30:00', NULL, NULL),
 (9, 1, 'رضا', 'باقرنژاد', NULL, NULL, 'hamed.kazemi67@gmail.com', 0, NULL, NULL, NULL, 'images/1649169001.jpg', 'images/digital_sign/hamed_kazemi_jahat_mini.png', 'images/stamp/jahat_.png', NULL, NULL, 'خیابان انقلاب خیابان قدس کوچه پاریزی پلاک 20 واحد دوم', '09101776176', '09101776176', NULL, 'باتاب ارتباط گستر جهت', '584971', '2021-10-18 00:00:00', '14010426740', 'images/co_statute_image/1649169001.jpg', NULL, '1561835136', NULL, 'رضا', 'باقرنژاد', NULL, '0020848846', '2140', '$2y$10$K3UXecCrm1XuDg4PJ/sYAuQJqG5aqu0RMToVrJF221/vZQse9a3WC', NULL, '0020848846', NULL, 1, 'rjJIyBPJdr9c255JX1M5ZBujZ2Nh0dq9dNyg3tW2sKJbyO7R4vPGNZdDh8Jx', '2022-04-05 14:30:01', '2022-06-04 06:05:49', NULL),
 (11, 0, 'محسن', 'دوباشی', NULL, '3258919917', NULL, 1, NULL, NULL, 'images/national_cards/1649179432.png', 'images/1649179432.jpg', 'images/digital_sign/mohsen_dobashi_mini.png', NULL, NULL, NULL, NULL, NULL, '09124290383', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '$2y$10$4hRthwyH7Kllm/SDeU7Y.e0eQqc1Yd7CXDZRYWUREeNTWe3VYnR1y', 'qTS52LL26za8D45', '3258919917', 'د', 1, 'WSVjLH6iCIdKhwVmNqCbMjURwpDXj50n6RjI7KzFSoCK9soi8ZijmiIzYwHs', '2022-04-05 17:23:52', '2022-10-24 07:23:19', NULL),
 (12, 0, 'محمد', 'حیدری', 'رسانه', '4073509012', NULL, 1, NULL, NULL, 'images/national_cards\\1649179777.png', 'images\\1649179777.jpg', 'images/digital_sign/heydari_mini.png', NULL, NULL, NULL, NULL, NULL, '09902029464', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '$2y$10$iTsQauD6D9EYC/g4g8QXAeHYq/y2utTM8WlRb.a/eXUFVBlL0DHwa', NULL, '4073509012', 'ح', 1, '51N5h3NwSgYfP87vNQ2ErKGmVOE0wqgpE4cwFDOUW2Mv2htcOSFCnUJyeb3K', '2022-04-05 17:29:37', '2022-04-05 17:29:52', NULL),
@@ -3611,7 +3612,8 @@ INSERT INTO `users` (`id`, `type`, `name`, `family`, `center_name`, `national_co
 (97, 0, 'مهدی', 'جانی پور', NULL, '2181701776', NULL, 1, '1111', '2022-12-30 00:00:00', 'images/national_cards\\1674044857.jpeg', 'images\\1674044857.jpeg', 'images/digital_sign\\1674044857.jpeg', NULL, '4', 'علوم انسانی', 'تست', '02188778877', '09909610098', '09909610098', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '$2y$10$jzI1VuXI3mgqAdMh5m2ppeZ97QbjfRLgUzdgDN6T97rEQUqpP8cdS', NULL, '2181701776', NULL, 1, '668dUrMicfzIqGSo3nvh5bqj5cbrObK1bz1cEcedydoATOPaJvVQ5GziFivz', '2023-01-18 12:27:37', '2023-01-18 12:28:49', NULL),
 (98, 0, 'مصطفی', 'حاجی محمد امینی', NULL, '0080886809', NULL, 1, '1111', '2023-01-21 00:00:00', 'images/national_cards\\1674289765.jpeg', 'images\\1674289765.jpeg', 'images/digital_sign\\1674289765.jpeg', NULL, '4', 'علوم انسانی', 'تست', '02177887788', '09106430804', '09106430804', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '$2y$10$2RQ.a2HzJgNEflMCcHBiZ.TFAg7oZ25Bl2PsooiHEKbH6RT3yV8/6', NULL, '0080886809', NULL, 1, 'U0DzbngLO6JXYVOl97llpTAJtIXYeJVgC9IkcigbMrAHIs1wfCuLQHpQ45Wv', '2023-01-21 08:29:25', '2023-01-21 08:34:38', NULL),
 (99, 0, 'مرتضی', 'شاهسواران', NULL, '4160212980', NULL, 1, '1111', '2023-01-21 00:00:00', 'images/national_cards\\1674294120.jpeg', 'images\\1674294120.jpeg', 'images/digital_sign\\1674294120.jpeg', NULL, '4', 'علوم انسانی', 'تست', '02177887788', '09120616932', '09120616932', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '$2y$10$JztjvmF5CI31KisnyN8XTuRPNv21n.Iq6l9q79GxE4OINA8.osU6S', NULL, '4160212980', NULL, 1, 'ebNHEFj88FdxyZ7rYLFezDut6DyOm2h5KGt5dW59x5Bq2gZAwjUw3LPSIuMp', '2023-01-21 09:42:00', '2023-01-21 09:45:39', NULL),
-(100, 0, 'دانیال', 'رضاپور', NULL, '2980255521', NULL, 1, '1111', '2023-01-21 00:00:00', 'images/national_cards\\1674300078.jpeg', 'images\\1674300078.jpeg', 'images/digital_sign\\1674300078.jpeg', NULL, '4', 'علوم انسانی', 'تست', '02177887788', '09198144425', '09198144425', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '$2y$10$5cFob.cMnSIpJgoxuA3qDu5Eij6x.Xdb04A4UZSx0UUDQScqKgIIm', NULL, '2980255521', NULL, 1, '3t0eVrCSoVamXAJULlNCzQ50P2ViUYtAVB67cPxBSEqQQY6mmwjINKtDbjdE', '2023-01-21 11:21:18', '2023-01-21 11:24:11', NULL);
+(100, 0, 'دانیال', 'رضاپور', NULL, '2980255521', NULL, 1, '1111', '2023-01-21 00:00:00', 'images/national_cards\\1674300078.jpeg', 'images\\1674300078.jpeg', 'images/digital_sign\\1674300078.jpeg', NULL, '4', 'علوم انسانی', 'تست', '02177887788', '09198144425', '09198144425', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '$2y$10$5cFob.cMnSIpJgoxuA3qDu5Eij6x.Xdb04A4UZSx0UUDQScqKgIIm', NULL, '2980255521', NULL, 1, '3t0eVrCSoVamXAJULlNCzQ50P2ViUYtAVB67cPxBSEqQQY6mmwjINKtDbjdE', '2023-01-21 11:21:18', '2023-01-21 11:24:11', NULL),
+(101, 0, 'کیوان', 'نوذری', NULL, '4120047490', NULL, 1, '1111', '2023-01-21 00:00:00', 'images/national_cards\\1674303236.jpeg', 'images\\1674303236.jpeg', 'images/digital_sign\\1674303236.jpeg', NULL, '4', 'علوم انسانی', 'تست', '02177887788', '09127392110', '09127392110', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '$2y$10$N/GKx4PbnBwuEinT7GEyzOfEsuPAG7v3Ml0GlKSwY0FTjPjkG7nNG', NULL, '4120047490', NULL, 1, 'MmIzJzYd9l3zzU0fwwgau0ai6O9ZCzTFccqzCeUdswHuGDNN9aN6XeIhXG6s', '2023-01-21 12:13:56', '2023-01-21 12:16:44', NULL);
 
 -- --------------------------------------------------------
 
@@ -3738,7 +3740,8 @@ INSERT INTO `user_role` (`id`, `user_id`, `roles`, `is_default`, `remember_token
 (121, 98, 17, 0, NULL, NULL, NULL),
 (122, 99, 19, 0, NULL, NULL, NULL),
 (123, 100, 20, 0, NULL, NULL, NULL),
-(124, 12, 12, 0, NULL, '2023-01-21 11:52:32', NULL);
+(124, 12, 12, 0, NULL, '2023-01-21 11:52:32', NULL),
+(125, 101, 21, 0, NULL, NULL, NULL);
 
 --
 -- Indexes for dumped tables
@@ -3922,7 +3925,7 @@ ALTER TABLE `user_role`
 -- AUTO_INCREMENT for table `accounts`
 --
 ALTER TABLE `accounts`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=107;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=108;
 
 --
 -- AUTO_INCREMENT for table `banks`
@@ -4072,13 +4075,13 @@ ALTER TABLE `tickets`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=101;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=102;
 
 --
 -- AUTO_INCREMENT for table `user_role`
 --
 ALTER TABLE `user_role`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=125;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=126;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
