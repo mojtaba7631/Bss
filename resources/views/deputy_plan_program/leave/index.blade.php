@@ -49,7 +49,6 @@
                                             @foreach($leaves as $leave)
                                                 <tr>
                                                     <td>
-                                                        11
                                                         {{convertToPersianNumber($row)}}
                                                     </td>
                                                     <td>
