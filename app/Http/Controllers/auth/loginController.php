@@ -96,18 +96,19 @@ class loginController extends Controller
             $redirect = route('expert_index');
         } elseif ($user_selected_role == 10) {
             $redirect = route('personnel_index');
-        }  elseif ($user_selected_role == 23) {
+        } elseif ($user_selected_role == 23) {
             $redirect = route('deputy_plan_program_index');
-        }   elseif ($user_selected_role == 16) {
+        } elseif ($user_selected_role == 16) {
             $redirect = route('support_manager_index');
-        }
-        elseif ($user_selected_role == 18) {
+        } elseif ($user_selected_role == 18) {
             $redirect = route('relations_manager_index');
-        }elseif ($user_selected_role == 17) {
+        } elseif ($user_selected_role == 17) {
             $redirect = route('support_expert_index');
-        }elseif ($user_selected_role == 19) {
+        } elseif ($user_selected_role == 19) {
             $redirect = route('special_expert_index');
-        }else {
+        } elseif ($user_selected_role == 20) {
+            $redirect = route('discourse_expert_index');
+        } else {
             return response()->json([
                 'status' => true,
                 'message' => 'شما سطح دسترسی لازم جهت ورود را ندارید.',
