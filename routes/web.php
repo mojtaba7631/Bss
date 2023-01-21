@@ -102,6 +102,9 @@ use App\Http\Controllers\support_expert\leaveController as leaveSupportExpertCon
 
 use App\Http\Controllers\special_expert\dashboardController as dashboardSpecial_expertController;
 
+use App\Http\Controllers\discourse_expert\dashboardController as dashboardDiscourse_expertController;
+
+
 
 use Illuminate\Support\Facades\Route;
 
@@ -1041,3 +1044,18 @@ Route::group(['prefix' => 'special_expert-access/dashboard', 'middleware' => 'sp
 });
 
 /**********************************************special_expert Dashboard******************************************************/
+
+
+/**********************************************discourse_expert Dashboard******************************************************/
+
+Route::group(['prefix' => 'discourse_expert-access/dashboard', 'middleware' => 'discourse_expert'], function () {
+    Route::get('/', [dashboardDiscourse_expertController::class, 'index'])->name('discourse_expert_index');
+//    Route::get('leave_deputy',[leave_deputy_planController::class,'index'])->name('leave_deputy_index');
+//    Route::get('leave_deputy_confirmation', [leave_deputy_planController::class, 'confirmation'])->name('leave_deputy_confirmation');
+//    Route::get('leave_deputy_create',[leave_deputy_planController::class,'create'])->name('leave_deputy_create');
+//    Route::post('leave_deputy_store',[leave_deputy_planController::class,'store'])->name('leave_deputy_store');
+//    Route::post('deputy_leave_agreement',[leave_deputy_planController::class,'agreement'])->name('deputy_leave_agreement');
+
+});
+
+/**********************************************discourse_expert Dashboard******************************************************/
