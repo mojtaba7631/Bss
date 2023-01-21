@@ -81,5 +81,7 @@ class Kernel extends HttpKernel
         'support_manager' => \App\Http\Middleware\support_manager::class,
         'relations_manager' => \App\Http\Middleware\relations_manager::class,
         'support_expert' => \App\Http\Middleware\support_expert::class,
+        'special_expert' => \App\Http\Middleware\special_expert::class,
+
     ];
 }

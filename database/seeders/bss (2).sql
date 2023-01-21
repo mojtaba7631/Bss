@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 21, 2023 at 10:31 AM
+-- Generation Time: Jan 21, 2023 at 11:42 AM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -114,7 +114,8 @@ INSERT INTO `accounts` (`id`, `account_number`, `shaba_number`, `user_id`, `bank
 (101, '1111', '111111111111111111111', 95, '1', NULL, '2023-01-18 08:07:42', '2023-01-18 08:07:42'),
 (102, '1111', '111111111111111111111', 96, '1', NULL, '2023-01-18 09:01:03', '2023-01-18 09:01:03'),
 (103, '1111', '111111111111', 97, '1', NULL, '2023-01-18 12:27:37', '2023-01-18 12:27:37'),
-(104, '1111111111111111', '1111', 98, '1', NULL, '2023-01-21 08:29:25', '2023-01-21 08:29:25');
+(104, '1111111111111111', '1111', 98, '1', NULL, '2023-01-21 08:29:25', '2023-01-21 08:29:25'),
+(105, '1111111111111111', '1111', 99, '1', NULL, '2023-01-21 09:42:00', '2023-01-21 09:42:00');
 
 -- --------------------------------------------------------
 
@@ -264,6 +265,21 @@ CREATE TABLE `leave` (
 
 INSERT INTO `leave` (`id`, `user_id`, `parent`, `day_leave_count`, `hour_leave_count`, `type`, `start_hour`, `end_hour`, `start_day`, `end_day`, `confirmation`, `disapproval_reason`, `main_manager_approval`, `finance_manager_approval`, `remember_token`, `created_at`, `updated_at`) VALUES
 (1, 13, 23, NULL, 2, 1, 10, 12, '2023-01-16 20:30:00', '2023-01-16 20:30:00', 0, NULL, 1, 0, NULL, '2023-01-17 07:07:37', '2023-01-17 09:58:31');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `leave_status`
+--
+
+CREATE TABLE `leave_status` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `title` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `status_css` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `color_css` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -3225,7 +3241,7 @@ INSERT INTO `role` (`id`, `title`, `route_title`, `parent`, `remember_token`, `c
 (16, 'مدیر پشتیبانی', 'support_manager_index', 23, NULL, '2023-01-10 07:13:42', NULL),
 (17, 'کارشناس پشتیبانی', 'support_expert_index', 16, NULL, '2023-01-10 07:14:30', NULL),
 (18, 'مدیر روابط عمومی', 'relations_manager_index', 23, NULL, '2023-01-10 07:18:07', NULL),
-(19, 'کارشناس ارشد مرکز عملیات ویژه', 'special_expert', 12, NULL, '2023-01-10 07:20:33', NULL),
+(19, 'کارشناس ارشد مرکز عملیات ویژه', 'special_expert_index', 12, NULL, '2023-01-10 07:20:33', NULL),
 (20, 'کارشناس مرکز گفتمان سازی', 'discourse_expert', 13, NULL, '2023-01-10 07:20:33', NULL),
 (21, 'کارشناس مرکز نوآوری', 'innovation_expert', 14, NULL, '2023-01-10 07:21:35', NULL),
 (22, 'کارشناس مالی', 'mali_expert', 6, NULL, '2023-01-10 07:27:10', NULL),
@@ -3521,7 +3537,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `type`, `name`, `family`, `center_name`, `national_code`, `email`, `sex`, `id_code`, `birth_date`, `national_code_img`, `image`, `Signature_img`, `stamp_img`, `evidence`, `field_study`, `address`, `phone`, `mobile`, `social_no`, `co_name`, `co_reg_number`, `co_reg_date`, `co_national_id`, `co_statute_image`, `co_phone`, `co_post_code`, `co_id_code`, `ceo_name`, `ceo_family`, `father_name`, `ceo_national_code`, `ceo_id_code`, `password`, `p_without_hash`, `username`, `unique_code`, `active`, `remember_token`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(1, 0, 'مدیر', 'سایت', NULL, '0079234046', NULL, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '09128383357', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0079234046', NULL, '$2y$10$T9TQ3ZyNCFLVWsCg/UFwGeEUpRQBbH.TQ99L805rJxngpYuKePY3u', NULL, 'hamed.kazemi67', NULL, 1, 'j4mNy4EnPPgBsGADH6VaRQBdD7JdplE4iPP5b1PtqWIEsYv8LDoBamBYOyaI', '2022-04-04 19:30:00', NULL, NULL),
+(1, 0, 'مدیر', 'سایت', NULL, '0079234046', NULL, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '09128383357', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0079234046', NULL, '$2y$10$T9TQ3ZyNCFLVWsCg/UFwGeEUpRQBbH.TQ99L805rJxngpYuKePY3u', NULL, 'hamed.kazemi67', NULL, 1, 'D9EKsoFUFxYyI12rLZXqVk3Q0FPfdotWvrdqEZeh4SsRIdmdeyiwnojkoVAR', '2022-04-04 19:30:00', NULL, NULL),
 (9, 1, 'رضا', 'باقرنژاد', NULL, NULL, 'hamed.kazemi67@gmail.com', 0, NULL, NULL, NULL, 'images/1649169001.jpg', 'images/digital_sign/hamed_kazemi_jahat_mini.png', 'images/stamp/jahat_.png', NULL, NULL, 'خیابان انقلاب خیابان قدس کوچه پاریزی پلاک 20 واحد دوم', '09101776176', '09101776176', NULL, 'باتاب ارتباط گستر جهت', '584971', '2021-10-18 00:00:00', '14010426740', 'images/co_statute_image/1649169001.jpg', NULL, '1561835136', NULL, 'رضا', 'باقرنژاد', NULL, '0020848846', '2140', '$2y$10$K3UXecCrm1XuDg4PJ/sYAuQJqG5aqu0RMToVrJF221/vZQse9a3WC', NULL, '0020848846', NULL, 1, 'rjJIyBPJdr9c255JX1M5ZBujZ2Nh0dq9dNyg3tW2sKJbyO7R4vPGNZdDh8Jx', '2022-04-05 14:30:01', '2022-06-04 06:05:49', NULL),
 (11, 0, 'محسن', 'دوباشی', NULL, '3258919917', NULL, 1, NULL, NULL, 'images/national_cards/1649179432.png', 'images/1649179432.jpg', 'images/digital_sign/mohsen_dobashi_mini.png', NULL, NULL, NULL, NULL, NULL, '09124290383', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '$2y$10$4hRthwyH7Kllm/SDeU7Y.e0eQqc1Yd7CXDZRYWUREeNTWe3VYnR1y', 'qTS52LL26za8D45', '3258919917', 'د', 1, 'WSVjLH6iCIdKhwVmNqCbMjURwpDXj50n6RjI7KzFSoCK9soi8ZijmiIzYwHs', '2022-04-05 17:23:52', '2022-10-24 07:23:19', NULL),
 (12, 0, 'محمد', 'حیدری', 'رسانه', '4073509012', NULL, 1, NULL, NULL, 'images/national_cards\\1649179777.png', 'images\\1649179777.jpg', 'images/digital_sign/heydari_mini.png', NULL, NULL, NULL, NULL, NULL, '09902029464', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '$2y$10$iTsQauD6D9EYC/g4g8QXAeHYq/y2utTM8WlRb.a/eXUFVBlL0DHwa', NULL, '4073509012', 'ح', 1, '51N5h3NwSgYfP87vNQ2ErKGmVOE0wqgpE4cwFDOUW2Mv2htcOSFCnUJyeb3K', '2022-04-05 17:29:37', '2022-04-05 17:29:52', NULL),
@@ -3591,7 +3607,8 @@ INSERT INTO `users` (`id`, `type`, `name`, `family`, `center_name`, `national_co
 (92, 0, 'محمدحسین', 'شریف منش', NULL, '1271511789', NULL, 1, '1271511789', '1993-10-31 00:00:00', 'images/national_cards/1672210521.jpg', 'images/1672210521.jpg', 'images/digital_sign/1672210521.jpg', NULL, '4', 'حقوق', 'نارمک خیابان شهید ثانی خیابان شهید بختیاری پلاک 74 واحد 13', '02177936605', '09133868768', '09133868768', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '$2y$10$oIZ6gvfq7B7/XZJxQtarOODPlr3KazTP7Xzig5C0km58VgcIRCIyW', NULL, '1271511789', NULL, 1, 'sXq4A4V74RWIkpZbn1UkHI0BVpkxUo5KATFBrLoLt2jjnU0jOiQJZz4vSF94', '2022-12-28 06:55:21', '2022-12-28 07:28:48', NULL),
 (93, 0, 'کاربر تست', 'پرسنل عادی', NULL, '0027442640', 'e.test@test.com', NULL, '0027442640', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '09127132500', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '$2y$10$CmDCmroHceA7qfSgqEGABuGD7ewtYygz3dS0m9ZJFjvp0yI5MdT5.', NULL, '0027442640', NULL, 1, 'S9wat6gd9s68cm4lE5PhqidK0M14In9yIY83tqTOw2yQmrXT5fNPJUQ0UEsR', '2022-12-28 12:42:27', '2023-01-18 07:53:03', NULL),
 (97, 0, 'مهدی', 'جانی پور', NULL, '2181701776', NULL, 1, '1111', '2022-12-30 00:00:00', 'images/national_cards\\1674044857.jpeg', 'images\\1674044857.jpeg', 'images/digital_sign\\1674044857.jpeg', NULL, '4', 'علوم انسانی', 'تست', '02188778877', '09909610098', '09909610098', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '$2y$10$jzI1VuXI3mgqAdMh5m2ppeZ97QbjfRLgUzdgDN6T97rEQUqpP8cdS', NULL, '2181701776', NULL, 1, '668dUrMicfzIqGSo3nvh5bqj5cbrObK1bz1cEcedydoATOPaJvVQ5GziFivz', '2023-01-18 12:27:37', '2023-01-18 12:28:49', NULL),
-(98, 0, 'مصطفی', 'حاجی محمد امینی', NULL, '0080886809', NULL, 1, '1111', '2023-01-21 00:00:00', 'images/national_cards\\1674289765.jpeg', 'images\\1674289765.jpeg', 'images/digital_sign\\1674289765.jpeg', NULL, '4', 'علوم انسانی', 'تست', '02177887788', '09106430804', '09106430804', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '$2y$10$2RQ.a2HzJgNEflMCcHBiZ.TFAg7oZ25Bl2PsooiHEKbH6RT3yV8/6', NULL, '0080886809', NULL, 1, 'qTnWsorr29wkhckyQInoVedD9ofQncEhjNZvgxZGOHLVObB7GEurKezUMzuu', '2023-01-21 08:29:25', '2023-01-21 08:34:38', NULL);
+(98, 0, 'مصطفی', 'حاجی محمد امینی', NULL, '0080886809', NULL, 1, '1111', '2023-01-21 00:00:00', 'images/national_cards\\1674289765.jpeg', 'images\\1674289765.jpeg', 'images/digital_sign\\1674289765.jpeg', NULL, '4', 'علوم انسانی', 'تست', '02177887788', '09106430804', '09106430804', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '$2y$10$2RQ.a2HzJgNEflMCcHBiZ.TFAg7oZ25Bl2PsooiHEKbH6RT3yV8/6', NULL, '0080886809', NULL, 1, 'U0DzbngLO6JXYVOl97llpTAJtIXYeJVgC9IkcigbMrAHIs1wfCuLQHpQ45Wv', '2023-01-21 08:29:25', '2023-01-21 08:34:38', NULL),
+(99, 0, 'مرتضی', 'شاهسواران', NULL, '4160212980', NULL, 1, '1111', '2023-01-21 00:00:00', 'images/national_cards\\1674294120.jpeg', 'images\\1674294120.jpeg', 'images/digital_sign\\1674294120.jpeg', NULL, '4', 'علوم انسانی', 'تست', '02177887788', '09120616932', '09120616932', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '$2y$10$JztjvmF5CI31KisnyN8XTuRPNv21n.Iq6l9q79GxE4OINA8.osU6S', NULL, '4160212980', NULL, 1, 'ebNHEFj88FdxyZ7rYLFezDut6DyOm2h5KGt5dW59x5Bq2gZAwjUw3LPSIuMp', '2023-01-21 09:42:00', '2023-01-21 09:45:39', NULL);
 
 -- --------------------------------------------------------
 
@@ -3715,7 +3732,8 @@ INSERT INTO `user_role` (`id`, `user_id`, `roles`, `is_default`, `remember_token
 (118, 96, 16, 0, NULL, NULL, NULL),
 (119, 71, 16, 0, NULL, '2023-01-18 09:11:09', NULL),
 (120, 97, 18, 0, NULL, NULL, NULL),
-(121, 98, 17, 0, NULL, NULL, NULL);
+(121, 98, 17, 0, NULL, NULL, NULL),
+(122, 99, 19, 0, NULL, NULL, NULL);
 
 --
 -- Indexes for dumped tables
@@ -3743,6 +3761,12 @@ ALTER TABLE `delay`
 -- Indexes for table `leave`
 --
 ALTER TABLE `leave`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `leave_status`
+--
+ALTER TABLE `leave_status`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -3893,7 +3917,7 @@ ALTER TABLE `user_role`
 -- AUTO_INCREMENT for table `accounts`
 --
 ALTER TABLE `accounts`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=105;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=106;
 
 --
 -- AUTO_INCREMENT for table `banks`
@@ -3912,6 +3936,12 @@ ALTER TABLE `delay`
 --
 ALTER TABLE `leave`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `leave_status`
+--
+ALTER TABLE `leave_status`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `letters`
@@ -4037,13 +4067,13 @@ ALTER TABLE `tickets`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=99;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=100;
 
 --
 -- AUTO_INCREMENT for table `user_role`
 --
 ALTER TABLE `user_role`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=122;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=123;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

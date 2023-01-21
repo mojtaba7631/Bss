@@ -100,6 +100,9 @@ use App\Http\Controllers\relations_manager\leaveController as leaveRelationManag
 use App\Http\Controllers\support_expert\dashboardController as dashboardSupport_expertController;
 use App\Http\Controllers\support_expert\leaveController as leaveSupportExpertController;
 
+use App\Http\Controllers\special_expert\dashboardController as dashboardSpecial_expertController;
+
+
 use Illuminate\Support\Facades\Route;
 
 
@@ -810,9 +813,9 @@ Route::group(['prefix' => 'maliManager-access/dashboard', 'middleware' => 'maliM
     Route::group(['prefix' => 'leave', 'middleware' => 'maliManagerAuth'], function () {
         Route::get('finance_leave', [maliLeaveController::class, 'index'])->name('maliManager_leave_index');
         Route::get('finance_confirmation', [maliLeaveController::class, 'confirmation'])->name('maliManager_leave_confirmation');
-        Route::get('finance_leave_create',[maliLeaveController::class,'create'])->name('maliManager_leave_create');
-        Route::post('finance_leave_store',[maliLeaveController::class,'store'])->name('maliManager_leave_store');
-        Route::post('maliManager_leave_agreement',[maliLeaveController::class,'agreement'])->name('maliManager_leave_agreement');
+        Route::get('finance_leave_create', [maliLeaveController::class, 'create'])->name('maliManager_leave_create');
+        Route::post('finance_leave_store', [maliLeaveController::class, 'store'])->name('maliManager_leave_store');
+        Route::post('maliManager_leave_agreement', [maliLeaveController::class, 'agreement'])->name('maliManager_leave_agreement');
     });
 
     /********** Mali Manager leave ****************************************************************************/
@@ -954,24 +957,24 @@ Route::group(['prefix' => 'expert-access/dashboard', 'middleware' => 'expert'], 
 
 /**********************************************Personnel Dashboard******************************************************/
 Route::group(['prefix' => 'personnel-access/dashboard', 'middleware' => 'personnel'], function () {
-    Route::get('/',[dashboard_personnelController::class,'index'])->name('personnel_index');
-    Route::get('leave_personnel',[leave_personnelController::class,'index'])->name('leave_personnel_index');
-    Route::get('leave_personnel_create',[leave_personnelController::class,'create'])->name('leave_personnel_create');
-    Route::post('leave_personnel_store',[leave_personnelController::class,'store'])->name('leave_personnel_store');
-    Route::get('mission_personnel',[mission_personnelController::class,'index'])->name('mission_personnel_index');
-    Route::get('mission_personnel_create',[mission_personnelController::class,'create'])->name('mission_personnel_create');
+    Route::get('/', [dashboard_personnelController::class, 'index'])->name('personnel_index');
+    Route::get('leave_personnel', [leave_personnelController::class, 'index'])->name('leave_personnel_index');
+    Route::get('leave_personnel_create', [leave_personnelController::class, 'create'])->name('leave_personnel_create');
+    Route::post('leave_personnel_store', [leave_personnelController::class, 'store'])->name('leave_personnel_store');
+    Route::get('mission_personnel', [mission_personnelController::class, 'index'])->name('mission_personnel_index');
+    Route::get('mission_personnel_create', [mission_personnelController::class, 'create'])->name('mission_personnel_create');
 });
 /**********************************************Personnel Dashboard******************************************************/
 
 /**********************************************deputy_plan_program Dashboard******************************************************/
 
 Route::group(['prefix' => 'deputy-plan-program-access/dashboard', 'middleware' => 'deputy_plan_program'], function () {
-    Route::get('/',[dashboard_deputy_planController::class,'index'])->name('deputy_plan_program_index');
-    Route::get('leave_deputy',[leave_deputy_planController::class,'index'])->name('leave_deputy_index');
+    Route::get('/', [dashboard_deputy_planController::class, 'index'])->name('deputy_plan_program_index');
+    Route::get('leave_deputy', [leave_deputy_planController::class, 'index'])->name('leave_deputy_index');
     Route::get('leave_deputy_confirmation', [leave_deputy_planController::class, 'confirmation'])->name('leave_deputy_confirmation');
-    Route::get('leave_deputy_create',[leave_deputy_planController::class,'create'])->name('leave_deputy_create');
-    Route::post('leave_deputy_store',[leave_deputy_planController::class,'store'])->name('leave_deputy_store');
-    Route::post('deputy_leave_agreement',[leave_deputy_planController::class,'agreement'])->name('deputy_leave_agreement');
+    Route::get('leave_deputy_create', [leave_deputy_planController::class, 'create'])->name('leave_deputy_create');
+    Route::post('leave_deputy_store', [leave_deputy_planController::class, 'store'])->name('leave_deputy_store');
+    Route::post('deputy_leave_agreement', [leave_deputy_planController::class, 'agreement'])->name('deputy_leave_agreement');
 
 });
 
@@ -981,12 +984,12 @@ Route::group(['prefix' => 'deputy-plan-program-access/dashboard', 'middleware' =
 /**********************************************support_manager Dashboard******************************************************/
 
 Route::group(['prefix' => 'support-manager-access/dashboard', 'middleware' => 'support_manager'], function () {
-    Route::get('/',[dashboardSupportManagerController::class,'index'])->name('support_manager_index');
-    Route::get('leave_support_manager',[leaveSupportManagerController::class,'index'])->name('leave_support_manager_index');
+    Route::get('/', [dashboardSupportManagerController::class, 'index'])->name('support_manager_index');
+    Route::get('leave_support_manager', [leaveSupportManagerController::class, 'index'])->name('leave_support_manager_index');
     Route::get('leave_support_confirmation', [leaveSupportManagerController::class, 'confirmation'])->name('leave_support_confirmation');
-    Route::get('leave_support_create',[leaveSupportManagerController::class,'create'])->name('leave_support_create');
-    Route::post('leave_support_store',[leaveSupportManagerController::class,'store'])->name('leave_support_store');
-    Route::post('support_leave_agreement',[leaveSupportManagerController::class,'agreement'])->name('support_leave_agreement');
+    Route::get('leave_support_create', [leaveSupportManagerController::class, 'create'])->name('leave_support_create');
+    Route::post('leave_support_store', [leaveSupportManagerController::class, 'store'])->name('leave_support_store');
+    Route::post('support_leave_agreement', [leaveSupportManagerController::class, 'agreement'])->name('support_leave_agreement');
 
 });
 
@@ -996,11 +999,11 @@ Route::group(['prefix' => 'support-manager-access/dashboard', 'middleware' => 's
 /**********************************************relations_manager Dashboard******************************************************/
 
 Route::group(['prefix' => 'relations-manager-access/dashboard', 'middleware' => 'relations_manager'], function () {
-    Route::get('/',[dashboardRelationsManagerController::class,'index'])->name('relations_manager_index');
-    Route::get('leave_relations_manager',[leaveRelationManagerController::class,'index'])->name('leave_relations_manager_index');
+    Route::get('/', [dashboardRelationsManagerController::class, 'index'])->name('relations_manager_index');
+    Route::get('leave_relations_manager', [leaveRelationManagerController::class, 'index'])->name('leave_relations_manager_index');
     Route::get('leave_relations_manager_confirmation', [leaveRelationManagerController::class, 'confirmation'])->name('leave_relations_manager_confirmation');
-    Route::get('leave_relations_manager_create',[leaveRelationManagerController::class,'create'])->name('leave_relations_manager_create');
-    Route::post('leave_relations_manager_store',[leaveRelationManagerController::class,'store'])->name('leave_relations_manager_store');
+    Route::get('leave_relations_manager_create', [leaveRelationManagerController::class, 'create'])->name('leave_relations_manager_create');
+    Route::post('leave_relations_manager_store', [leaveRelationManagerController::class, 'store'])->name('leave_relations_manager_store');
 //    Route::post('deputy_leave_agreement',[leave_deputy_planController::class,'agreement'])->name('deputy_leave_agreement');
 
 });
@@ -1008,18 +1011,39 @@ Route::group(['prefix' => 'relations-manager-access/dashboard', 'middleware' => 
 /**********************************************relations_manager Dashboard******************************************************/
 
 
-
 /**********************************************support_expert Dashboard******************************************************/
 
 Route::group(['prefix' => 'support_expert-access/dashboard', 'middleware' => 'support_expert'], function () {
+<<<<<<< HEAD
     Route::get('/',[dashboardSupport_expertController::class,'index'])->name('support_expert_index');
     Route::get('leave_support_expert',[leaveSupportExpertController::class,'index'])->name('leave_support_expert_index');
     Route::get('leave_support_expert_confirmation', [leaveSupportExpertController::class, 'confirmation'])->name('leave_support_expert_confirmation');
     Route::get('leave_support_expert_create',[leaveSupportExpertController::class,'create'])->name('leave_support_expert_create');
     Route::post('leave_support_expert_store',[leaveSupportExpertController::class,'store'])->name('leave_support_expert_store');
+=======
+    Route::get('/', [dashboardSupport_expertController::class, 'index'])->name('support_expert_index');
+//    Route::get('leave_deputy',[leave_deputy_planController::class,'index'])->name('leave_deputy_index');
+//    Route::get('leave_deputy_confirmation', [leave_deputy_planController::class, 'confirmation'])->name('leave_deputy_confirmation');
+//    Route::get('leave_deputy_create',[leave_deputy_planController::class,'create'])->name('leave_deputy_create');
+//    Route::post('leave_deputy_store',[leave_deputy_planController::class,'store'])->name('leave_deputy_store');
+>>>>>>> 890e84965ae8ce86803eeee64ebd923fb402f636
 //    Route::post('deputy_leave_agreement',[leave_deputy_planController::class,'agreement'])->name('deputy_leave_agreement');
 
 });
 
 /**********************************************support_expert Dashboard******************************************************/
 
+
+/**********************************************special_expert Dashboard******************************************************/
+
+Route::group(['prefix' => 'special_expert-access/dashboard', 'middleware' => 'special_expert'], function () {
+    Route::get('/', [dashboardSpecial_expertController::class, 'index'])->name('special_expert_index');
+//    Route::get('leave_deputy',[leave_deputy_planController::class,'index'])->name('leave_deputy_index');
+//    Route::get('leave_deputy_confirmation', [leave_deputy_planController::class, 'confirmation'])->name('leave_deputy_confirmation');
+//    Route::get('leave_deputy_create',[leave_deputy_planController::class,'create'])->name('leave_deputy_create');
+//    Route::post('leave_deputy_store',[leave_deputy_planController::class,'store'])->name('leave_deputy_store');
+//    Route::post('deputy_leave_agreement',[leave_deputy_planController::class,'agreement'])->name('deputy_leave_agreement');
+
+});
+
+/**********************************************special_expert Dashboard******************************************************/
