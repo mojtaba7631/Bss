@@ -32,7 +32,7 @@
                                         <table class="table table-hover table-custom spacing8 text-center">
                                             <thead>
                                             <tr>
-                                                <th>#</th>
+                                                <th>$</th>
                                                 <th>نوع مرخصی</th>
                                                 <th>از روز - ساعت</th>
                                                 <th>تا روز - ساعت</th>
