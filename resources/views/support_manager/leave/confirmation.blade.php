@@ -1,4 +1,4 @@
-@extends('deputy_plan_program.layout.deputy_plan_program_layout')
+@extends('support_manager.layout.support_manager_layout')
 @section('title',"لیست تایید مرخصی ها")
 @section('css')
 @endsection

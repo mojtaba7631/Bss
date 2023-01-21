@@ -75,7 +75,6 @@ class leaveController extends Controller
         return view('deputy_plan_program.leave.confirmation', compact('user_img', 'user_info', 'leaves', 'searched'));
     }
 
-
     public function create()
     {
         $user_id = auth()->user()->id;

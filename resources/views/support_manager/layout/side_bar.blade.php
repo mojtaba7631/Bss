@@ -104,17 +104,17 @@
                     </a>
                     <ul>
                         <li>
-                            <a href="{{route('leave_deputy_confirmation')}}">
+                            <a href="{{route('leave_support_confirmation')}}">
                                 <span>تایید مرخصی ها</span>
                             </a>
                         </li>
                         <li>
-                            <a href="{{route('leave_deputy_index')}}">
+                            <a href="{{route('leave_support_manager_index')}}">
                                 <span>لیست مرخصی ها</span>
                             </a>
                         </li>
                         <li>
-                            <a href="{{route('leave_deputy_create')}}">
+                            <a href="{{route('leave_support_create')}}">
                                 <span>تعریف درخواست مرخصی</span>
                             </a>
                         </li>

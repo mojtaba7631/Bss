@@ -64,7 +64,11 @@
                                                         @endif
                                                     </td>
                                                     <td>
-                                                        {{$leave['name'] . ' ' . $leave['family']}}
+                                                        @if ( $leave['leave_user_info']['type'] == 0 )
+                                                            {{$leave['name'] . ' ' . $leave['family']}}
+                                                        @else
+                                                            {{$leave['ceo_name'] . ' ' . $leave['ceo_family']}}
+                                                        @endif
                                                     </td>
                                                     <td>
                                                         <p>
@@ -91,7 +95,8 @@
                                                         <a class="btn btn-primary" title="تایید مرخصی" id="confirm_btn">
                                                             <i class="fa fa-check"></i>
                                                         </a>
-                                                        <input type="hidden" value="{{$leave['leave_id']}}" id="leave_id">
+                                                        <input type="hidden" value="{{$leave['leave_id']}}"
+                                                               id="leave_id">
                                                     </td>
                                                 </tr>
                                                 @php $row++ @endphp
@@ -141,7 +146,8 @@
                     <button id="submit_leave_btn" type="submit" class="btn btn-success mr-1 ml-1">
                         بله
                     </button>
-                    <button type="button" class="btn btn-danger" id="unsubmit_leave_btn" data-dismiss="modal">خیر</button>
+                    <button type="button" class="btn btn-danger" id="unsubmit_leave_btn" data-dismiss="modal">خیر
+                    </button>
                 </div>
             </form>
 
@@ -154,28 +160,27 @@
 
         var confirm_btn = $('#confirm_btn');
 
-        confirm_btn.click(function (){
+        confirm_btn.click(function () {
             var my_modal = $('#my_modal');
             my_modal.show();
         });
 
         var submit_leave_btn = $('#submit_leave_btn');
-        submit_leave_btn.click(function (){
+        submit_leave_btn.click(function () {
             var my_modal = $('#my_modal');
             my_modal.hide();
 
             var leave_id = $('#leave_id').val();
             $.ajax({
-                url : "{{ route('deputy_leave_agreement') }}",
-                type:"post",
-                dataType : "json",
-                data : {
+                url: "{{ route('deputy_leave_agreement') }}",
+                type: "post",
+                dataType: "json",
+                data: {
                     _token: '{{csrf_token()}}',
-                    'leave_id' : leave_id,
+                    'leave_id': leave_id,
                 },
-                success:function (res)
-                {
-                    if(res.status == true){
+                success: function (res) {
+                    if (res.status == true) {
                         Swal.fire({
                             icon: 'success',
                             title: res.message,
@@ -184,20 +189,16 @@
                     }
                     window.location.href = "{{route('leave_deputy_index')}}"
 
-                },error : function (err){
+                }, error: function (err) {
 
                 }
             });
 
 
-
-
-
-
         });
 
         var unsubmit_leave_btn = $('#unsubmit_leave_btn');
-        unsubmit_leave_btn.click(function (){
+        unsubmit_leave_btn.click(function () {
             var leave_id = $('#leave_id').val();
             alert('leave_id');
             my_modal.hide();

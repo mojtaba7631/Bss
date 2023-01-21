@@ -809,6 +809,7 @@ Route::group(['prefix' => 'maliManager-access/dashboard', 'middleware' => 'maliM
         Route::get('finance_confirmation', [maliLeaveController::class, 'confirmation'])->name('maliManager_leave_confirmation');
         Route::get('finance_leave_create',[maliLeaveController::class,'create'])->name('maliManager_leave_create');
         Route::post('finance_leave_store',[maliLeaveController::class,'store'])->name('maliManager_leave_store');
+        Route::post('maliManager_leave_agreement',[maliLeaveController::class,'agreement'])->name('maliManager_leave_agreement');
     });
 
     /********** Mali Manager leave ****************************************************************************/
@@ -978,11 +979,11 @@ Route::group(['prefix' => 'deputy-plan-program-access/dashboard', 'middleware' =
 
 Route::group(['prefix' => 'support-manager-access/dashboard', 'middleware' => 'support_manager'], function () {
     Route::get('/',[dashboardSupportManagerController::class,'index'])->name('support_manager_index');
-//    Route::get('leave_deputy',[leave_deputy_planController::class,'index'])->name('leave_deputy_index');
-//    Route::get('leave_deputy_confirmation', [leave_deputy_planController::class, 'confirmation'])->name('leave_deputy_confirmation');
-//    Route::get('leave_deputy_create',[leave_deputy_planController::class,'create'])->name('leave_deputy_create');
-//    Route::post('leave_deputy_store',[leave_deputy_planController::class,'store'])->name('leave_deputy_store');
-//    Route::post('deputy_leave_agreement',[leave_deputy_planController::class,'agreement'])->name('deputy_leave_agreement');
+    Route::get('leave_support_manager',[leaveSupportManagerController::class,'index'])->name('leave_support_manager_index');
+    Route::get('leave_support_confirmation', [leaveSupportManagerController::class, 'confirmation'])->name('leave_support_confirmation');
+    Route::get('leave_support_create',[leaveSupportManagerController::class,'create'])->name('leave_support_create');
+    Route::post('leave_support_store',[leaveSupportManagerController::class,'store'])->name('leave_support_store');
+    Route::post('support_leave_agreement',[leaveSupportManagerController::class,'agreement'])->name('support_leave_agreement');
 
 });
 

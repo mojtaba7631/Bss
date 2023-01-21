@@ -39,6 +39,7 @@
                                                 <th>تا روز - ساعت</th>
                                                 <th>وضعیت مرخصی</th>
                                                 <th>جواب مرخصی</th>
+                                                <th>عملیات</th>
                                             </tr>
                                             </thead>
                                             @if(!$searched)
@@ -64,7 +65,11 @@
                                                         @endif
                                                     </td>
                                                     <td>
-                                                        {{$leave['leave_user_info']['name'] . ' ' . $leave['leave_user_info']['family']}}
+                                                        @if ( $leave['leave_user_info']['type'] == 0 )
+                                                            {{$leave['leave_user_info']['name'] . ' ' . $leave['leave_user_info']['family']}}
+                                                        @else
+                                                            {{$leave['leave_user_info']['ceo_name'] . ' ' . $leave['leave_user_info']['ceo_family']}}
+                                                        @endif
                                                     </td>
                                                     <td>
                                                         <p>
@@ -89,6 +94,13 @@
                                                     </td>
                                                     <td>
                                                         {{$leave->disapproval_reason}}
+                                                    </td>
+                                                    <td>
+                                                        <a class="btn btn-primary" title="تایید مرخصی" id="confirm_btn">
+                                                            <i class="fa fa-check"></i>
+                                                        </a>
+                                                        <input type="hidden" value="{{$leave['id']}}"
+                                                               id="leave_id">
                                                     </td>
                                                 </tr>
                                                 @php $row++ @endphp
@@ -115,6 +127,89 @@
             </div>
         </div>
     </div>
+    <!-- The Modal -->
+    <div class="modal" id="my_modal">
+        <div class="modal-dialog">
+            <form action="#" enctype="multipart/form-data"
+                  class="modal-content">
+                @csrf
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">تایید مرخصی</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+
+                <!-- Modal body -->
+                <div class="modal-body">
+                    <p>آیا با تایید مرخصی موافقید؟</p>
+                    <input type="text" class="form-control" placeholder="دلیل عدم موافقت">
+                </div>
+
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                    <button id="submit_leave_btn" type="submit" class="btn btn-success mr-1 ml-1">
+                        بله
+                    </button>
+                    <button type="button" class="btn btn-danger" id="unsubmit_leave_btn" data-dismiss="modal">خیر
+                    </button>
+                </div>
+            </form>
+
+        </div>
+    </div>
 @endsection
 @section('js')
+    <script>
+        var confirm_btn = $('#confirm_btn');
+        confirm_btn.click(function () {
+            var my_modal = $('#my_modal');
+            my_modal.show();
+        });
+        var submit_leave_btn = $('#submit_leave_btn');
+
+        submit_leave_btn.click(function () {
+            var my_modal = $('#my_modal');
+            my_modal.hide();
+
+            // $.ajaxSetup({
+            //     headers: {
+            //         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            //     }
+            // });
+
+            var leave_id = $('#leave_id').val();
+            $.ajax({
+                url: "{{ route('maliManager_leave_agreement') }}",
+                type: "post",
+                dataType: "json",
+                data: {
+                    _token: '{{csrf_token()}}',
+                    'leave_id': leave_id,
+                },
+                success: function (res) {
+                    if (res.status == true) {
+                        Swal.fire({
+                            icon: 'success',
+                            title: res.message,
+                        })
+
+                    }
+                    window.location.href = "{{route('maliManager_leave_confirmation')}}"
+
+                }, error: function (err) {
+
+                }
+            });
+
+
+        });
+
+        var unsubmit_leave_btn = $('#unsubmit_leave_btn');
+        unsubmit_leave_btn.click(function () {
+            var leave_id = $('#leave_id').val();
+            alert('leave_id');
+            my_modal.hide();
+        });
+
+    </script>
 @endsection

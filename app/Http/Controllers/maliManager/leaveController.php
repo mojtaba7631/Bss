@@ -58,13 +58,11 @@ class leaveController extends Controller
                 ->first();
         }
 
-
         $user_img = $user_info->image;
         $searched = false;
 
         return view('mali_manager.leave.confirmation', compact('user_img', 'user_info', 'leaves', 'searched'));
     }
-
 
     public function create()
     {
@@ -146,6 +144,27 @@ class leaveController extends Controller
         $englishNumbersOnly = str_replace($arabic, $num, $convertedPersianNums);
 
         return $englishNumbersOnly;
+    }
+
+    function agreement(Request  $request)
+    {
+
+        dd($request->all());
+        $input = $request->all();
+
+        $leave_info = Leave::query()
+            ->where('id',$input['leave_id'])
+            ->first();
+
+        $leave_info->update([
+            'finance_manager_approval' => 1,
+            'confirmation' => 1,
+        ]);
+
+        return response()->json([
+            'status' => true,
+            'message' => 'مرخصی کاربر مورد نظر تایید شد',
+        ]);
     }
 
 
