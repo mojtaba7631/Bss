@@ -89,9 +89,5 @@ class Kernel extends HttpKernel
         'adjustment_manager' => \App\Http\Middleware\adjustment_manager::class,
         'head_special' => \App\Http\Middleware\head_special::class,
         'head_innovation' => \App\Http\Middleware\head_innovation::class,
-
-
-
-
     ];
 }
