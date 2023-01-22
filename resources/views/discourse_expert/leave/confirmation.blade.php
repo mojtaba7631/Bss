@@ -166,7 +166,7 @@
 
             var leave_id = $('#leave_id').val();
             $.ajax({
-                url : "{{ route('deputy_leave_agreement') }}",
+                url : "{{ route('discourse_expert_leave_agreement') }}",
                 type:"post",
                 dataType : "json",
                 data : {
@@ -182,7 +182,7 @@
                         })
 
                     }
-                    window.location.href = "{{route('leave_deputy_index')}}"
+                    window.location.href = "{{route('leave_discourse_expert_index')}}"
 
                 },error : function (err){
 
