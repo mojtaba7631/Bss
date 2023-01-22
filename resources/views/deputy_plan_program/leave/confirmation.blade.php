@@ -92,11 +92,12 @@
                                                         @endif
                                                     </td>
                                                     <td>
-                                                        <a class="btn btn-primary" title="تایید مرخصی" id="confirm_btn">
+                                                        <a class="btn btn-primary confirm_btn" title="تایید مرخصی" id="confirm_btn"
+                                                           data-leave="{{ $leave['leave_id'] }}">
                                                             <i class="fa fa-check"></i>
                                                         </a>
-                                                        <input type="hidden" value="{{$leave['leave_id']}}"
-                                                               id="leave_id">
+{{--                                                        <input type="hidden" value="{{$leave['leave_id']}}"--}}
+{{--                                                               id="leave_id">--}}
                                                     </td>
                                                 </tr>
                                                 @php $row++ @endphp
@@ -143,7 +144,7 @@
 
                 <!-- Modal footer -->
                 <div class="modal-footer">
-                    <button id="submit_leave_btn" type="submit" class="btn btn-success mr-1 ml-1">
+                    <button id="submit_leave_btn" type="submit" class="btn btn-success mr-1 ml-1 submit_leave_btn">
                         بله
                     </button>
                     <button type="button" class="btn btn-danger" id="unsubmit_leave_btn" data-dismiss="modal">خیر
@@ -158,42 +159,52 @@
 @section('js')
     <script>
 
-        var confirm_btn = $('#confirm_btn');
+        var confirm_btn = $('.confirm_btn');
 
         confirm_btn.click(function () {
             var my_modal = $('#my_modal');
             my_modal.show();
         });
 
-        var submit_leave_btn = $('#submit_leave_btn');
+        var submit_leave_btn = $('.submit_leave_btn');
         submit_leave_btn.click(function () {
             var my_modal = $('#my_modal');
             my_modal.hide();
 
-            var leave_id = $('#leave_id').val();
-            $.ajax({
-                url: "{{ route('deputy_leave_agreement') }}",
-                type: "post",
-                dataType: "json",
-                data: {
-                    _token: '{{csrf_token()}}',
-                    'leave_id': leave_id,
-                },
-                success: function (res) {
-                    if (res.status == true) {
-                        Swal.fire({
-                            icon: 'success',
-                            title: res.message,
-                        })
 
+            jQuery(document).on('click', '.confirm_btn', function (e) {
+                let leave_id = jQuery(this).data("leave");
+
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                     }
-                    window.location.href = "{{route('leave_deputy_index')}}"
+                });
 
-                }, error: function (err) {
+                // let order_id = $(".order_id").val();
+                // alert(order_id);
 
-                }
+                $.ajax({
+                    url: "{{route('deputy_leave_agreement')}}",
+                    type: "post",
+                    // dataType: "json",
+                    data: {
+                        'leave_id': leave_id,
+                    },
+                    success: function (res) {
+                        if (res.status == true) {
+                            Swal.fire({
+                                icon: 'success',
+                                title: res.message,
+                            })
+
+                        }
+                        window.location.href = "{{route('leave_deputy_index')}}"
+                    }, error: function (err) {
+                        //
+                    }
+                });
             });
-
 
         });
 
