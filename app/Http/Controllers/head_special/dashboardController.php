@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\innovation_expert;
+namespace App\Http\Controllers\head_special;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;

@@ -112,6 +112,9 @@ use App\Http\Controllers\innovation_expert\leaveController as leaveInnovationExp
 use App\Http\Controllers\adjustment_expert\dashboardController as dashboardAdjustment_expertController;
 use App\Http\Controllers\adjustment_expert\leaveController as leaveAdjustmentExpertController;
 
+use App\Http\Controllers\head_special\dashboardController as dashboardHeadSpecialController;
+use App\Http\Controllers\head_special\leaveController as leaveHeadSpecialController;
+
 use App\Http\Controllers\head_discourse\dashboardController as dashboardHead_discourseController;
 
 
@@ -1133,3 +1136,16 @@ Route::group(['prefix' => 'adjustment_manager-access/dashboard', 'middleware' =>
 });
 
 /**********************************************adjustment_manager Dashboard******************************************************/
+
+
+/**********************************************head_special_operation_center Dashboard******************************************************/
+
+Route::group(['prefix' => 'head-special-manager-access/dashboard', 'middleware' => 'head_special'], function () {
+    Route::get('/', [dashboardHeadSpecialController::class, 'index'])->name('head_special_operation_center');
+    Route::get('leave_head_special',[leaveHeadSpecialController::class,'index'])->name('leave_head_special_index');
+    Route::get('leave_head_special_confirmation', [leaveHeadSpecialController::class, 'confirmation'])->name('leave_head_special_confirmation');
+    Route::get('leave_head_special_create',[leaveHeadSpecialController::class,'create'])->name('leave_head_special_create');
+    Route::post('leave_head_special_store',[leaveHeadSpecialController::class,'store'])->name('leave_head_special_store');
+    Route::post('head_special_leave_agreement',[leaveHeadSpecialController::class,'agreement'])->name('head_special_leave_agreement');
+});
+/**********************************************head_special_operation_center Dashboard******************************************************/
