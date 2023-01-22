@@ -64,7 +64,9 @@
             </div>
             <div class="drp dropdown">
                 <a href="#" class=" user-name" data-toggle="dropdown">
-                    <span class="span_panel_name">{{$users->name . ' ' . $users->family}}</span>
+                    <span class="span_panel_name">
+                        {{$users->name . ' ' . $users->family}}
+                    </span>
                 </a>
                 @if($user_id == 13)
                     <strong>مدیر مالی</strong>
