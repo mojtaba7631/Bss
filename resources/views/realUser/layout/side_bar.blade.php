@@ -24,7 +24,7 @@
         ->where('to',$user_id)
         ->where('seen',0)
         ->count();
-     
+
      $letter_count = \App\Models\LetterContacts::query()
         ->select('letters.sent, letter_contacts.*')
         ->join('letters', 'letter_contacts.letter_id','=','letters.id')
