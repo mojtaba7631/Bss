@@ -87,11 +87,9 @@ class Kernel extends HttpKernel
         'adjustment_expert' => \App\Http\Middleware\adjustment_expert::class,
         'head_discourse' => \App\Http\Middleware\head_discourse::class,
         'adjustment_manager' => \App\Http\Middleware\adjustment_manager::class,
-<<<<<<< HEAD
         'head_special' => \App\Http\Middleware\head_special::class,
-=======
         'head_innovation' => \App\Http\Middleware\head_innovation::class,
->>>>>>> 9d8a9156c11978080eb02ee75208daa95c2ccb6b
+
 
 
 
