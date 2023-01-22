@@ -106,9 +106,11 @@ use App\Http\Controllers\special_expert\leaveController as leaveSpecialExpertCon
 use App\Http\Controllers\discourse_expert\dashboardController as dashboardDiscourse_expertController;
 
 use App\Http\Controllers\innovation_expert\dashboardController as dashboardInnovation_expertController;
+use App\Http\Controllers\innovation_expert\leaveController as leaveInnovationExpertController;
 
 
 use App\Http\Controllers\adjustment_expert\dashboardController as dashboardAdjustment_expertController;
+use App\Http\Controllers\adjustment_expert\leaveController as leaveAdjustmentExpertController;
 
 use App\Http\Controllers\head_discourse\dashboardController as dashboardHead_discourseController;
 
@@ -1072,11 +1074,11 @@ Route::group(['prefix' => 'discourse_expert-access/dashboard', 'middleware' => '
 
 Route::group(['prefix' => 'innovation_expert-access/dashboard', 'middleware' => 'innovation_expert'], function () {
     Route::get('/', [dashboardInnovation_expertController::class, 'index'])->name('innovation_expert_index');
-//    Route::get('leave_deputy',[leave_deputy_planController::class,'index'])->name('leave_deputy_index');
-//    Route::get('leave_deputy_confirmation', [leave_deputy_planController::class, 'confirmation'])->name('leave_deputy_confirmation');
-//    Route::get('leave_deputy_create',[leave_deputy_planController::class,'create'])->name('leave_deputy_create');
-//    Route::post('leave_deputy_store',[leave_deputy_planController::class,'store'])->name('leave_deputy_store');
-//    Route::post('deputy_leave_agreement',[leave_deputy_planController::class,'agreement'])->name('deputy_leave_agreement');
+    Route::get('leave_innovation_expert',[leaveInnovationExpertController::class,'index'])->name('leave_innovation_expert_index');
+    Route::get('leave_innovation_expert_confirmation', [leaveInnovationExpertController::class, 'confirmation'])->name('leave_innovation_expert_confirmation');
+    Route::get('leave_innovation_expert_create',[leaveInnovationExpertController::class,'create'])->name('leave_innovation_expert_create');
+    Route::post('leave_innovation_expert_store',[leaveInnovationExpertController::class,'store'])->name('leave_innovation_expert_store');
+    Route::post('innovation_expert_leave_agreement',[leaveInnovationExpertController::class,'agreement'])->name('innovation_expert_leave_agreement');
 
 });
 
@@ -1087,11 +1089,11 @@ Route::group(['prefix' => 'innovation_expert-access/dashboard', 'middleware' => 
 
 Route::group(['prefix' => 'adjustment_expert-access/dashboard', 'middleware' => 'adjustment_expert'], function () {
     Route::get('/', [dashboardAdjustment_expertController::class, 'index'])->name('adjustment_expert_index');
-//    Route::get('leave_deputy',[leave_deputy_planController::class,'index'])->name('leave_deputy_index');
-//    Route::get('leave_deputy_confirmation', [leave_deputy_planController::class, 'confirmation'])->name('leave_deputy_confirmation');
-//    Route::get('leave_deputy_create',[leave_deputy_planController::class,'create'])->name('leave_deputy_create');
-//    Route::post('leave_deputy_store',[leave_deputy_planController::class,'store'])->name('leave_deputy_store');
-//    Route::post('deputy_leave_agreement',[leave_deputy_planController::class,'agreement'])->name('deputy_leave_agreement');
+    Route::get('leave_adjustment_expert',[leaveAdjustmentExpertController::class,'index'])->name('leave_adjustment_expert_index');
+    Route::get('leave_adjustment_expert_confirmation', [leaveAdjustmentExpertController::class, 'confirmation'])->name('leave_adjustment_expert_confirmation');
+    Route::get('leave_adjustment_expert_create',[leaveAdjustmentExpertController::class,'create'])->name('leave_adjustment_expert_create');
+    Route::post('leave_adjustment_expert_store',[leaveAdjustmentExpertController::class,'store'])->name('leave_adjustment_expert_store');
+    Route::post('adjustment_expert_leave_agreement',[leaveAdjustmentExpertController::class,'agreement'])->name('adjustment_expert_leave_agreement');
 
 });
 
