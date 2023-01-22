@@ -87,6 +87,7 @@ class leaveController extends Controller
         $user_img = $user_info->image;
 
         return view('adjustment_expert.leave.create', compact('user_img', 'user_info','role_title'));
+
     }
 
     public function store(Request $request)
