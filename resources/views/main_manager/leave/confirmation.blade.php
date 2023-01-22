@@ -1,4 +1,4 @@
-@extends('deputy_plan_program.layout.deputy_plan_program_layout')
+@extends('main_manager.layout.main_manager_layout')
 @section('title',"لیست تایید مرخصی ها")
 @section('css')
 @endsection
@@ -38,6 +38,7 @@
                                                 <th>از روز - ساعت</th>
                                                 <th>تا روز - ساعت</th>
                                                 <th>وضعیت مرخصی</th>
+                                                <th>جواب مرخصی</th>
                                                 <th>عملیات</th>
                                             </tr>
                                             </thead>
@@ -65,9 +66,9 @@
                                                     </td>
                                                     <td>
                                                         @if ( $leave['leave_user_info']['type'] == 0 )
-                                                            {{$leave['name'] . ' ' . $leave['family']}}
+                                                            {{$leave['leave_user_info']['name'] . ' ' . $leave['leave_user_info']['family']}}
                                                         @else
-                                                            {{$leave['ceo_name'] . ' ' . $leave['ceo_family']}}
+                                                            {{$leave['leave_user_info']['ceo_name'] . ' ' . $leave['leave_user_info']['ceo_family']}}
                                                         @endif
                                                     </td>
                                                     <td>
@@ -86,16 +87,19 @@
                                                                 تایید شده
                                                             </p>
                                                         @else
-                                                            <p class="badge badge-info">
+                                                            <p class="badge badge-danger">
                                                                 تایید نشده
                                                             </p>
                                                         @endif
                                                     </td>
                                                     <td>
+                                                        {{$leave->disapproval_reason}}
+                                                    </td>
+                                                    <td>
                                                         <a class="btn btn-primary" title="تایید مرخصی" id="confirm_btn">
                                                             <i class="fa fa-check"></i>
                                                         </a>
-                                                        <input type="hidden" value="{{$leave['leave_id']}}"
+                                                        <input type="hidden" value="{{$leave['id']}}"
                                                                id="leave_id">
                                                     </td>
                                                 </tr>
@@ -153,26 +157,29 @@
 
         </div>
     </div>
-
 @endsection
 @section('js')
     <script>
-
         var confirm_btn = $('#confirm_btn');
-
         confirm_btn.click(function () {
             var my_modal = $('#my_modal');
             my_modal.show();
         });
-
         var submit_leave_btn = $('#submit_leave_btn');
+
         submit_leave_btn.click(function () {
             var my_modal = $('#my_modal');
             my_modal.hide();
 
+            // $.ajaxSetup({
+            //     headers: {
+            //         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            //     }
+            // });
+
             var leave_id = $('#leave_id').val();
             $.ajax({
-                url: "{{ route('deputy_leave_agreement') }}",
+                url: "{{ route('mainManager_leave_agreement') }}",
                 type: "post",
                 dataType: "json",
                 data: {
@@ -187,7 +194,7 @@
                         })
 
                     }
-                    window.location.href = "{{route('leave_deputy_index')}}"
+                    window.location.href = "{{route('leave_mainManager_confirmation')}}"
 
                 }, error: function (err) {
 

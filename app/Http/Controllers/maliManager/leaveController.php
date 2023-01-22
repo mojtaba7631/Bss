@@ -72,8 +72,9 @@ class leaveController extends Controller
             ->where('id', $user_id)
             ->first();
 
+        $role_title = 'مدیراداری مالی';
         $user_img = $user_info->image;
-        return view('mali_manager.leave.create', compact('user_img', 'user_info'));
+        return view('mali_manager.leave.create', compact('user_img', 'user_info','role_title'));
     }
 
     public function store(Request $request)

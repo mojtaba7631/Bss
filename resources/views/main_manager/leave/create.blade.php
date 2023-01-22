@@ -1,4 +1,4 @@
-@extends('mali_manager.layout.mali_layout')
+@extends('main_manager.layout.main_manager_layout')
 @section('title',"فرم درخواست مرخصی")
 @section('css')
     <style>
@@ -73,7 +73,7 @@
                         </nav>
                     </div>
                     <div class="col-md-6 col-sm-12 text-right hidden-xs">
-                        <a href="{{route('maliManager_leave_index')}}" class="btn btn-sm btn-danger"
+                        <a href="{{route('leave_mainManager_index')}}" class="btn btn-sm btn-danger"
                            title="">
                             <i class="fa fa-arrow-right mr-4"></i>
                             بازگشت به لیست مرخصی ها
@@ -90,7 +90,7 @@
                                 تقاضای مرخصی
                             </h5>
                         </div>
-                        <form action="{{route('maliManager_leave_store')}}" enctype="multipart/form-data" method="post">
+                        <form action="{{route('leave_mainManager_store')}}" enctype="multipart/form-data" method="post">
                             @csrf
                         <div class="card-body">
                             <div class="container-fluid my_container">

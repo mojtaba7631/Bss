@@ -37,6 +37,7 @@ use App\Http\Controllers\mainManager\reportController as mainManagerReportContro
 use App\Http\Controllers\mainManager\payment_commandController as main_payment_commandController;
 use App\Http\Controllers\mainManager\proceedingController as main_proceedingController;
 use App\Http\Controllers\mainManager\DebtsContorller as main_DebtController;
+use App\Http\Controllers\mainManager\leaveController as leaveMainManagerController;
 
 
 use App\Http\Controllers\maliManager\contractController as maliManagerContractController;
@@ -664,6 +665,19 @@ Route::group(['prefix' => 'mainManager-access/dashboard', 'middleware' => 'mainM
     Route::get('debts', [main_DebtController::class, 'index'])->name('mainManager_get_debts');
     /********** Main Manager debts ****************************************************************************/
 
+    /**********Main Manager Leave**********************/
+
+    Route::group(['prefix' => 'leave-main', 'middleware' => 'mainManagerAuth'], function () {
+        Route::get('leave_mainManager',[leaveMainManagerController::class,'index'])->name('leave_mainManager_index');
+        Route::get('leave_mainManager_confirmation', [leaveMainManagerController::class, 'confirmation'])->name('leave_mainManager_confirmation');
+        Route::get('leave_mainManager_create',[leaveMainManagerController::class,'create'])->name('leave_mainManager_create');
+        Route::post('leave_mainManager_store',[leaveMainManagerController::class,'store'])->name('leave_mainManager_store');
+        Route::post('mainManager_leave_agreement',[leaveMainManagerController::class,'agreement'])->name('mainManager_leave_agreement');
+
+    });
+
+    /**********Main Manager Leave**********************/
+
 });
 /***********************************************Main Manager Dashboard************************************************/
 /*****************************************************************************************************************/
@@ -985,7 +999,7 @@ Route::group(['prefix' => 'expert-access/dashboard', 'middleware' => 'expert'], 
     /********** Expert contract *****************/
 
 
-    /**********************************************head_development Dashboard******************************************************/
+    /**********Expert Leave**********************/
 
     Route::group(['prefix' => 'leave-expert', 'middleware' => 'expert'], function () {
         Route::get('leave_head_expert',[leave_expertController::class,'index'])->name('leave_expert_index');
@@ -996,7 +1010,7 @@ Route::group(['prefix' => 'expert-access/dashboard', 'middleware' => 'expert'], 
 
     });
 
-    /**********************************************head_development Dashboard******************************************************/
+    /**********Expert Leave**********************/
 
 });
 /**********************************************Expert Dashboard******************************************************/
