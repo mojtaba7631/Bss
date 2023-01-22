@@ -1035,6 +1035,7 @@ Route::group(['prefix' => 'deputy-plan-program-access/dashboard', 'middleware' =
     Route::get('leave_deputy_create', [leave_deputy_planController::class, 'create'])->name('leave_deputy_create');
     Route::post('leave_deputy_store', [leave_deputy_planController::class, 'store'])->name('leave_deputy_store');
     Route::post('deputy_leave_agreement', [leave_deputy_planController::class, 'agreement'])->name('deputy_leave_agreement');
+    Route::post('deputy_leave_disagreement', [leave_deputy_planController::class, 'disagreement'])->name('deputy_leave_disagreement');
 
 });
 

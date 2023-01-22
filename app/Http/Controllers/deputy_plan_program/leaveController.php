@@ -161,8 +161,6 @@ class leaveController extends Controller
     {
         $input = $request->all();
 
-        dd($input);
-
         $leave_info = Leave::query()
             ->where('id',$input['leave_id'])
             ->first();
@@ -175,6 +173,12 @@ class leaveController extends Controller
             'status' => true,
             'message' => 'مرخصی کاربر مورد نظر تایید شد',
         ]);
+    }
+
+    function disagreement(Request $request)
+    {
+        $input = $request->all();
+
     }
 
 }

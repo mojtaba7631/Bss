@@ -127,13 +127,13 @@
     <!-- The Modal -->
     <div class="modal" id="my_modal">
         <div class="modal-dialog">
-            <form action="#" enctype="multipart/form-data"
+            <form action="" enctype="multipart/form-data"
                   class="modal-content">
                 @csrf
                 <!-- Modal Header -->
                 <div class="modal-header">
                     <h4 class="modal-title">تایید مرخصی</h4>
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <button type="button" class="close close_modal" data-dismiss="modal">&times;</button>
                 </div>
 
                 <!-- Modal body -->
@@ -166,15 +166,33 @@
             my_modal.show();
         });
 
+        var close_modal = $('.close_modal');
+        close_modal.click(function (){
+            var my_modal = $('#my_modal');
+            my_modal.hide();
+        })
+
         var submit_leave_btn = $('.submit_leave_btn');
         submit_leave_btn.click(function () {
             var my_modal = $('#my_modal');
             my_modal.hide();
 
 
-            jQuery(document).on('click', '.confirm_btn', function (e) {
-                let leave_id = jQuery(this).data("leave");
 
+            // function refresh(type) {
+            //     if (type == "ok") {
+            //         window.location.href = res.url
+            //
+            //     } else if (type == "not") {
+            //         // window.location.reload();
+            //
+            //     }
+            //
+            // }
+
+            jQuery(document).on('click', '.submit_leave_btn', function (e) {
+                let leave_id = jQuery(this).data("leave");
+alert(leave_id);
                 $.ajaxSetup({
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -192,14 +210,15 @@
                         'leave_id': leave_id,
                     },
                     success: function (res) {
+                        // alert(JSON.stringify(res.responseJSON));
                         if (res.status == true) {
                             Swal.fire({
                                 icon: 'success',
                                 title: res.message,
                             })
-
+                            // window.setInterval('refresh("not")', 3000);
                         }
-                        window.location.href = "{{route('leave_deputy_index')}}"
+                        window.location.href = "{{route('leave_deputy_confirmation')}}"
                     }, error: function (err) {
                         //
                     }
@@ -210,8 +229,7 @@
 
         var unsubmit_leave_btn = $('#unsubmit_leave_btn');
         unsubmit_leave_btn.click(function () {
-            var leave_id = $('#leave_id').val();
-            alert('leave_id');
+            // var leave_id = $('#leave_id').val();
             my_modal.hide();
         });
 
