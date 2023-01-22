@@ -1,4 +1,4 @@
-@extends(' head_discourse.layout. head_discourse_layout')
+@extends(' head_discourse.layout.head_discourse_layout')
 @section('title',"لیست تایید مرخصی ها")
 @section('css')
 @endsection

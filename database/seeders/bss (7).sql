@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 22, 2023 at 08:44 AM
+-- Generation Time: Jan 22, 2023 at 09:22 AM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -3239,7 +3239,7 @@ INSERT INTO `role` (`id`, `title`, `route_title`, `parent`, `remember_token`, `c
 (11, 'معاون هماهنگ کننده', 'deputy_coordinator', 0, NULL, '2023-01-10 07:01:54', NULL),
 (12, 'رییس مرکز عملیات ویژه', 'head_special_operation_center', 0, NULL, '2023-01-10 07:07:19', NULL),
 (13, 'رییس مرکز گفتمان سازی', 'head_discourse_index', 0, NULL, '2023-01-10 07:09:13', NULL),
-(14, 'رییس مرکز نوآوری اجتماعی', 'head_innovation', 0, NULL, '2023-01-10 07:10:28', NULL),
+(14, 'رییس مرکز نوآوری اجتماعی', 'head_innovation_index', 0, NULL, '2023-01-10 07:10:28', NULL),
 (15, 'رییس مرکز پیشرفت منطقه ای', 'head_development', 0, NULL, '2023-01-10 07:11:22', NULL),
 (16, 'مدیر پشتیبانی', 'support_manager_index', 23, NULL, '2023-01-10 07:13:42', NULL),
 (17, 'کارشناس پشتیبانی', 'support_expert_index', 16, NULL, '2023-01-10 07:14:30', NULL),
@@ -3746,7 +3746,8 @@ INSERT INTO `user_role` (`id`, `user_id`, `roles`, `is_default`, `remember_token
 (125, 101, 21, 0, NULL, NULL, NULL),
 (126, 74, 24, 0, NULL, '2023-01-21 13:18:34', NULL),
 (127, 17, 13, 0, NULL, '2023-01-22 06:21:14', NULL),
-(128, 18, 25, 0, NULL, '2023-01-22 07:19:58', NULL);
+(128, 18, 25, 0, NULL, '2023-01-22 07:19:58', NULL),
+(129, 15, 14, 0, NULL, '2023-01-22 07:50:29', NULL);
 
 --
 -- Indexes for dumped tables
@@ -4086,7 +4087,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `user_role`
 --
 ALTER TABLE `user_role`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=129;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=130;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
