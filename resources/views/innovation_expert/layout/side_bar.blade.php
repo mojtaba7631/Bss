@@ -92,7 +92,7 @@
                     </li>
                 @endif
                 <li>
-                    <a href="{{route('deputy_plan_program_index')}}">
+                    <a href="{{route('leave_innovation_expert_index')}}">
                         <i class="icon-home"></i>
                         <span>صفحه من</span>
                     </a>
@@ -104,17 +104,17 @@
                     </a>
                     <ul>
                         <li>
-                            <a href="{{route('leave_deputy_confirmation')}}">
+                            <a href="#">
                                 <span>تایید مرخصی ها</span>
                             </a>
                         </li>
                         <li>
-                            <a href="{{route('leave_deputy_index')}}">
+                            <a href="{{route('leave_innovation_expert_index')}}">
                                 <span>لیست مرخصی ها</span>
                             </a>
                         </li>
                         <li>
-                            <a href="{{route('leave_deputy_create')}}">
+                            <a href="{{route('leave_innovation_expert_create')}}">
                                 <span>تعریف درخواست مرخصی</span>
                             </a>
                         </li>
