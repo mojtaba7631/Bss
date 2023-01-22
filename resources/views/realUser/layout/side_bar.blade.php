@@ -64,6 +64,25 @@
         </div>
         <nav id="left-sidebar-nav" class="sidebar-nav">
             <ul id="main-menu" class="metismenu">
+                @if(count($roles)>1)
+                    <li>
+                        <a href="#" class="has-arrow">
+                            <i class="icon-key"></i>
+                            <span>
+                                پنل کاربری
+                        </span>
+                        </a>
+                        <ul>
+                            @foreach($roles as $role)
+                                <li>
+                                    <a href="{{route($role['route_title'])}}">
+                                        {{$role['title']}}
+                                    </a>
+                                </li>
+                            @endforeach
+                        </ul>
+                    </li>
+                @endif
                 <li>
                     <a href="{{route('realUser_index')}}">
                         <i class="icon-home"></i>
