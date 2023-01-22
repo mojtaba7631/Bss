@@ -1,11 +1,9 @@
 <?php
 
-namespace App\Http\Controllers\adjustment_expert;
+namespace App\Http\Controllers\mainManager;
 
 use App\Http\Controllers\Controller;
 use App\Models\Leave;
-use App\Models\Role;
-use App\Models\RoleTitle;
 use App\Models\User;
 use Hekmatinasser\Verta\Verta;
 use Illuminate\Http\Request;
@@ -21,18 +19,23 @@ class leaveController extends Controller
             ->first();
 
         $leaves = Leave::query()
-            ->where('user_id', $user_id)
             ->paginate(10);
+
 
         foreach ($leaves as $leave) {
             $leave['start_day'] = verta($leave->start_day)->format('d/%B/Y');
             $leave['end_day'] = verta($leave->end_day)->format('d/%B/Y');
+            $leave['leave_user_info'] = User::query()
+                ->where('id', $leave->user_id)
+                ->first();
+
         }
+
 
         $user_img = $user_info->image;
         $searched = false;
-        return view('adjustment_expert.leave.index', compact('user_img', 'user_info', 'leaves', 'searched'));
 
+        return view('main_manager.leave.index', compact('user_img', 'user_info', 'leaves', 'searched'));
     }
 
     public function Confirmation()
@@ -44,36 +47,21 @@ class leaveController extends Controller
             ->first();
 
         $leaves = Leave::query()
-            ->select('*', 'leave.id as leave_id')
-            ->join('users', 'users.id', '=', 'leave.user_id')
-            ->where('parent', 24)
-            ->where('confirmation', 0)
-            ->where('main_manager_approval', 0)
-            ->paginate();
+            ->where('main_manager_approval', 1)
+            ->paginate(10);
 
         foreach ($leaves as $leave) {
             $leave['start_day'] = verta($leave->start_day)->format('d/%B/Y');
             $leave['end_day'] = verta($leave->end_day)->format('d/%B/Y');
             $leave['leave_user_info'] = User::query()
-                ->where('id', $leave['user_id'])
+                ->where('id', $leave->user_id)
                 ->first();
-
-            $roles_info = Role::query()
-                ->where('user_id', $leave['leave_user_info']['id'])
-                ->get();
-
-            foreach ($roles_info as $role_info) {
-                $leave['roles'] = RoleTitle::query()
-                    ->where('id', $role_info['roles'])
-                    ->get();
-            }
-
         }
 
         $user_img = $user_info->image;
         $searched = false;
 
-        return view('adjustment_expert.leave.confirmation', compact('user_img', 'user_info', 'leaves', 'searched'));
+        return view('main_manager.leave.confirmation', compact('user_img', 'user_info', 'leaves', 'searched'));
     }
 
     public function create()
@@ -83,10 +71,10 @@ class leaveController extends Controller
         $user_info = User::query()
             ->where('id', $user_id)
             ->first();
-        $role_title = 'کارشناس مرکز نظام سازی';
-        $user_img = $user_info->image;
 
-        return view('adjustment_expert.leave.create', compact('user_img', 'user_info','role_title'));
+        $role_title = 'مدیراداری مالی';
+        $user_img = $user_info->image;
+        return view('main_manager.leave.create', compact('user_img', 'user_info','role_title'));
     }
 
     public function store(Request $request)
@@ -99,7 +87,7 @@ class leaveController extends Controller
             $end_day = $this->convertDateToGregorian($input['end_day']);
             Leave::create([
                 'user_id' => $user_id,
-                'parent' => 25,
+                'parent' => 5,
                 'day_leave_count' => $input['day_leave_count'],
                 'hour_leave_count' => $input['hour_leave_count'],
                 'type' => $input['type_select_leave'],
@@ -118,7 +106,7 @@ class leaveController extends Controller
 
             Leave::create([
                 'user_id' => $user_id,
-                'parent' => 25,
+                'parent' => 5,
                 'day_leave_count' => $input['day_leave_count'],
                 'hour_leave_count' => $input['hour_leave_count'],
                 'type' => $input['type_select_leave'],
@@ -136,7 +124,7 @@ class leaveController extends Controller
 
         alert()->success('درخواست مرخصی شما ثبت و به مدیر مستقیم شما ارجاع داده شد', 'با تشکر')->autoclose(9000);
 
-        return redirect()->route('leave_adjustment_expert_index');
+        return redirect()->route('leave_mainManager_index');
     }
 
     function convertDateToGregorian($date)
@@ -159,16 +147,19 @@ class leaveController extends Controller
         return $englishNumbersOnly;
     }
 
-    function agreement(Request $request)
+    function agreement(Request  $request)
     {
+
+        dd($request->all());
         $input = $request->all();
 
         $leave_info = Leave::query()
-            ->where('id', $input['leave_id'])
+            ->where('id',$input['leave_id'])
             ->first();
 
         $leave_info->update([
-            'main_manager_approval' => 1,
+            'finance_manager_approval' => 1,
+            'confirmation' => 1,
         ]);
 
         return response()->json([

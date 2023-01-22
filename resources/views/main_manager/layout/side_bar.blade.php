@@ -29,7 +29,7 @@
             ->where('to',$user_id)
             ->where('seen',0)
             ->count();
-         
+
     $letter_count = \App\Models\LetterContacts::query()
         ->select('letters.sent, letter_contacts.*')
         ->join('letters', 'letter_contacts.letter_id','=','letters.id')
@@ -218,6 +218,24 @@
                         </li>
                         <li>
                             <a href="{{route('mainManager_letter_delivered_index')}}">دریافتی</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="" class="has-arrow">
+                        <i class="icon-list"></i>
+                        فرم درخواست مرخصی
+                    </a>
+                    <ul>
+                        <li>
+                            <a href="{{route('leave_mainManager_index')}}">
+                                <span>کارتابل مرخصی ها</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{route('leave_mainManager_confirmation')}}">
+                                <span>تایید مرخصی ها</span>
+                            </a>
                         </li>
                     </ul>
                 </li>
