@@ -73,7 +73,7 @@
                         </nav>
                     </div>
                     <div class="col-md-6 col-sm-12 text-right hidden-xs">
-                        <a href="{{route('leave_deputy_index')}}" class="btn btn-sm btn-danger"
+                        <a href="{{route('leave_discourse_expert_index')}}" class="btn btn-sm btn-danger"
                            title="">
                             <i class="fa fa-arrow-right mr-4"></i>
                             بازگشت به لیست مرخصی ها
@@ -90,13 +90,13 @@
                                 تقاضای مرخصی
                             </h5>
                         </div>
-                        <form action="{{route('leave_deputy_store')}}" enctype="multipart/form-data" method="post">
+                        <form action="{{route('leave_discourse_expert_store')}}" enctype="multipart/form-data" method="post">
                             @csrf
                         <div class="card-body">
                             <div class="container-fluid my_container">
                                 <div class="row">
                                     <div class="col-12 p-5 fnt_leave">
-                                        اینجانب {{$user_info['name'] . ' ' . $user_info['family']}} به سمت مدیریت در
+                                        اینجانب {{$user_info['name'] . ' ' . $user_info['family']}} به سمت {{$role_title}} در
                                         مرکز نوسازی تقاضای مرخصی <select class="form-control my_select my_select_theme" id="type_select_leave" name="type_select_leave">
                                             <option value="0">ساعتی یا روزانه</option>
                                             <option value="1">ساعتی</option>
