@@ -18,6 +18,6 @@ class dashboardController extends Controller
 
         $user_img = $user_info->image;
 
-        return view('headSpecial.dashboard.index', compact('user_img'));
+        return view('innovation_expert.dashboard.index', compact('user_img'));
     }
 }

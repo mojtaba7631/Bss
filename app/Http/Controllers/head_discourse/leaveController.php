@@ -12,7 +12,8 @@ use Illuminate\Http\Request;
 
 class leaveController extends Controller
 {
-    public function index(){
+    public function index()
+    {
         $user_id = auth()->user()->id;
 
         $user_info = User::query()
@@ -43,27 +44,27 @@ class leaveController extends Controller
             ->first();
 
         $leaves = Leave::query()
-            ->select('*','leave.id as leave_id')
-            ->join('users','users.id','=','leave.user_id')
-            ->where('parent',13)
-            ->where('confirmation',0)
-            ->where('main_manager_approval',0)
+            ->select('*', 'leave.id as leave_id')
+            ->join('users', 'users.id', '=', 'leave.user_id')
+            ->where('parent', 13)
+            ->where('confirmation', 0)
+            ->where('main_manager_approval', 0)
             ->paginate();
 
         foreach ($leaves as $leave) {
             $leave['start_day'] = verta($leave->start_day)->format('d/%B/Y');
             $leave['end_day'] = verta($leave->end_day)->format('d/%B/Y');
             $leave['leave_user_info'] = User::query()
-                ->where('id',$leave['user_id'])
+                ->where('id', $leave['user_id'])
                 ->first();
 
             $roles_info = Role::query()
-                ->where('user_id',$leave['leave_user_info']['id'])
+                ->where('user_id', $leave['leave_user_info']['id'])
                 ->get();
 
-            foreach ($roles_info as $role_info){
+            foreach ($roles_info as $role_info) {
                 $leave['roles'] = RoleTitle::query()
-                    ->where('id',$role_info['roles'])
+                    ->where('id', $role_info['roles'])
                     ->get();
             }
 
@@ -82,9 +83,9 @@ class leaveController extends Controller
         $user_info = User::query()
             ->where('id', $user_id)
             ->first();
-
+        $role_title = 'رئیس مرکز گفتمان سازی';
         $user_img = $user_info->image;
-        return view('head_discourse.leave.create', compact('user_img', 'user_info'));
+        return view('head_discourse.leave.create', compact('user_img', 'user_info', 'role_title'));
     }
 
     public function store(Request $request)
@@ -157,12 +158,12 @@ class leaveController extends Controller
         return $englishNumbersOnly;
     }
 
-    function agreement(Request  $request)
+    function agreement(Request $request)
     {
         $input = $request->all();
 
         $leave_info = Leave::query()
-            ->where('id',$input['leave_id'])
+            ->where('id', $input['leave_id'])
             ->first();
 
         $leave_info->update([

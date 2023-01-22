@@ -82,9 +82,9 @@ class leaveController extends Controller
         $user_info = User::query()
             ->where('id', $user_id)
             ->first();
-
+        $role_title = 'کارشناس ارشد مرکز عملیات';
         $user_img = $user_info->image;
-        return view('special_expert.leave.create', compact('user_img', 'user_info'));
+        return view('special_expert.leave.create', compact('user_img', 'user_info','role_title'));
     }
 
     public function store(Request $request)
