@@ -38,10 +38,10 @@
 </head>
 <body class="theme-cyan font-iransans light_version rtl">
 @include('sweet::alert')
-@include(' head_discourse.layout.page_loader')
-@include(' head_discourse.layout.top_navbar')
+@include('head_discourse.layout.page_loader')
+@include('head_discourse.layout.top_navbar')
 {{--@include('employer.layout.rightbar')--}}
-@include(' head_discourse.layout.side_bar')
+@include('head_discourse.layout.side_bar')
 @yield('content')
 
 

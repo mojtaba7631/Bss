@@ -81,6 +81,7 @@ use App\Http\Controllers\tarhoBarnameManager\DebtsContorller as tarhDebtControll
 use App\Http\Controllers\expert\expertLetterController as letter_expertController;
 use App\Http\Controllers\expert\contractController as contract_expertController;
 use App\Http\Controllers\expert\reportController as report_expertController;
+use App\Http\Controllers\expert\leaveController as leave_expertController;
 
 use App\Http\Controllers\personnel\leaveController as leave_personnelController;
 use App\Http\Controllers\personnel\dashboardController as dashboard_personnelController;
@@ -116,6 +117,7 @@ use App\Http\Controllers\head_special\dashboardController as dashboardHeadSpecia
 use App\Http\Controllers\head_special\leaveController as leaveHeadSpecialController;
 
 use App\Http\Controllers\head_discourse\dashboardController as dashboardHead_discourseController;
+use App\Http\Controllers\head_discourse\leaveController as leaveHeadDiscourseController;
 
 
 use App\Http\Controllers\adjustment_manager\dashboardController as dashboardAdjustment_managerController;
@@ -130,6 +132,7 @@ use App\Http\Controllers\head_innovation\leaveController as leaveHeadInnovationC
 
 
 use App\Http\Controllers\head_development\dashboardController as dashboardHead_developmentController;
+use App\Http\Controllers\head_development\leaveController as leaveHeadDevelopmentController;
 
 
 use Illuminate\Support\Facades\Route;
@@ -980,6 +983,21 @@ Route::group(['prefix' => 'expert-access/dashboard', 'middleware' => 'expert'], 
         Route::get('download_propusal/{project}', [contract_expertController::class, 'download_propusal'])->name('expert_download_propusal');
     });
     /********** Expert contract *****************/
+
+
+    /**********************************************head_development Dashboard******************************************************/
+
+    Route::group(['prefix' => 'leave-expert', 'middleware' => 'expert'], function () {
+        Route::get('leave_head_expert',[leave_expertController::class,'index'])->name('leave_expert_index');
+        Route::get('leave_expert_confirmation', [leave_expertController::class, 'confirmation'])->name('leave_expert_confirmation');
+        Route::get('leave_expert_create',[leave_expertController::class,'create'])->name('leave_expert_create');
+        Route::post('leave_expert_store',[leave_expertController::class,'store'])->name('leave_expert_store');
+        Route::post('expert_leave_agreement',[leave_expertController::class,'agreement'])->name('expert_leave_agreement');
+
+    });
+
+    /**********************************************head_development Dashboard******************************************************/
+
 });
 /**********************************************Expert Dashboard******************************************************/
 
@@ -1120,11 +1138,11 @@ Route::group(['prefix' => 'adjustment-expert-access/dashboard', 'middleware' => 
 
 Route::group(['prefix' => 'head-discourse-access/dashboard', 'middleware' => 'head_discourse'], function () {
     Route::get('/', [dashboardHead_discourseController::class, 'index'])->name('head_discourse_index');
-//    Route::get('leave_deputy',[leave_deputy_planController::class,'index'])->name('leave_deputy_index');
-//    Route::get('leave_deputy_confirmation', [leave_deputy_planController::class, 'confirmation'])->name('leave_deputy_confirmation');
-//    Route::get('leave_deputy_create',[leave_deputy_planController::class,'create'])->name('leave_deputy_create');
-//    Route::post('leave_deputy_store',[leave_deputy_planController::class,'store'])->name('leave_deputy_store');
-//    Route::post('deputy_leave_agreement',[leave_deputy_planController::class,'agreement'])->name('deputy_leave_agreement');
+    Route::get('leave_head_discourse',[leaveHeadDiscourseController::class,'index'])->name('leave_head_discourse_index');
+    Route::get('leave_head_discourse_confirmation', [leaveHeadDiscourseController::class, 'confirmation'])->name('leave_head_discourse_confirmation');
+    Route::get('leave_head_discourse_create',[leaveHeadDiscourseController::class,'create'])->name('leave_head_discourse_create');
+    Route::post('leave_head_discourse_store',[leaveHeadDiscourseController::class,'store'])->name('leave_head_discourse_store');
+    Route::post('head_discourse_leave_agreement',[leaveHeadDiscourseController::class,'agreement'])->name('head_discourse_leave_agreement');
 
 });
 
@@ -1191,11 +1209,11 @@ Route::group(['prefix' => 'head-special-manager-access/dashboard', 'middleware' 
 
 Route::group(['prefix' => 'head-development-access/dashboard', 'middleware' => 'head_development'], function () {
     Route::get('/', [dashboardHead_developmentController::class, 'index'])->name('head_development_index');
-//    Route::get('leave_deputy',[leave_deputy_planController::class,'index'])->name('leave_deputy_index');
-//    Route::get('leave_deputy_confirmation', [leave_deputy_planController::class, 'confirmation'])->name('leave_deputy_confirmation');
-//    Route::get('leave_deputy_create',[leave_deputy_planController::class,'create'])->name('leave_deputy_create');
-//    Route::post('leave_deputy_store',[leave_deputy_planController::class,'store'])->name('leave_deputy_store');
-//    Route::post('deputy_leave_agreement',[leave_deputy_planController::class,'agreement'])->name('deputy_leave_agreement');
+    Route::get('leave_head_development',[leaveHeadDevelopmentController::class,'index'])->name('leave_head_development_index');
+    Route::get('leave_head_development_confirmation', [leaveHeadDevelopmentController::class, 'confirmation'])->name('leave_head_development_confirmation');
+    Route::get('leave_head_development_create',[leaveHeadDevelopmentController::class,'create'])->name('leave_head_development_create');
+    Route::post('leave_head_development_store',[leaveHeadDevelopmentController::class,'store'])->name('leave_head_development_store');
+    Route::post('head_development_leave_agreement',[leaveHeadDevelopmentController::class,'agreement'])->name('head_development_leave_agreement');
 
 });
 

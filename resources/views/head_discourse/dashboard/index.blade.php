@@ -1,4 +1,4 @@
-@extends(' head_discourse.layout.head_discourse_layout')
+@extends('head_discourse.layout.head_discourse_layout')
 @section('title',"داشبورد رئیس مرکز گفتمان سازی")
 @section('css')
     <style>
@@ -28,13 +28,6 @@
                                 </li>
                             </ol>
                         </nav>
-                    </div>
-                    <div class="col-md-6 col-sm-12 text-right hidden-xs">
-                        <a href="#" class="btn btn-sm btn-danger"
-                           title="">
-                            <i class="fa fa-arrow-right mr-4"></i>
-                            بازگشت به قرارداد ها
-                        </a>
                     </div>
                 </div>
             </div>

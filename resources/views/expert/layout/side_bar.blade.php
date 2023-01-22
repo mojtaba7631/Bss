@@ -126,6 +126,29 @@
                         قراردادها
                     </a>
                 </li>
+                    <li>
+                        <a href="" class="has-arrow">
+                            <i class="icon-list"></i>
+                            فرم درخواست مرخصی
+                        </a>
+                        <ul>
+                            <li>
+                                <a href="{{route('leave_expert_confirmation')}}">
+                                    <span>تایید مرخصی ها</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{route('leave_expert_index')}}">
+                                    <span>لیست مرخصی ها</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{route('leave_expert_create')}}">
+                                    <span>تعریف درخواست مرخصی</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
                 <li class="">
                     <a href="{{route('logout')}}" style="color: red !important;">
                         <i class="icon-power" style="color: red !important;"></i>
