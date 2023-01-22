@@ -115,6 +115,10 @@ use App\Http\Controllers\adjustment_expert\leaveController as leaveAdjustmentExp
 use App\Http\Controllers\head_discourse\dashboardController as dashboardHead_discourseController;
 
 
+use App\Http\Controllers\adjustment_manager\dashboardController as dashboardAdjustment_managerController;
+
+
+
 
 use Illuminate\Support\Facades\Route;
 
@@ -1113,3 +1117,19 @@ Route::group(['prefix' => 'head_discourse-access/dashboard', 'middleware' => 'he
 });
 
 /**********************************************head_discourse Dashboard******************************************************/
+
+
+
+/**********************************************adjustment_manager Dashboard******************************************************/
+
+Route::group(['prefix' => 'adjustment_manager-access/dashboard', 'middleware' => 'adjustment_manager'], function () {
+    Route::get('/', [dashboardAdjustment_managerController::class, 'index'])->name('adjustment_manager_index');
+//    Route::get('leave_deputy',[leave_deputy_planController::class,'index'])->name('leave_deputy_index');
+//    Route::get('leave_deputy_confirmation', [leave_deputy_planController::class, 'confirmation'])->name('leave_deputy_confirmation');
+//    Route::get('leave_deputy_create',[leave_deputy_planController::class,'create'])->name('leave_deputy_create');
+//    Route::post('leave_deputy_store',[leave_deputy_planController::class,'store'])->name('leave_deputy_store');
+//    Route::post('deputy_leave_agreement',[leave_deputy_planController::class,'agreement'])->name('deputy_leave_agreement');
+
+});
+
+/**********************************************adjustment_manager Dashboard******************************************************/
