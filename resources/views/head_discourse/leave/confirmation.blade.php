@@ -1,4 +1,4 @@
-@extends(' head_discourse.layout.head_discourse_layout')
+@extends('head_discourse.layout.head_discourse_layout')
 @section('title',"لیست تایید مرخصی ها")
 @section('css')
 @endsection
@@ -166,7 +166,7 @@
 
             var leave_id = $('#leave_id').val();
             $.ajax({
-                url : "{{ route('deputy_leave_agreement') }}",
+                url : "{{ route('head_discourse_leave_agreement') }}",
                 type:"post",
                 dataType : "json",
                 data : {
@@ -182,7 +182,7 @@
                         })
 
                     }
-                    window.location.href = "{{route('leave_deputy_index')}}"
+                    window.location.href = "{{route('leave_head_discourse_index')}}"
 
                 },error : function (err){
 

@@ -29,6 +29,8 @@
 
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <link rel="stylesheet" href="{{asset('public-admin/assets/vendor/chartist/css/chartist.css')}}">
+    <link rel="stylesheet" href="{{asset('public-admin/assets/css/persianDatePicker.css')}}">
+    <link rel="stylesheet" href="{{asset('public-admin/assets/css/sweet.css')}}">
 
 
     @yield('css')
@@ -59,6 +61,9 @@
 <script src="{{asset('public-admin/assets/vendor/summernote/dist/summernote.js')}}"></script>
 <script src="{{asset('public-admin/assets/bundles/mainscripts.bundle.js')}}"></script>
 <script src="{{asset('public-admin/assets/js/script.js')}}"></script>
+<script src="{{asset('public-admin/assets/js/persian-date.min.js')}}"></script>
+<script src="{{asset('public-admin/assets/js/persian-datepicker.min.js')}}"></script>
+<script src="{{asset('public-admin/assets/js/sweet.js')}}"></script>
 @yield('js')
 </body>
 </html>

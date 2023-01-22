@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\head_discourse;
+namespace App\Http\Controllers\expert;
 
 use App\Http\Controllers\Controller;
 use App\Models\Leave;
@@ -30,7 +30,7 @@ class leaveController extends Controller
 
         $user_img = $user_info->image;
         $searched = false;
-        return view('head_discourse.leave.index', compact('user_img', 'user_info', 'leaves', 'searched'));
+        return view('expert.leave.index', compact('user_img', 'user_info', 'leaves', 'searched'));
 
     }
 
@@ -45,7 +45,7 @@ class leaveController extends Controller
         $leaves = Leave::query()
             ->select('*','leave.id as leave_id')
             ->join('users','users.id','=','leave.user_id')
-            ->where('parent',13)
+            ->where('parent',9)
             ->where('confirmation',0)
             ->where('main_manager_approval',0)
             ->paginate();
@@ -72,7 +72,7 @@ class leaveController extends Controller
         $user_img = $user_info->image;
         $searched = false;
 
-        return view('head_discourse.leave.confirmation', compact('user_img', 'user_info', 'leaves', 'searched'));
+        return view('expert.leave.confirmation', compact('user_img', 'user_info', 'leaves', 'searched'));
     }
 
     public function create()
@@ -84,7 +84,7 @@ class leaveController extends Controller
             ->first();
 
         $user_img = $user_info->image;
-        return view('head_discourse.leave.create', compact('user_img', 'user_info'));
+        return view('expert.leave.create', compact('user_img', 'user_info'));
     }
 
     public function store(Request $request)
@@ -97,7 +97,7 @@ class leaveController extends Controller
             $end_day = $this->convertDateToGregorian($input['end_day']);
             Leave::create([
                 'user_id' => $user_id,
-                'parent' => 5,
+                'parent' => 23,
                 'day_leave_count' => $input['day_leave_count'],
                 'hour_leave_count' => $input['hour_leave_count'],
                 'type' => $input['type_select_leave'],
@@ -116,7 +116,7 @@ class leaveController extends Controller
 
             Leave::create([
                 'user_id' => $user_id,
-                'parent' => 5,
+                'parent' => 23,
                 'day_leave_count' => $input['day_leave_count'],
                 'hour_leave_count' => $input['hour_leave_count'],
                 'type' => $input['type_select_leave'],
@@ -134,7 +134,7 @@ class leaveController extends Controller
 
         alert()->success('درخواست مرخصی شما ثبت و به مدیر مستقیم شما ارجاع داده شد', 'با تشکر')->autoclose(9000);
 
-        return redirect()->route('leave_head_discourse_index');
+        return redirect()->route('leave_expert_index');
     }
 
     function convertDateToGregorian($date)
