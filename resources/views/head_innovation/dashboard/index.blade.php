@@ -1,5 +1,5 @@
-@extends(' head_discourse.layout.head_discourse_layout')
-@section('title',"داشبورد رئیس مرکز گفتمان سازی")
+@extends(' head_innovation.layout.head_innovation_layout')
+@section('title',"داشبورد رئیس مرکز نوآوری ")
 @section('css')
     <style>
         .card-header {

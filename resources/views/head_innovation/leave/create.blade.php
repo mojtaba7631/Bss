@@ -1,4 +1,4 @@
-@extends(' head_discourse.layout.head_discourse_layout')
+@extends(' head_innovation.layout.head_innovation_layout')
 @section('title',"فرم درخواست مرخصی")
 @section('css')
     <style>
