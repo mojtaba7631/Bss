@@ -112,6 +112,8 @@ class loginController extends Controller
             $redirect = route('innovation_expert_index');
         } elseif ($user_selected_role == 24) {
             $redirect = route('adjustment_expert_index');
+        } elseif ($user_selected_role == 13) {
+            $redirect = route(' head_discourse_index');
         } else {
             return response()->json([
                 'status' => true,
