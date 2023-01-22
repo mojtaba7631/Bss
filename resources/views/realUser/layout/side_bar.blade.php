@@ -58,8 +58,10 @@
             </div>
             <div style="top: 30px" class="dropdown">
                 <a href="#" class=" user-name" data-toggle="dropdown" style="font-size: 18px">
+
                     <span>{{$users->name . ' ' . $users->family}}</span>
                 </a>
+                <strong>کاربر حقیقی</strong>
             </div>
         </div>
         <nav id="left-sidebar-nav" class="sidebar-nav">
