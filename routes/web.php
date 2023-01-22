@@ -122,6 +122,9 @@ use App\Http\Controllers\adjustment_manager\dashboardController as dashboardAdju
 
 
 use App\Http\Controllers\head_innovation\dashboardController as dashboardHead_innovationController;
+use App\Http\Controllers\head_innovation\leaveController as leaveHeadInnovationController;
+
+
 
 
 use App\Http\Controllers\head_development\dashboardController as dashboardHead_developmentController;
@@ -1158,11 +1161,11 @@ Route::group(['prefix' => 'head-special-manager-access/dashboard', 'middleware' 
 
 Route::group(['prefix' => 'head-innovation-access/dashboard', 'middleware' => 'head_innovation'], function () {
     Route::get('/', [dashboardHead_innovationController::class, 'index'])->name('head_innovation_index');
-//    Route::get('leave_deputy',[leave_deputy_planController::class,'index'])->name('leave_deputy_index');
-//    Route::get('leave_deputy_confirmation', [leave_deputy_planController::class, 'confirmation'])->name('leave_deputy_confirmation');
-//    Route::get('leave_deputy_create',[leave_deputy_planController::class,'create'])->name('leave_deputy_create');
-//    Route::post('leave_deputy_store',[leave_deputy_planController::class,'store'])->name('leave_deputy_store');
-//    Route::post('deputy_leave_agreement',[leave_deputy_planController::class,'agreement'])->name('deputy_leave_agreement');
+    Route::get('leave_head_innovation',[leaveHeadInnovationController::class,'index'])->name('leave_head_innovation_index');
+    Route::get('leave_head_innovation_confirmation', [leaveHeadInnovationController::class, 'confirmation'])->name('leave_head_innovation_confirmation');
+    Route::get('leave_head_innovation_create',[leaveHeadInnovationController::class,'create'])->name('leave_head_innovation_create');
+    Route::post('leave_head_innovation_store',[leaveHeadInnovationController::class,'store'])->name('leave_head_innovation_store');
+    Route::post('head_innovation_leave_agreement',[leaveHeadInnovationController::class,'agreement'])->name('head_innovation_leave_agreement');
 
 });
 
