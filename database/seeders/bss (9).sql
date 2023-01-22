@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 22, 2023 at 09:58 AM
+-- Generation Time: Jan 22, 2023 at 11:04 AM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -267,7 +267,9 @@ CREATE TABLE `leave` (
 
 INSERT INTO `leave` (`id`, `user_id`, `parent`, `day_leave_count`, `hour_leave_count`, `type`, `start_hour`, `end_hour`, `start_day`, `end_day`, `confirmation`, `disapproval_reason`, `main_manager_approval`, `finance_manager_approval`, `remember_token`, `created_at`, `updated_at`) VALUES
 (1, 13, 23, NULL, 2, 1, 10, 12, '2023-01-16 20:30:00', '2023-01-16 20:30:00', 0, NULL, 1, 0, NULL, '2023-01-17 07:07:37', '2023-01-17 09:58:31'),
-(2, 71, 23, NULL, 1, 1, 15, 16, '2023-01-20 20:30:00', '2023-01-20 20:30:00', 0, NULL, 0, 0, NULL, '2023-01-21 10:50:32', '2023-01-21 10:50:32');
+(2, 71, 23, NULL, 1, 1, 15, 16, '2023-01-20 20:30:00', '2023-01-20 20:30:00', 0, NULL, 0, 0, NULL, '2023-01-21 10:50:32', '2023-01-21 10:50:32'),
+(3, 15, 5, NULL, 1, 1, 14, 15, '2023-01-21 20:30:00', '2023-01-21 20:30:00', 0, NULL, 0, 0, NULL, '2023-01-22 09:27:38', '2023-01-22 09:27:38'),
+(4, 18, 5, NULL, 1, 1, 14, 15, '2023-01-21 20:30:00', '2023-01-21 20:30:00', 0, NULL, 0, 0, NULL, '2023-01-22 10:03:57', '2023-01-22 10:03:57');
 
 -- --------------------------------------------------------
 
@@ -3234,7 +3236,7 @@ INSERT INTO `role` (`id`, `title`, `route_title`, `parent`, `remember_token`, `c
 (6, 'مدیر مالی', 'maliManager_index', 23, NULL, '2022-04-04 19:30:00', NULL),
 (7, 'کاربر حقوقی', 'legalUser_index', 0, NULL, '2022-04-04 19:30:00', NULL),
 (8, 'کاربر حقیقی', 'realUser_index', 0, NULL, '2022-04-04 19:30:00', NULL),
-(9, 'کارشناس', 'expert_index', 2, NULL, '2023-01-15 08:15:12', NULL),
+(9, 'کارشناس', 'expert_index', 23, NULL, '2023-01-15 08:15:12', NULL),
 (10, 'پرسنل عادی', 'personnel_index', 0, NULL, '2022-12-28 12:32:53', NULL),
 (11, 'معاون هماهنگ کننده', 'deputy_coordinator', 0, NULL, '2023-01-10 07:01:54', NULL),
 (12, 'رییس مرکز عملیات ویژه', 'head_special_operation_center', 0, NULL, '2023-01-10 07:07:19', NULL),
@@ -3548,9 +3550,9 @@ INSERT INTO `users` (`id`, `type`, `name`, `family`, `center_name`, `national_co
 (12, 0, 'محمد', 'حیدری', 'رسانه', '4073509012', NULL, 1, NULL, NULL, 'images/national_cards\\1649179777.png', 'images\\1649179777.jpg', 'images/digital_sign/heydari_mini.png', NULL, NULL, NULL, NULL, NULL, '09902029464', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '$2y$10$iTsQauD6D9EYC/g4g8QXAeHYq/y2utTM8WlRb.a/eXUFVBlL0DHwa', NULL, '4073509012', 'ح', 1, 'b6VsmLqMGdcogIsUMi6Xn5CcoAMWg7eiKyeNMPGdUNFHPTcAtPQw9fnIJOM7', '2022-04-05 17:29:37', '2022-04-05 17:29:52', NULL),
 (13, 0, 'احسان', 'راچمندی', NULL, '0077998782', NULL, 1, NULL, NULL, 'images/national_cards\\1649179912.png', 'images\\1649179912.png', 'images/digital_sign/1649136984.png', NULL, NULL, NULL, NULL, NULL, '09128950093', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '$2y$10$Gef9pPlRhsbKwKd.8c7KhOHBELPTHUpfTQNpIKYkmZTGguli4JkLa', NULL, '0077998782', 'ر', 1, 'zwVeZ7gFQnGlxnPZBAQyWXQae966OuwaxyYFwbTTGksvlBx27Cy3zS8bcMZZ', '2022-04-05 17:31:52', '2022-04-05 17:32:26', NULL),
 (14, 0, 'حامد', 'ملک زاده', 'نظام سازی', '6599970974', NULL, 1, NULL, NULL, 'images/national_cards/1649180885.png', 'images/img_1662447200.png', 'images/digital_sign/hamed_malekzadeh.png', NULL, NULL, NULL, NULL, NULL, '09124764613', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '$2y$10$lTgGavTrB6CpePzut8yL3OtXDeBa/VcHuu8.YKvbe.oHcjCL5dI7i', '38502938847', '6599970974', 'م', 1, 'SkT2hngQYqKzYbQtDMcWXNKx8LYmmXvgFeGY2F5fQNsoluDdEiOgpXmgMgq7', '2022-04-05 17:48:05', '2022-09-06 06:53:20', NULL),
-(15, 0, 'محسن', 'دنیوی', 'نوآوری', '0602437032', NULL, 1, NULL, NULL, 'images/national_cards\\1649231571.png', 'images\\1649231571.png', 'images/digital_sign/mohasen_donyavi_mini.png', NULL, NULL, NULL, NULL, NULL, '09127467620', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '$2y$10$CckDijzC4wYaNA20VPls8O.17ypzyZcADCHpVgG3iiV1uTyR.aFcO', NULL, '0602437032', 'ی', 1, 'qoFXq2SPKVcgbmyLppt9QL4u3SUdzRDoiepjxbe4tVIGttEqEeibSZeUnlG9', '2022-04-06 07:52:51', '2022-04-06 07:52:59', NULL),
+(15, 0, 'محسن', 'دنیوی', 'نوآوری', '0602437032', NULL, 1, NULL, NULL, 'images/national_cards\\1649231571.png', 'images\\1649231571.png', 'images/digital_sign/mohasen_donyavi_mini.png', NULL, NULL, NULL, NULL, NULL, '09127467620', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '$2y$10$CckDijzC4wYaNA20VPls8O.17ypzyZcADCHpVgG3iiV1uTyR.aFcO', NULL, '0602437032', 'ی', 1, '8yWO9JONyS1YsU6nYuemD4N4qigp2XlV6PrbbHeH5gA8sd837A8ljUDCMzWa', '2022-04-06 07:52:51', '2022-04-06 07:52:59', NULL),
 (17, 0, 'هانی', 'ایرانمنش', 'گفتمان سازی', '0074867997', NULL, 1, NULL, NULL, 'images/national_cards\\1649405686.png', 'images\\1649405686.jpg', 'images/digital_sign\\1649405686.png', NULL, NULL, NULL, NULL, NULL, '09121979308', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '$2y$10$5udzxro5B5ioa3L4OlN1iuOjUXuGZRaJpSRsUsg5Zzy6vvbWXZi4y', NULL, '0074867997', 'هـ', 1, 'UbLBwk2LbzZtzD2PwrR0tfnF0qcwsKi9hdoDqgamZ2CsjIhNw6RYlhLYQSVq', '2022-04-08 08:14:46', '2022-04-08 08:14:55', NULL),
-(18, 0, 'محمد رسول', 'علی بابایی', 'مرکز رشد و تعالی', '0012769444', NULL, 1, NULL, NULL, 'images/national_cards\\1649405879.png', 'images\\ali_babaei.jpg', 'images/digital_sign/ali_babaei_mini.png', NULL, NULL, NULL, NULL, NULL, '09355462905', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '$2y$10$S6j9MTdbT/5Puf0PaGlkKemahyn.RoMf6S0WuVCLODB2K5wh5vKqe', NULL, '0012769444', 'ب', 1, 'uaRXXXrpsJqpVlCC4p4PYOgkWvTzXNppUb7DPYSHsetK7VWhMzeYgppcE2ZK', '2022-04-08 08:17:59', '2022-04-09 06:46:39', NULL),
+(18, 0, 'محمد رسول', 'علی بابایی', 'مرکز رشد و تعالی', '0012769444', NULL, 1, NULL, NULL, 'images/national_cards\\1649405879.png', 'images\\ali_babaei.jpg', 'images/digital_sign/ali_babaei_mini.png', NULL, NULL, NULL, NULL, NULL, '09355462905', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '$2y$10$S6j9MTdbT/5Puf0PaGlkKemahyn.RoMf6S0WuVCLODB2K5wh5vKqe', NULL, '0012769444', 'ب', 1, 'CH9h2SoWaqVkMl8xDfI6VOBVhkSToT2D7ucKA0nxyvuSh79HhQHAWePWjmVA', '2022-04-08 08:17:59', '2022-04-09 06:46:39', NULL),
 (19, 0, 'محمد', 'شیرکوند', NULL, '0422005045', NULL, 1, NULL, NULL, 'images/national_cards\\1649486731.png', 'images\\1649486731.jpg', 'images/digital_sign/shirkavand_mini.png', NULL, NULL, NULL, NULL, NULL, '09125918629', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '$2y$10$Ui7bS4V8zn.QCmgfxy3hzej8SZetUZDx52rkfMrUBNERne0fmmTiu', NULL, '0422005045', 'ش', 1, 'xOti80NlmpkX5JSvV1Oq8dzWFW5HX4LNO3XdiGOtomoSB76vWGtkZEeDzowH', '2022-04-09 06:45:31', '2022-04-09 06:46:47', NULL),
 (22, 0, 'علی', 'خوش اقبال', NULL, '1467403768', NULL, 1, '1111', '2022-04-21 00:00:00', 'images/national_cards/1650888544.png', NULL, 'images/digital_sign/khosheghbal.png', NULL, '4', 'علوم انسانی', 'میدان رسالت خیابان فرجام نرسیده به بلوار سراج جنب بانک قوامین ساختمان امیرالمومنین', '09149521048', '09149521048', '09149521048', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '$2y$10$9rfxgzi0QF9loRqrE26iGuLPAI4Iqszr6Xkv7SHp7vMbBu9uHdxlG', NULL, '1467403768', NULL, 1, 'eOGgUgKI1LnLpmks52VIiD2XeAbvfEa9LYYNrtMP86r1IP1tXZQT41T3nmmb', '2022-04-25 12:09:04', '2022-04-27 12:08:49', NULL),
 (23, 0, 'محمد صابر', 'باغخانی پور', NULL, '3020054915', NULL, 1, '1111', '2022-04-21 00:00:00', 'images/national_cards/1650891847.png', NULL, 'images/digital_sign/baghkhani_pour.png', NULL, '4', 'علوم انسانی', 'ابتدا بزرگراه شهید قاسم سلیمانی بعد از متروی شهید باقری نبش کوچه یاس پلاک 375 واحد 1', '09132987063', '09132987063', '09132987063', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '$2y$10$2FfNhnGlsh3CFBzNAnfrOujfg9z8xjQN8fRitMaNFSXVmpoxPEwEa', NULL, '3020054915', NULL, 1, 'iYjm1FjJANryv5O6EjQoLLc8bRloC2jFgThpAucGKwKEMfWVzpJCLRExZMiN', '2022-04-25 13:04:07', '2022-04-27 12:08:47', NULL),
@@ -3748,7 +3750,8 @@ INSERT INTO `user_role` (`id`, `user_id`, `roles`, `is_default`, `remember_token
 (127, 17, 13, 0, NULL, '2023-01-22 06:21:14', NULL),
 (128, 18, 25, 0, NULL, '2023-01-22 07:19:58', NULL),
 (129, 15, 14, 0, NULL, '2023-01-22 07:50:29', NULL),
-(130, 40, 15, 0, NULL, '2023-01-22 08:38:53', NULL);
+(130, 40, 15, 0, NULL, '2023-01-22 08:38:53', NULL),
+(131, 40, 15, 0, NULL, '2023-01-22 09:43:55', NULL);
 
 --
 -- Indexes for dumped tables
@@ -3950,7 +3953,7 @@ ALTER TABLE `delay`
 -- AUTO_INCREMENT for table `leave`
 --
 ALTER TABLE `leave`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `leave_status`
@@ -4088,7 +4091,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `user_role`
 --
 ALTER TABLE `user_role`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=131;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=132;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

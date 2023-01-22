@@ -121,6 +121,8 @@ use App\Http\Controllers\head_discourse\leaveController as leaveHeadDiscourseCon
 
 
 use App\Http\Controllers\adjustment_manager\dashboardController as dashboardAdjustment_managerController;
+use App\Http\Controllers\adjustment_manager\leaveController as leaveAdjustmentManagerController;
+
 
 
 use App\Http\Controllers\head_innovation\dashboardController as dashboardHead_innovationController;
@@ -1151,11 +1153,11 @@ Route::group(['prefix' => 'head-discourse-access/dashboard', 'middleware' => 'he
 
 Route::group(['prefix' => 'adjustment-manager-access/dashboard', 'middleware' => 'adjustment_manager'], function () {
     Route::get('/', [dashboardAdjustment_managerController::class, 'index'])->name('adjustment_manager_index');
-//    Route::get('leave_deputy',[leave_deputy_planController::class,'index'])->name('leave_deputy_index');
-//    Route::get('leave_deputy_confirmation', [leave_deputy_planController::class, 'confirmation'])->name('leave_deputy_confirmation');
-//    Route::get('leave_deputy_create',[leave_deputy_planController::class,'create'])->name('leave_deputy_create');
-//    Route::post('leave_deputy_store',[leave_deputy_planController::class,'store'])->name('leave_deputy_store');
-//    Route::post('deputy_leave_agreement',[leave_deputy_planController::class,'agreement'])->name('deputy_leave_agreement');
+    Route::get('leave_adjustment_manager',[leaveAdjustmentManagerController::class,'index'])->name('leave_adjustment_manager_index');
+    Route::get('leave_adjustment_manager_confirmation', [leaveAdjustmentManagerController::class, 'confirmation'])->name('leave_adjustment_manager_confirmation');
+    Route::get('leave_adjustment_manager_create',[leaveAdjustmentManagerController::class,'create'])->name('leave_adjustment_manager_create');
+    Route::post('leave_adjustment_manager_store',[leaveAdjustmentManagerController::class,'store'])->name('leave_adjustment_manager_store');
+    Route::post('deputy_adjustment_manager_agreement',[leaveAdjustmentManagerController::class,'agreement'])->name('deputy_adjustment_manager_agreement');
 
 });
 
