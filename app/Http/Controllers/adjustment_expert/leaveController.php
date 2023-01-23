@@ -173,7 +173,6 @@ class leaveController extends Controller
 
         $leave_info->update([
             'main_manager_approval' => 1,
-            'status'=>4,
         ]);
 
         return response()->json([
