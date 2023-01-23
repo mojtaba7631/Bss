@@ -4,6 +4,7 @@ namespace App\Http\Controllers\maliManager;
 
 use App\Http\Controllers\Controller;
 use App\Models\Leave;
+use App\Models\LeaveStatus;
 use App\Models\User;
 use Hekmatinasser\Verta\Verta;
 use Illuminate\Http\Request;
@@ -55,6 +56,10 @@ class leaveController extends Controller
             $leave['end_day'] = verta($leave->end_day)->format('d/%B/Y');
             $leave['leave_user_info'] = User::query()
                 ->where('id', $leave->user_id)
+                ->first();
+
+            $leave['status'] = LeaveStatus::query()
+                ->where('id',$leave->status)
                 ->first();
 
         }

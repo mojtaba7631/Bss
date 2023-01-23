@@ -4,6 +4,7 @@ namespace App\Http\Controllers\head_discourse;
 
 use App\Http\Controllers\Controller;
 use App\Models\Leave;
+use App\Models\LeaveStatus;
 use App\Models\Role;
 use App\Models\RoleTitle;
 use App\Models\User;
@@ -56,6 +57,10 @@ class leaveController extends Controller
             $leave['end_day'] = verta($leave->end_day)->format('d/%B/Y');
             $leave['leave_user_info'] = User::query()
                 ->where('id', $leave['user_id'])
+                ->first();
+
+            $leave['status'] = LeaveStatus::query()
+                ->where('id',$leave->status)
                 ->first();
 
             $roles_info = Role::query()
