@@ -81,23 +81,21 @@
                                                         </p>
                                                     </td>
                                                     <td>
-                                                        @if($leave->confirmation == 1)
-                                                            <p class="badge badge-success">
-                                                                تایید شده
-                                                            </p>
-                                                        @else
-                                                            <p class="badge badge-info">
-                                                                تایید نشده
-                                                            </p>
-                                                        @endif
+                                                        <span class="{{$leave['status']['status_css']}}">
+                                                        {{$leave['status']['title']}}
+                                                        </span>
                                                     </td>
                                                     <td>
-                                                        <a class="btn btn-primary confirm_btn" title="تایید مرخصی" id="confirm_btn"
+                                                        <a class="btn btn-success confirm_btn" title="تایید مرخصی"
+                                                           id="confirm_btn"
                                                            data-leave="{{ $leave['leave_id'] }}">
                                                             <i class="fa fa-check"></i>
                                                         </a>
-{{--                                                        <input type="hidden" value="{{$leave['leave_id']}}"--}}
-{{--                                                               id="leave_id">--}}
+                                                        <a class="btn btn-danger un_confirm_btn" title="عدم تایید مرخصی"
+                                                           id="un_confirm_btn"
+                                                           data-leave="{{ $leave['leave_id'] }}">
+                                                            <i class="fa fa-close"></i>
+                                                        </a>
                                                     </td>
                                                 </tr>
                                                 @php $row++ @endphp
@@ -159,78 +157,73 @@
 @section('js')
     <script>
 
-        var confirm_btn = $('.confirm_btn');
-
-        confirm_btn.click(function () {
-            var my_modal = $('#my_modal');
-            my_modal.show();
-        });
-
         var close_modal = $('.close_modal');
-        close_modal.click(function (){
+
+        close_modal.click(function () {
             var my_modal = $('#my_modal');
             my_modal.hide();
         })
 
-        var submit_leave_btn = $('.submit_leave_btn');
-        submit_leave_btn.click(function () {
-            var my_modal = $('#my_modal');
-            my_modal.hide();
-
-
-
-            // function refresh(type) {
-            //     if (type == "ok") {
-            //         window.location.href = res.url
-            //
-            //     } else if (type == "not") {
-            //         // window.location.reload();
-            //
-            //     }
-            //
-            // }
-
-            jQuery(document).on('click', '.submit_leave_btn', function (e) {
-                let leave_id = jQuery(this).data("leave");
-alert(leave_id);
-                $.ajaxSetup({
-                    headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                    }
-                });
-
-                // let order_id = $(".order_id").val();
-                // alert(order_id);
-
-                $.ajax({
-                    url: "{{route('deputy_leave_agreement')}}",
-                    type: "post",
-                    // dataType: "json",
-                    data: {
-                        'leave_id': leave_id,
-                    },
-                    success: function (res) {
-                        // alert(JSON.stringify(res.responseJSON));
-                        if (res.status == true) {
-                            Swal.fire({
-                                icon: 'success',
-                                title: res.message,
-                            })
-                            // window.setInterval('refresh("not")', 3000);
-                        }
-                        window.location.href = "{{route('leave_deputy_confirmation')}}"
-                    }, error: function (err) {
-                        //
-                    }
-                });
+        jQuery(document).on('click', '.confirm_btn', function (e) {
+            let leave_id = jQuery(this).data("leave");
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
             });
 
+            $.ajax({
+                url: "{{route('deputy_leave_agreement')}}",
+                type: "post",
+                // dataType: "json",
+                data: {
+                    'leave_id': leave_id,
+                },
+                success: function (res) {
+                    // alert(JSON.stringify(res.responseJSON));
+                    if (res.status == true) {
+                        Swal.fire({
+                            icon: 'success',
+                            title: res.message,
+                        })
+                        // window.setInterval('refresh("not")', 3000);
+                    }
+                    window.location.href = "{{route('leave_deputy_confirmation')}}"
+                }, error: function (err) {
+                    //
+                }
+            });
         });
 
-        var unsubmit_leave_btn = $('#unsubmit_leave_btn');
-        unsubmit_leave_btn.click(function () {
-            // var leave_id = $('#leave_id').val();
-            my_modal.hide();
+
+        jQuery(document).on('click', '.un_confirm_btn', function (e) {
+            let leave_id = jQuery(this).data("leave");
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+
+            $.ajax({
+                url: "{{route('deputy_leave_disagreement')}}",
+                type: "post",
+                data: {
+                    'leave_id': leave_id,
+                },
+                success: function (res) {
+                    // alert(JSON.stringify(res.responseJSON));
+                    if (res.status == true) {
+                        Swal.fire({
+                            icon: 'success',
+                            title: res.message,
+                        })
+                        // window.setInterval('refresh("not")', 3000);
+                    }
+                    window.location.href = "{{route('leave_deputy_confirmation')}}"
+                }, error: function (err) {
+                    //
+                }
+            });
         });
 
     </script>

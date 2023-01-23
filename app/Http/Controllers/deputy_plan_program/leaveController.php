@@ -4,6 +4,7 @@ namespace App\Http\Controllers\deputy_plan_program;
 
 use App\Http\Controllers\Controller;
 use App\Models\Leave;
+use App\Models\LeaveStatus;
 use App\Models\Role;
 use App\Models\RoleTitle;
 use App\Models\User;
@@ -55,6 +56,10 @@ class leaveController extends Controller
             $leave['end_day'] = verta($leave->end_day)->format('d/%B/Y');
             $leave['leave_user_info'] = User::query()
                 ->where('id',$leave['user_id'])
+                ->first();
+
+            $leave['status'] = LeaveStatus::query()
+                ->where('id',$leave->status)
                 ->first();
 
             $roles_info = Role::query()
@@ -167,6 +172,7 @@ class leaveController extends Controller
 
         $leave_info->update([
            'main_manager_approval' => 1,
+           'status' => 4,
         ]);
 
         return response()->json([
@@ -178,6 +184,20 @@ class leaveController extends Controller
     function disagreement(Request $request)
     {
         $input = $request->all();
+
+        $leave_info = Leave::query()
+            ->where('id',$input['leave_id'])
+            ->first();
+
+        $leave_info->update([
+            'main_manager_approval' => 2,
+            'status' => 2,
+        ]);
+
+        return response()->json([
+            'status' => true,
+            'message' => 'مرخصی کاربر مورد نظر تایید نشد',
+        ]);
 
     }
 

@@ -56,6 +56,7 @@ class leaveController extends Controller
             $leave['leave_user_info'] = User::query()
                 ->where('id', $leave->user_id)
                 ->first();
+
         }
 
         $user_img = $user_info->image;
@@ -99,6 +100,7 @@ class leaveController extends Controller
                 'disapproval_reason' => null,
                 'main_manager_approval' => 0, //The manager who disapproved
                 'finance_manager_approval' => 0, //The finance manager who disapproved
+                'status' => 3,
             ]);
         } elseif ($input['type_select_leave'] == 2) {
             $start_day_daily = $this->convertDateToGregorian($input['start_day_daily']);
@@ -118,6 +120,7 @@ class leaveController extends Controller
                 'disapproval_reason' => null,
                 'main_manager_approval' => 0, //The manager who disapproved
                 'finance_manager_approval' => 0, //The finance manager who disapproved
+                'status' => 3,
             ]);
         }
 
@@ -150,7 +153,6 @@ class leaveController extends Controller
     function agreement(Request  $request)
     {
 
-        dd($request->all());
         $input = $request->all();
 
         $leave_info = Leave::query()
@@ -160,6 +162,7 @@ class leaveController extends Controller
         $leave_info->update([
             'finance_manager_approval' => 1,
             'confirmation' => 1,
+            'status' => 1,
         ]);
 
         return response()->json([
@@ -168,5 +171,25 @@ class leaveController extends Controller
         ]);
     }
 
+    function disagreement(Request $request)
+    {
+        $input = $request->all();
+
+        $leave_info = Leave::query()
+            ->where('id',$input['leave_id'])
+            ->first();
+
+        $leave_info->update([
+            'finance_manager_approval' => 5,
+            'confirmation' => 0,
+            'status' => 5,
+        ]);
+
+        return response()->json([
+            'status' => true,
+            'message' => 'مرخصی کاربر مورد نظر تایید نشد',
+        ]);
+
+    }
 
 }

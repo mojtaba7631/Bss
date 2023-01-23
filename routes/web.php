@@ -861,6 +861,7 @@ Route::group(['prefix' => 'maliManager-access/dashboard', 'middleware' => 'maliM
         Route::get('finance_leave_create', [maliLeaveController::class, 'create'])->name('maliManager_leave_create');
         Route::post('finance_leave_store', [maliLeaveController::class, 'store'])->name('maliManager_leave_store');
         Route::post('maliManager_leave_agreement', [maliLeaveController::class, 'agreement'])->name('maliManager_leave_agreement');
+        Route::post('maliManager_leave_disagreement', [maliLeaveController::class, 'disagreement'])->name('maliManager_leave_disagreement');
     });
 
     /********** Mali Manager leave ****************************************************************************/
