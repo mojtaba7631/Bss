@@ -81,22 +81,21 @@
                                                         </p>
                                                     </td>
                                                     <td>
-                                                        @if($leave->confirmation == 1)
-                                                            <p class="badge badge-success">
-                                                                تایید شده
-                                                            </p>
-                                                        @else
-                                                            <p class="badge badge-danger">
-                                                                تایید نشده
-                                                            </p>
-                                                        @endif
+                                                        <span class="{{$leave['status']['status_css']}}">
+                                                        {{$leave['status']['title']}}
+                                                        </span>
                                                     </td>
                                                     <td>
-                                                        <a class="btn btn-primary" title="تایید مرخصی" id="confirm_btn">
+                                                        <a class="btn btn-success confirm_btn" title="تایید مرخصی"
+                                                           id="confirm_btn"
+                                                           data-leave="{{ $leave['leave_id'] }}">
                                                             <i class="fa fa-check"></i>
                                                         </a>
-                                                        <input type="hidden" value="{{$leave['leave_id']}}"
-                                                               id="leave_id">
+                                                        <a class="btn btn-danger un_confirm_btn" title="عدم تایید مرخصی"
+                                                           id="un_confirm_btn"
+                                                           data-leave="{{ $leave['leave_id'] }}">
+                                                            <i class="fa fa-close"></i>
+                                                        </a>
                                                     </td>
                                                 </tr>
                                                 @php $row++ @endphp

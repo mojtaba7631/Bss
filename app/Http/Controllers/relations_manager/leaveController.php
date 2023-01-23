@@ -182,4 +182,23 @@ class leaveController extends Controller
             'message' => 'مرخصی کاربر مورد نظر تایید شد',
         ]);
     }
+    function disagreement(Request $request)
+    {
+        $input = $request->all();
+
+        $leave_info = Leave::query()
+            ->where('id',$input['leave_id'])
+            ->first();
+
+        $leave_info->update([
+            'main_manager_approval' => 2,
+            'status' => 2,
+        ]);
+
+        return response()->json([
+            'status' => true,
+            'message' => 'مرخصی کاربر مورد نظر تایید نشد',
+        ]);
+
+    }
 }
