@@ -4,6 +4,7 @@ namespace App\Http\Controllers\adjustment_manager;
 
 use App\Http\Controllers\Controller;
 use App\Models\Leave;
+use App\Models\LeaveStatus;
 use App\Models\Role;
 use App\Models\RoleTitle;
 use App\Models\User;
@@ -26,6 +27,10 @@ class leaveController extends Controller
         foreach ($leaves as $leave) {
             $leave['start_day'] = verta($leave->start_day)->format('d/%B/Y');
             $leave['end_day'] = verta($leave->end_day)->format('d/%B/Y');
+            $leave['status'] = LeaveStatus::query()
+                ->where('id',$leave->status)
+                ->first();
+
         }
 
         $user_img = $user_info->image;
@@ -55,6 +60,10 @@ class leaveController extends Controller
             $leave['end_day'] = verta($leave->end_day)->format('d/%B/Y');
             $leave['leave_user_info'] = User::query()
                 ->where('id',$leave['user_id'])
+                ->first();
+
+            $leave['status'] = LeaveStatus::query()
+                ->where('id',$leave->status)
                 ->first();
 
             $roles_info = Role::query()

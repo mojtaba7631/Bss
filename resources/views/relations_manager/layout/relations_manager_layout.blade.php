@@ -32,6 +32,8 @@
     <link rel="stylesheet" href="{{asset('public-admin/assets/vendor/chartist/css/chartist.css')}}">
     <link rel="stylesheet" href="{{asset('public-admin/assets/css/persianDatePicker.css')}}">
     <link rel="stylesheet" href="{{asset('public-admin/assets/css/sweet.css')}}">
+    {{--    token--}}
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
 
 
     @yield('css')

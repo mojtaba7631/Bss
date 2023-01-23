@@ -31,6 +31,9 @@ class leaveController extends Controller
             $leave['leave_user_info'] = User::query()
                 ->where('id', $leave->user_id)
                 ->first();
+            $leave['status'] = LeaveStatus::query()
+                ->where('id',$leave->status)
+                ->first();
         }
 
         $user_img = $user_info->image;
@@ -57,14 +60,10 @@ class leaveController extends Controller
             $leave['leave_user_info'] = User::query()
                 ->where('id', $leave->user_id)
                 ->first();
-            $leave['status'] = LeaveStatus::query()
-                ->where('id',$leave->status)
-                ->first();
 
             $leave['status'] = LeaveStatus::query()
                 ->where('id',$leave->status)
                 ->first();
-
         }
 
         $user_img = $user_info->image;

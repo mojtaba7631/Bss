@@ -159,55 +159,72 @@
 @endsection
 @section('js')
     <script>
-        var confirm_btn = $('#confirm_btn');
-        confirm_btn.click(function () {
-            var my_modal = $('#my_modal');
-            my_modal.show();
-        });
-        var submit_leave_btn = $('#submit_leave_btn');
+        var close_modal = $('.close_modal');
 
-        submit_leave_btn.click(function () {
+        close_modal.click(function () {
             var my_modal = $('#my_modal');
             my_modal.hide();
+        })
 
-            // $.ajaxSetup({
-            //     headers: {
-            //         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            //     }
-            // });
+        jQuery(document).on('click', '.confirm_btn', function (e) {
+            let leave_id = jQuery(this).data("leave");
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
 
-            var leave_id = $('#leave_id').val();
             $.ajax({
-                url: "{{ route('maliManager_leave_agreement') }}",
+                url: "{{route('maliManager_leave_agreement')}}",
                 type: "post",
-                dataType: "json",
+                // dataType: "json",
                 data: {
-                    _token: '{{csrf_token()}}',
                     'leave_id': leave_id,
                 },
                 success: function (res) {
+                    // alert(JSON.stringify(res.responseJSON));
                     if (res.status == true) {
                         Swal.fire({
                             icon: 'success',
                             title: res.message,
                         })
-
+                        // window.setInterval('refresh("not")', 3000);
                     }
                     window.location.href = "{{route('maliManager_leave_confirmation')}}"
-
                 }, error: function (err) {
+                    //
+                }
+            });
+        });
 
+        jQuery(document).on('click', '.un_confirm_btn', function (e) {
+            let leave_id = jQuery(this).data("leave");
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 }
             });
 
-
-        });
-
-        var unsubmit_leave_btn = $('#unsubmit_leave_btn');
-        unsubmit_leave_btn.click(function () {
-            var leave_id = $('#leave_id').val();
-            alert('leave_id');
-            my_modal.hide();
+            $.ajax({
+                url: "{{route('maliManager_leave_disagreement')}}",
+                type: "post",
+                data: {
+                    'leave_id': leave_id,
+                },
+                success: function (res) {
+                    // alert(JSON.stringify(res.responseJSON));
+                    if (res.status == true) {
+                        Swal.fire({
+                            icon: 'success',
+                            title: res.message,
+                        })
+                        // window.setInterval('refresh("not")', 3000);
+                    }
+                    window.location.href = "{{route('maliManager_leave_confirmation')}}"
+                }, error: function (err) {
+                    //
+                }
+            });
         });
 
     </script>

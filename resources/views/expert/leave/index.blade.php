@@ -73,15 +73,9 @@
                                                         </p>
                                                     </td>
                                                     <td>
-                                                        @if($leave->confirmation == 1)
-                                                            <p class="badge badge-success">
-                                                                تایید شده
-                                                            </p>
-                                                        @else
-                                                            <p class="badge badge-danger">
-                                                                تایید نشده
-                                                            </p>
-                                                        @endif
+                                                        <span class="{{$leave['status']['status_css']}}">
+                                                        {{$leave['status']['title']}}
+                                                        </span>
                                                     </td>
                                                     <td>
                                                         {{$leave->disapproval_reason}}

@@ -121,13 +121,13 @@
     <!-- The Modal -->
     <div class="modal" id="my_modal">
         <div class="modal-dialog">
-            <form action="#" enctype="multipart/form-data"
+            <form action="" enctype="multipart/form-data"
                   class="modal-content">
                 @csrf
                 <!-- Modal Header -->
                 <div class="modal-header">
                     <h4 class="modal-title">تایید مرخصی</h4>
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <button type="button" class="close close_modal" data-dismiss="modal">&times;</button>
                 </div>
 
                 <!-- Modal body -->
@@ -138,10 +138,11 @@
 
                 <!-- Modal footer -->
                 <div class="modal-footer">
-                    <button id="submit_leave_btn" type="submit" class="btn btn-success mr-1 ml-1">
+                    <button id="submit_leave_btn" type="submit" class="btn btn-success mr-1 ml-1 submit_leave_btn">
                         بله
                     </button>
-                    <button type="button" class="btn btn-danger" id="unsubmit_leave_btn" data-dismiss="modal">خیر</button>
+                    <button type="button" class="btn btn-danger" id="unsubmit_leave_btn" data-dismiss="modal">خیر
+                    </button>
                 </div>
             </form>
 
@@ -152,55 +153,73 @@
 @section('js')
     <script>
 
-        var confirm_btn = $('#confirm_btn');
+        var close_modal = $('.close_modal');
 
-        confirm_btn.click(function (){
-            var my_modal = $('#my_modal');
-            my_modal.show();
-        });
-
-        var submit_leave_btn = $('#submit_leave_btn');
-        submit_leave_btn.click(function (){
+        close_modal.click(function () {
             var my_modal = $('#my_modal');
             my_modal.hide();
+        })
 
-            var leave_id = $('#leave_id').val();
+        jQuery(document).on('click', '.confirm_btn', function (e) {
+            let leave_id = jQuery(this).data("leave");
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+
             $.ajax({
-                url : "{{ route('adjustment_expert_leave_agreement') }}",
-                type:"post",
-                dataType : "json",
-                data : {
-                    _token: '{{csrf_token()}}',
-                    'leave_id' : leave_id,
+                url: "{{route('adjustment_expert_leave_agreement')}}",
+                type: "post",
+                // dataType: "json",
+                data: {
+                    'leave_id': leave_id,
                 },
-                success:function (res)
-                {
-                    if(res.status == true){
+                success: function (res) {
+                    // alert(JSON.stringify(res.responseJSON));
+                    if (res.status == true) {
                         Swal.fire({
                             icon: 'success',
                             title: res.message,
                         })
-
+                        // window.setInterval('refresh("not")', 3000);
                     }
-                    window.location.href = "{{route('leave_adjustment_expert_index')}}"
+                    window.location.href = "{{route('leave_adjustment_expert_confirmation')}}"
+                }, error: function (err) {
+                    //
+                }
+            });
+        });
 
-                },error : function (err){
 
+        jQuery(document).on('click', '.un_confirm_btn', function (e) {
+            let leave_id = jQuery(this).data("leave");
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 }
             });
 
-
-
-
-
-
-        });
-
-        var unsubmit_leave_btn = $('#unsubmit_leave_btn');
-        unsubmit_leave_btn.click(function (){
-            var leave_id = $('#leave_id').val();
-            alert('leave_id');
-            my_modal.hide();
+            $.ajax({
+                url: "{{route('adjustment_expert_leave_disagreement')}}",
+                type: "post",
+                data: {
+                    'leave_id': leave_id,
+                },
+                success: function (res) {
+                    // alert(JSON.stringify(res.responseJSON));
+                    if (res.status == true) {
+                        Swal.fire({
+                            icon: 'success',
+                            title: res.message,
+                        })
+                        // window.setInterval('refresh("not")', 3000);
+                    }
+                    window.location.href = "{{route('leave_adjustment_expert_confirmation')}}"
+                }, error: function (err) {
+                    //
+                }
+            });
         });
 
     </script>

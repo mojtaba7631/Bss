@@ -27,6 +27,9 @@ class leaveController extends Controller
         foreach ($leaves as $leave) {
             $leave['start_day'] = verta($leave->start_day)->format('d/%B/Y');
             $leave['end_day'] = verta($leave->end_day)->format('d/%B/Y');
+            $leave['status'] = LeaveStatus::query()
+                ->where('id',$leave->status)
+                ->first();
         }
 
         $user_img = $user_info->image;

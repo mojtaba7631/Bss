@@ -30,6 +30,8 @@
     <link rel="stylesheet" href="{{asset('public-admin/assets/vendor/chartist/css/chartist.css')}}">
 
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    {{--    token--}}
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
 
     @yield('css')
 </head>

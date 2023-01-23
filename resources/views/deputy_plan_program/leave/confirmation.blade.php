@@ -125,13 +125,13 @@
     <!-- The Modal -->
     <div class="modal" id="my_modal">
         <div class="modal-dialog">
-            <form action="" enctype="multipart/form-data"
+            <form action="#" enctype="multipart/form-data"
                   class="modal-content">
                 @csrf
                 <!-- Modal Header -->
                 <div class="modal-header">
                     <h4 class="modal-title">تایید مرخصی</h4>
-                    <button type="button" class="close close_modal" data-dismiss="modal">&times;</button>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
                 </div>
 
                 <!-- Modal body -->
@@ -142,7 +142,7 @@
 
                 <!-- Modal footer -->
                 <div class="modal-footer">
-                    <button id="submit_leave_btn" type="submit" class="btn btn-success mr-1 ml-1 submit_leave_btn">
+                    <button id="submit_leave_btn" type="submit" class="btn btn-success mr-1 ml-1">
                         بله
                     </button>
                     <button type="button" class="btn btn-danger" id="unsubmit_leave_btn" data-dismiss="modal">خیر
@@ -156,7 +156,6 @@
 @endsection
 @section('js')
     <script>
-
         var close_modal = $('.close_modal');
 
         close_modal.click(function () {
@@ -194,7 +193,6 @@
                 }
             });
         });
-
 
         jQuery(document).on('click', '.un_confirm_btn', function (e) {
             let leave_id = jQuery(this).data("leave");

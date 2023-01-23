@@ -672,6 +672,7 @@ Route::group(['prefix' => 'mainManager-access/dashboard', 'middleware' => 'mainM
         Route::get('leave_mainManager_create', [leaveMainManagerController::class, 'create'])->name('leave_mainManager_create');
         Route::post('leave_mainManager_store', [leaveMainManagerController::class, 'store'])->name('leave_mainManager_store');
         Route::post('mainManager_leave_agreement', [leaveMainManagerController::class, 'agreement'])->name('mainManager_leave_agreement');
+        Route::post('mainManager_leave_disagreement', [leaveMainManagerController::class, 'disagreement'])->name('mainManager_leave_disagreement');
 
     });
 
@@ -1007,6 +1008,7 @@ Route::group(['prefix' => 'expert-access/dashboard', 'middleware' => 'expert'], 
         Route::get('leave_expert_create', [leave_expertController::class, 'create'])->name('leave_expert_create');
         Route::post('leave_expert_store', [leave_expertController::class, 'store'])->name('leave_expert_store');
         Route::post('expert_leave_agreement', [leave_expertController::class, 'agreement'])->name('expert_leave_agreement');
+        Route::post('expert_leave_disagreement', [leave_expertController::class, 'disagreement'])->name('expert_leave_disagreement');
 
     });
 
@@ -1052,6 +1054,7 @@ Route::group(['prefix' => 'support-manager-access/dashboard', 'middleware' => 's
     Route::get('leave_support_create', [leaveSupportManagerController::class, 'create'])->name('leave_support_create');
     Route::post('leave_support_store', [leaveSupportManagerController::class, 'store'])->name('leave_support_store');
     Route::post('support_leave_agreement', [leaveSupportManagerController::class, 'agreement'])->name('support_leave_agreement');
+    Route::post('support_leave_disagreement', [leaveSupportManagerController::class, 'disagreement'])->name('support_leave_disagreement');
 
 });
 
@@ -1066,7 +1069,8 @@ Route::group(['prefix' => 'relations-manager-access/dashboard', 'middleware' => 
     Route::get('leave_relations_manager_confirmation', [leaveRelationManagerController::class, 'confirmation'])->name('leave_relations_manager_confirmation');
     Route::get('leave_relations_manager_create', [leaveRelationManagerController::class, 'create'])->name('leave_relations_manager_create');
     Route::post('leave_relations_manager_store', [leaveRelationManagerController::class, 'store'])->name('leave_relations_manager_store');
-//    Route::post('deputy_leave_agreement',[leave_deputy_planController::class,'agreement'])->name('deputy_leave_agreement');
+    Route::post('relations_manager_leave_agreement',[leaveRelationManagerController::class,'agreement'])->name('relations_manager_leave_agreement');
+    Route::post('relations_manager_leave_disagreement', [leaveRelationManagerController::class, 'disagreement'])->name('relations_manager_leave_disagreement');
 
 });
 
@@ -1082,8 +1086,8 @@ Route::group(['prefix' => 'support-expert-access/dashboard', 'middleware' => 'su
     Route::get('leave_support_expert_confirmation', [leaveSupportExpertController::class, 'confirmation'])->name('leave_support_expert_confirmation');
     Route::get('leave_support_expert_create', [leaveSupportExpertController::class, 'create'])->name('leave_support_expert_create');
     Route::post('leave_support_expert_store', [leaveSupportExpertController::class, 'store'])->name('leave_support_expert_store');
-//    Route::post('deputy_leave_agreement',[leave_deputy_planController::class,'agreement'])->name('deputy_leave_agreement');
-
+    Route::post('support_expert_leave_agreement',[leaveSupportExpertController::class,'agreement'])->name('support_expert_leave_agreement');
+    Route::post('support_expert_leave_disagreement', [leaveSupportExpertController::class, 'disagreement'])->name('support_expert_leave_disagreement');
 });
 
 /**********************************************support_expert Dashboard******************************************************/
@@ -1098,6 +1102,7 @@ Route::group(['prefix' => 'special-expert-access/dashboard', 'middleware' => 'sp
     Route::get('leave_special_expert_create', [leaveSpecialExpertController::class, 'create'])->name('leave_special_expert_create');
     Route::post('leave_special_expert_store', [leaveSpecialExpertController::class, 'store'])->name('leave_special_expert_store');
     Route::post('special_expert_leave_agreement', [leaveSpecialExpertController::class, 'agreement'])->name('special_expert_leave_agreement');
+    Route::post('special_expert_leave_disagreement', [leaveSpecialExpertController::class, 'disagreement'])->name('special_expert_leave_disagreement');
 
 });
 
@@ -1113,6 +1118,7 @@ Route::group(['prefix' => 'discourse-expert-access/dashboard', 'middleware' => '
     Route::get('leave_discourse_expert_create', [leaveDiscourseExpertController::class, 'create'])->name('leave_discourse_expert_create');
     Route::post('leave_discourse_expert_store', [leaveDiscourseExpertController::class, 'store'])->name('leave_discourse_expert_store');
     Route::post('discourse_expert_leave_agreement', [leaveDiscourseExpertController::class, 'agreement'])->name('discourse_expert_leave_agreement');
+    Route::post('discourse_expert_leave_disagreement', [leaveDiscourseExpertController::class, 'disagreement'])->name('discourse_expert_leave_disagreement');
 
 });
 
@@ -1128,6 +1134,7 @@ Route::group(['prefix' => 'innovation-expert-access/dashboard', 'middleware' => 
     Route::get('leave_innovation_expert_create', [leaveInnovationExpertController::class, 'create'])->name('leave_innovation_expert_create');
     Route::post('leave_innovation_expert_store', [leaveInnovationExpertController::class, 'store'])->name('leave_innovation_expert_store');
     Route::post('innovation_expert_leave_agreement', [leaveInnovationExpertController::class, 'agreement'])->name('innovation_expert_leave_agreement');
+    Route::post('innovation_expert_leave_disagreement', [leaveInnovationExpertController::class, 'disagreement'])->name('innovation_expert_leave_disagreement');
 
 });
 
@@ -1143,6 +1150,7 @@ Route::group(['prefix' => 'adjustment-expert-access/dashboard', 'middleware' => 
     Route::get('leave_adjustment_expert_create', [leaveAdjustmentExpertController::class, 'create'])->name('leave_adjustment_expert_create');
     Route::post('leave_adjustment_expert_store', [leaveAdjustmentExpertController::class, 'store'])->name('leave_adjustment_expert_store');
     Route::post('adjustment_expert_leave_agreement', [leaveAdjustmentExpertController::class, 'agreement'])->name('adjustment_expert_leave_agreement');
+    Route::post('adjustment_expert_leave_disagreement', [leaveAdjustmentExpertController::class, 'disagreement'])->name('adjustment_expert_leave_disagreement');
 
 });
 
@@ -1158,6 +1166,7 @@ Route::group(['prefix' => 'head-discourse-access/dashboard', 'middleware' => 'he
     Route::get('leave_head_discourse_create', [leaveHeadDiscourseController::class, 'create'])->name('leave_head_discourse_create');
     Route::post('leave_head_discourse_store', [leaveHeadDiscourseController::class, 'store'])->name('leave_head_discourse_store');
     Route::post('head_discourse_leave_agreement', [leaveHeadDiscourseController::class, 'agreement'])->name('head_discourse_leave_agreement');
+    Route::post('head_discourse_leave_disagreement', [leaveHeadDiscourseController::class, 'disagreement'])->name('head_discourse_leave_disagreement');
 
 });
 
@@ -1172,7 +1181,8 @@ Route::group(['prefix' => 'adjustment-manager-access/dashboard', 'middleware' =>
     Route::get('leave_adjustment_manager_confirmation', [leaveAdjustmentManagerController::class, 'confirmation'])->name('leave_adjustment_manager_confirmation');
     Route::get('leave_adjustment_manager_create', [leaveAdjustmentManagerController::class, 'create'])->name('leave_adjustment_manager_create');
     Route::post('leave_adjustment_manager_store', [leaveAdjustmentManagerController::class, 'store'])->name('leave_adjustment_manager_store');
-    Route::post('deputy_adjustment_manager_agreement', [leaveAdjustmentManagerController::class, 'agreement'])->name('deputy_adjustment_manager_agreement');
+    Route::post('leave_adjustment_manager_agreement', [leaveAdjustmentManagerController::class, 'agreement'])->name('leave_adjustment_manager_agreement');
+    Route::post('adjustment_manager_leave_disagreement', [leaveAdjustmentManagerController::class, 'disagreement'])->name('adjustment_manager_leave_disagreement');
 
 });
 
@@ -1201,6 +1211,7 @@ Route::group(['prefix' => 'head-innovation-access/dashboard', 'middleware' => 'h
     Route::get('leave_head_innovation_create', [leaveHeadInnovationController::class, 'create'])->name('leave_head_innovation_create');
     Route::post('leave_head_innovation_store', [leaveHeadInnovationController::class, 'store'])->name('leave_head_innovation_store');
     Route::post('head_innovation_leave_agreement', [leaveHeadInnovationController::class, 'agreement'])->name('head_innovation_leave_agreement');
+    Route::post('head_innovation_leave_disagreement', [leaveHeadInnovationController::class, 'disagreement'])->name('head_innovation_leave_disagreement');
 
 });
 
@@ -1216,6 +1227,7 @@ Route::group(['prefix' => 'head-special-manager-access/dashboard', 'middleware' 
     Route::get('leave_head_special_create', [leaveHeadSpecialController::class, 'create'])->name('leave_head_special_create');
     Route::post('leave_head_special_store', [leaveHeadSpecialController::class, 'store'])->name('leave_head_special_store');
     Route::post('head_special_leave_agreement', [leaveHeadSpecialController::class, 'agreement'])->name('head_special_leave_agreement');
+    Route::post('head_special_leave_disagreement', [leaveHeadSpecialController::class, 'disagreement'])->name('head_special_leave_disagreement');
 });
 /**********************************************head_special_operation_center Dashboard******************************************************/
 
@@ -1229,6 +1241,7 @@ Route::group(['prefix' => 'head-development-access/dashboard', 'middleware' => '
     Route::get('leave_head_development_create', [leaveHeadDevelopmentController::class, 'create'])->name('leave_head_development_create');
     Route::post('leave_head_development_store', [leaveHeadDevelopmentController::class, 'store'])->name('leave_head_development_store');
     Route::post('head_development_leave_agreement', [leaveHeadDevelopmentController::class, 'agreement'])->name('head_development_leave_agreement');
+    Route::post('head_development_leave_disagreement', [leaveHeadDevelopmentController::class, 'disagreement'])->name('head_development_leave_disagreement');
 
 });
 

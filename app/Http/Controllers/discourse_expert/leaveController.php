@@ -4,6 +4,7 @@ namespace App\Http\Controllers\discourse_expert;
 
 use App\Http\Controllers\Controller;
 use App\Models\Leave;
+use App\Models\LeaveStatus;
 use App\Models\Role;
 use App\Models\RoleTitle;
 use App\Models\User;
@@ -26,6 +27,9 @@ class leaveController extends Controller
         foreach ($leaves as $leave) {
             $leave['start_day'] = verta($leave->start_day)->format('d/%B/Y');
             $leave['end_day'] = verta($leave->end_day)->format('d/%B/Y');
+            $leave['status'] = LeaveStatus::query()
+                ->where('id',$leave->status)
+                ->first();
         }
 
         $user_img = $user_info->image;
@@ -97,7 +101,7 @@ class leaveController extends Controller
             $end_day = $this->convertDateToGregorian($input['end_day']);
             Leave::create([
                 'user_id' => $user_id,
-                'parent' => 5,
+                'parent' => 13,
                 'day_leave_count' => $input['day_leave_count'],
                 'hour_leave_count' => $input['hour_leave_count'],
                 'type' => $input['type_select_leave'],
@@ -117,7 +121,7 @@ class leaveController extends Controller
 
             Leave::create([
                 'user_id' => $user_id,
-                'parent' => 5,
+                'parent' => 13,
                 'day_leave_count' => $input['day_leave_count'],
                 'hour_leave_count' => $input['hour_leave_count'],
                 'type' => $input['type_select_leave'],

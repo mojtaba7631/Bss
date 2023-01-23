@@ -141,7 +141,8 @@
                     <button id="submit_leave_btn" type="submit" class="btn btn-success mr-1 ml-1">
                         بله
                     </button>
-                    <button type="button" class="btn btn-danger" id="unsubmit_leave_btn" data-dismiss="modal">خیر</button>
+                    <button type="button" class="btn btn-danger" id="unsubmit_leave_btn" data-dismiss="modal">خیر
+                    </button>
                 </div>
             </form>
 
@@ -151,56 +152,78 @@
 @endsection
 @section('js')
     <script>
-
         var confirm_btn = $('#confirm_btn');
-
-        confirm_btn.click(function (){
+        confirm_btn.click(function () {
             var my_modal = $('#my_modal');
             my_modal.show();
         });
-
         var submit_leave_btn = $('#submit_leave_btn');
-        submit_leave_btn.click(function (){
+
+        submit_leave_btn.click(function () {
             var my_modal = $('#my_modal');
             my_modal.hide();
 
+            // $.ajaxSetup({
+            //     headers: {
+            //         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            //     }
+            // });
+
             var leave_id = $('#leave_id').val();
             $.ajax({
-                url : "{{ route('deputy_leave_agreement') }}",
-                type:"post",
-                dataType : "json",
-                data : {
+                url: "{{ route('relations_manager_leave_agreement') }}",
+                type: "post",
+                dataType: "json",
+                data: {
                     _token: '{{csrf_token()}}',
-                    'leave_id' : leave_id,
+                    'leave_id': leave_id,
                 },
-                success:function (res)
-                {
-                    if(res.status == true){
+                success: function (res) {
+                    if (res.status == true) {
                         Swal.fire({
                             icon: 'success',
                             title: res.message,
                         })
 
                     }
-                    window.location.href = "{{route('leave_deputy_index')}}"
+                    window.location.href = "{{route('leave_relations_manager_confirmation')}}"
 
-                },error : function (err){
+                }, error: function (err) {
 
                 }
             });
 
 
-
-
-
-
         });
 
-        var unsubmit_leave_btn = $('#unsubmit_leave_btn');
-        unsubmit_leave_btn.click(function (){
-            var leave_id = $('#leave_id').val();
-            alert('leave_id');
-            my_modal.hide();
+        jQuery(document).on('click', '.un_confirm_btn', function (e) {
+            let leave_id = jQuery(this).data("leave");
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+
+            $.ajax({
+                url: "{{route('relations_manager_leave_disagreement')}}",
+                type: "post",
+                data: {
+                    'leave_id': leave_id,
+                },
+                success: function (res) {
+                    // alert(JSON.stringify(res.responseJSON));
+                    if (res.status == true) {
+                        Swal.fire({
+                            icon: 'success',
+                            title: res.message,
+                        })
+                        // window.setInterval('refresh("not")', 3000);
+                    }
+                    window.location.href = "{{route('leave_relations_manager_confirmation')}}"
+                }, error: function (err) {
+                    //
+                }
+            });
         });
 
     </script>

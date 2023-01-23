@@ -29,6 +29,9 @@ class leaveController extends Controller
             $leave['leave_user_info'] = User::query()
                 ->where('id', $leave->user_id)
                 ->first();
+            $leave['status'] = LeaveStatus::query()
+                ->where('id',$leave->status)
+                ->first();
 
         }
 
@@ -48,9 +51,12 @@ class leaveController extends Controller
             ->first();
 
         $leaves = Leave::query()
-            ->where('main_manager_approval', 1)
-            ->paginate(10);
-
+            ->select('*','leave.id as leave_id')
+            ->join('users','users.id','=','leave.user_id')
+            ->where('parent',5)
+            ->where('confirmation',0)
+            ->where('main_manager_approval',0)
+            ->paginate();
         foreach ($leaves as $leave) {
             $leave['start_day'] = verta($leave->start_day)->format('d/%B/Y');
             $leave['end_day'] = verta($leave->end_day)->format('d/%B/Y');
@@ -154,8 +160,6 @@ class leaveController extends Controller
 
     function agreement(Request  $request)
     {
-
-        dd($request->all());
         $input = $request->all();
 
         $leave_info = Leave::query()
@@ -163,13 +167,33 @@ class leaveController extends Controller
             ->first();
 
         $leave_info->update([
-            'finance_manager_approval' => 1,
-            'confirmation' => 1,
+            'main_manager_approval' => 1,
+            'status' => 4,
         ]);
 
         return response()->json([
             'status' => true,
             'message' => 'مرخصی کاربر مورد نظر تایید شد',
         ]);
+    }
+
+    function disagreement(Request $request)
+    {
+        $input = $request->all();
+
+        $leave_info = Leave::query()
+            ->where('id',$input['leave_id'])
+            ->first();
+
+        $leave_info->update([
+            'main_manager_approval' => 2,
+            'status' => 2,
+        ]);
+
+        return response()->json([
+            'status' => true,
+            'message' => 'مرخصی کاربر مورد نظر تایید نشد',
+        ]);
+
     }
 }
