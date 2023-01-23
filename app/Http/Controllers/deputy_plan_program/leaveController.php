@@ -114,6 +114,7 @@ class leaveController extends Controller
                 'disapproval_reason' => null,
                 'main_manager_approval' => 0, //The manager who disapproved
                 'finance_manager_approval' => 0, //The finance manager who disapproved
+                'status'=>3
             ]);
         } elseif ($input['type_select_leave'] == 2) {
             $start_day_daily = $this->convertDateToGregorian($input['start_day_daily']);
@@ -133,6 +134,7 @@ class leaveController extends Controller
                 'disapproval_reason' => null,
                 'main_manager_approval' => 0, //The manager who disapproved
                 'finance_manager_approval' => 0, //The finance manager who disapproved
+                'status'=>3
             ]);
         }
 
