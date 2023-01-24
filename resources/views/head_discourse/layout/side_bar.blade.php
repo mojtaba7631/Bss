@@ -100,12 +100,26 @@
                 <li>
                     <a href="" class="has-arrow">
                         <i class="icon-list"></i>
-                        فرم درخواست مرخصی
+                        <span>فرم درخواست مرخصی</span>
+                        @if(\App\Helpers\GetCountLeave::getCountLeave(13) == 0)
+                            <span></span>
+                        @else
+                            <span class="fa fa-bell"
+                                  style="position: absolute;color:white;background: red;width: 20px;height: 20px;border-radius: 50%;text-align: center;font-size:10px;padding: 5px;line-height: 10px">
+                            </span>
+                        @endif
                     </a>
                     <ul>
                         <li>
                             <a href="{{route('leave_head_discourse_confirmation')}}">
                                 <span>تایید مرخصی ها</span>
+                                @if(\App\Helpers\GetCountLeave::getCountLeave(13) == 0)
+                                    <span></span>
+                                @else
+                                    <span style="position: absolute;color:white;background: red;width: 20px;height: 20px;border-radius: 50%;text-align: center;font-size:11px;padding: 5px;line-height: 10px">
+                                        {{\App\Helpers\GetCountLeave::getCountLeave(13)}}
+                            </span>
+                                @endif
                             </a>
                         </li>
                         <li>
