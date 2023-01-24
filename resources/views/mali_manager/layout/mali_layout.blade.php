@@ -33,6 +33,9 @@
 
 
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+    <link rel="stylesheet" href="{{asset('public-admin/assets/css/sweet.css')}}">
+
     {{--    token--}}
     <meta name="csrf-token" content="{{ csrf_token() }}" />
 
@@ -66,6 +69,7 @@
 <script src="{{asset('public-admin/assets/vendor/summernote/dist/summernote.js')}}"></script>
 <script src="{{asset('public-admin/assets/bundles/mainscripts.bundle.js')}}"></script>
 <script src="{{asset('public-admin/assets/js/script.js')}}"></script>
+<script src="{{asset('public-admin/assets/js/sweet.js')}}"></script>
 @include('sweet::alert')
 @yield('js')
 </body>

@@ -89,7 +89,7 @@
                                                         </a>
                                                         <a class="btn btn-danger un_confirm_btn" title="عدم تایید مرخصی"
                                                            id="un_confirm_btn"
-                                                           data-leave="{{ $leave['leave_id'] }}">
+                                                           data-disleave="{{ $leave['leave_id'] }}">
                                                             <i class="fa fa-close"></i>
                                                         </a>
                                                     </td>
@@ -152,52 +152,47 @@
 @endsection
 @section('js')
     <script>
-        var confirm_btn = $('#confirm_btn');
-        confirm_btn.click(function () {
-            var my_modal = $('#my_modal');
-            my_modal.show();
-        });
-        var submit_leave_btn = $('#submit_leave_btn');
 
-        submit_leave_btn.click(function () {
+        var close_modal = $('.close_modal');
+
+        close_modal.click(function () {
             var my_modal = $('#my_modal');
             my_modal.hide();
+        })
 
-            // $.ajaxSetup({
-            //     headers: {
-            //         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            //     }
-            // });
+        jQuery(document).on('click', '.confirm_btn', function (e) {
+            let leave_id = jQuery(this).data("leave");
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
 
-            var leave_id = $('#leave_id').val();
             $.ajax({
-                url: "{{ route('support_expert_leave_agreement') }}",
+                url: "{{route('support_expert_leave_agreement')}}",
                 type: "post",
-                dataType: "json",
+                // dataType: "json",
                 data: {
-                    _token: '{{csrf_token()}}',
                     'leave_id': leave_id,
                 },
                 success: function (res) {
+                    // alert(JSON.stringify(res.responseJSON));
                     if (res.status == true) {
                         Swal.fire({
                             icon: 'success',
                             title: res.message,
                         })
-
+                        // window.setInterval('refresh("not")', 3000);
                     }
                     window.location.href = "{{route('leave_support_expert_confirmation')}}"
-
                 }, error: function (err) {
-
+                    //
                 }
             });
-
-
         });
 
         jQuery(document).on('click', '.un_confirm_btn', function (e) {
-            let leave_id = jQuery(this).data("leave");
+            let leave_id = jQuery(this).data("disleave");
             $.ajaxSetup({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')

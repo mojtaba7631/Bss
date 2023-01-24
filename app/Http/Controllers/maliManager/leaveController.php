@@ -52,6 +52,7 @@ class leaveController extends Controller
 
         $leaves = Leave::query()
             ->where('main_manager_approval', 1)
+            ->where('finance_manager_approval', 0)
             ->paginate(10);
 
         foreach ($leaves as $leave) {

@@ -93,7 +93,7 @@
                                                         </a>
                                                         <a class="btn btn-danger un_confirm_btn" title="عدم تایید مرخصی"
                                                            id="un_confirm_btn"
-                                                           data-leave="{{ $leave['leave_id'] }}">
+                                                           data-disleave="{{ $leave['leave_id'] }}">
                                                             <i class="fa fa-close"></i>
                                                         </a>
                                                     </td>
@@ -195,7 +195,7 @@
         });
 
         jQuery(document).on('click', '.un_confirm_btn', function (e) {
-            let leave_id = jQuery(this).data("leave");
+            let leave_id = jQuery(this).data("disleave");
             $.ajaxSetup({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
