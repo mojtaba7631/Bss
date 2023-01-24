@@ -135,22 +135,20 @@
                 @csrf
                 <!-- Modal Header -->
                 <div class="modal-header">
-                    <h4 class="modal-title">تایید مرخصی</h4>
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">توضیحات</h4>
+                    <button type="button" class="close close_modal" data-dismiss="modal">&times;</button>
                 </div>
 
                 <!-- Modal body -->
                 <div class="modal-body">
-                    <p>آیا با تایید مرخصی موافقید؟</p>
-                    <input type="text" class="form-control" placeholder="دلیل عدم موافقت">
+                    <p>لطفا در صورت امکان دلیل عدم تایید را ذکر نمایید</p>
+                    <input type="text" class="form-control disapproval" placeholder="دلیل عدم موافقت" name="disapproval">
                 </div>
 
                 <!-- Modal footer -->
                 <div class="modal-footer">
-                    <button id="submit_leave_btn" type="submit" class="btn btn-success mr-1 ml-1">
-                        بله
-                    </button>
-                    <button type="button" class="btn btn-danger" id="unsubmit_leave_btn" data-dismiss="modal">خیر
+                    <button id="submit_leave_btn" type="submit" class="btn btn-danger mr-1 ml-1 submit_leave_btn" data-leave-modal="{{ $leave['id'] }}">
+                        عدم تایید مرخصی
                     </button>
                 </div>
             </form>
@@ -161,6 +159,13 @@
 @section('js')
     <script>
         var close_modal = $('.close_modal');
+
+        var un_confirm_btn = $('.un_confirm_btn');
+
+        un_confirm_btn.click(function () {
+            var my_modal = $('#my_modal');
+            my_modal.show();
+        })
 
         close_modal.click(function () {
             var my_modal = $('#my_modal');
@@ -198,8 +203,10 @@
             });
         });
 
-        jQuery(document).on('click', '.un_confirm_btn', function (e) {
-            let leave_id = jQuery(this).data("disleave");
+        jQuery(document).on('click', '.submit_leave_btn', function (e) {
+            let leave_id = jQuery(this).data("leave-modal");
+            let disapproval = $('.disapproval').value();
+
             $.ajaxSetup({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -211,6 +218,7 @@
                 type: "post",
                 data: {
                     'leave_id': leave_id,
+                    'disapproval': disapproval,
                 },
                 success: function (res) {
                     // alert(JSON.stringify(res.responseJSON));

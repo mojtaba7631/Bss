@@ -182,6 +182,7 @@ class leaveController extends Controller
     function disagreement(Request $request)
     {
         $input = $request->all();
+        dd($input);
 
         $leave_info = Leave::query()
             ->where('id',$input['leave_id'])
