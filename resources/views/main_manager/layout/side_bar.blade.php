@@ -224,7 +224,14 @@
                 <li>
                     <a href="" class="has-arrow">
                         <i class="icon-list"></i>
-                        فرم درخواست مرخصی
+                        <span>فرم درخواست مرخصی</span>
+                        @if(\App\Helpers\GetCountLeave::getCountLeave(5) == 0)
+                            <span></span>
+                        @else
+                            <span class="fa fa-bell"
+                                  style="position: absolute;color:white;background: red;width: 20px;height: 20px;border-radius: 50%;text-align: center;font-size:10px;padding: 5px;line-height: 10px">
+                            </span>
+                        @endif
                     </a>
                     <ul>
                         <li>
@@ -235,6 +242,13 @@
                         <li>
                             <a href="{{route('leave_mainManager_confirmation')}}">
                                 <span>تایید مرخصی ها</span>
+                                @if(\App\Helpers\GetCountLeave::getCountLeave(5) == 0)
+                                    <span></span>
+                                @else
+                                    <span style="position: absolute;color:white;background: red;width: 20px;height: 20px;border-radius: 50%;text-align: center;font-size:11px;padding: 5px;line-height: 10px">
+                                        {{\App\Helpers\GetCountLeave::getCountLeave(5)}}
+                            </span>
+                                @endif
                             </a>
                         </li>
                     </ul>
