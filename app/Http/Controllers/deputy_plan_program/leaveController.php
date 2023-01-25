@@ -91,8 +91,9 @@ class leaveController extends Controller
             ->where('id', $user_id)
             ->first();
         $role_title = 'معاون طرح و برنامه';
+        $center_title = 'طرح و برنامه';
         $user_img = $user_info->image;
-        return view('deputy_plan_program.leave.create', compact('user_img', 'user_info','role_title'));
+        return view('deputy_plan_program.leave.create', compact('user_img', 'user_info','role_title','center_title'));
     }
 
     public function store(Request $request)

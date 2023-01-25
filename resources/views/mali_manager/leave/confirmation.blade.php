@@ -143,11 +143,11 @@
                 <div class="modal-body">
                     <p>لطفا در صورت امکان دلیل عدم تایید را ذکر نمایید</p>
                     <input type="text" class="form-control disapproval" placeholder="دلیل عدم موافقت" name="disapproval">
+                    <input type="text" id="leave_id_modal" class="leave_id_modal">
                 </div>
-
                 <!-- Modal footer -->
                 <div class="modal-footer">
-                    <button id="submit_leave_btn" type="submit" class="btn btn-danger mr-1 ml-1 submit_leave_btn" data-leave-modal="{{ $leave['id'] }}">
+                    <button id="submit_leave_btn" type="submit" class="btn btn-danger mr-1 ml-1 submit_leave_btn">
                         عدم تایید مرخصی
                     </button>
                 </div>
@@ -162,7 +162,9 @@
 
         var un_confirm_btn = $('.un_confirm_btn');
 
-        un_confirm_btn.click(function () {
+        un_confirm_btn.on('click' , function () {
+            let leave_id = jQuery(this).data("disleave");
+            $('#leave_id_modal').val(leave_id);
             var my_modal = $('#my_modal');
             my_modal.show();
         })
@@ -204,9 +206,28 @@
         });
 
         jQuery(document).on('click', '.submit_leave_btn', function (e) {
-            let leave_id = jQuery(this).data("leave-modal");
-            let disapproval = $('.disapproval').value();
+            // function getCookie(cname) {
+            //     let name = cname + "=";
+            //     let decodedCookie = decodeURIComponent(document.cookie);
+            //     let ca = decodedCookie.split(';');
+            //     for(let i = 0; i <ca.length; i++) {
+            //         let c = ca[i];
+            //         while (c.charAt(0) == ' ') {
+            //             c = c.substring(1);
+            //         }
+            //         if (c.indexOf(name) == 0) {
+            //             return c.substring(name.length, c.length);
+            //         }
+            //     }
+            //     return "";
+            // }
 
+            // var disleave_id = getCookie('leave_id');
+
+            let disleave_id = $('#my_modal .leave_id_modal').val();
+
+            // let leave_id = jQuery(this).data("disleave");
+            let disapproval = $('.disapproval').val();
             $.ajaxSetup({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -217,7 +238,7 @@
                 url: "{{route('maliManager_leave_disagreement')}}",
                 type: "post",
                 data: {
-                    'leave_id': leave_id,
+                    'leave_id': disleave_id,
                     'disapproval': disapproval,
                 },
                 success: function (res) {

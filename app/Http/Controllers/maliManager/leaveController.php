@@ -182,16 +182,14 @@ class leaveController extends Controller
     function disagreement(Request $request)
     {
         $input = $request->all();
-        dd($input);
-
         $leave_info = Leave::query()
             ->where('id',$input['leave_id'])
             ->first();
-
         $leave_info->update([
             'finance_manager_approval' => 5,
             'confirmation' => 0,
-            'status' => 5,
+            'status' => 2,
+            'disapproval_reason' => $input['disapproval'],
         ]);
 
         return response()->json([

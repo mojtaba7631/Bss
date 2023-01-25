@@ -88,9 +88,10 @@ class leaveController extends Controller
             ->where('id', $user_id)
             ->first();
         $role_title = 'کارشناس مرکز نظام سازی';
+        $center_title = 'نظام سازی';
         $user_img = $user_info->image;
 
-        return view('adjustment_expert.leave.create', compact('user_img', 'user_info','role_title'));
+        return view('adjustment_expert.leave.create', compact('user_img', 'user_info','role_title','center_title'));
 
 
     }
