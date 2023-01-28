@@ -353,11 +353,19 @@
         }
 
         function calculate_difference_dates() {
-            var date1 = new Date(parseInt(from_selected_date['month'] + 1)  + "/" + from_selected_date['day'] + "/" + from_selected_date['year']);
-            var date2 = new Date(parseInt(to_selected_date['month'] + 1) + "/" + to_selected_date['day'] + "/" + to_selected_date['year']);
 
-            console.log(date1);
-            console.log(date2);
+            // var date1 = new Date(parseInt(from_selected_date['month'] + 1)  + "/" + from_selected_date['day'] + "/" + from_selected_date['year']);
+            // var date2 = new Date(parseInt(to_selected_date['month'] + 1) + "/" + to_selected_date['day'] + "/" + to_selected_date['year']);
+            //
+            // console.log(date1);
+            // console.log(date2);
+
+            var from_month = from_selected_date['month']+1;
+            var to_month = to_selected_date['month']+1;
+
+            var date1 = new Date(from_month + "/" + from_selected_date['day'] + "/" + from_selected_date['year']);
+
+            var date2 = new Date(to_month + "/" + to_selected_date['day'] + "/" + to_selected_date['year']);
 
             // To calculate the time difference of two dates
             var Difference_In_Time = date2.getTime() - date1.getTime();

@@ -1,0 +1,116 @@
+@media (min-width: 768px) and (max-width: 900px) {
+    .fnt_leave {
+        font-size: 12px !important;
+    }
+
+    .my_select {
+        width: 130px !important;
+        font-size: 12px;
+    }
+
+    .my_inp_200 {
+        width: 65px !important;
+        display: inline-block;
+        text-align: center;
+    }
+}
+@media (min-width: 1200px) and (max-width: 1347px) {
+    .fnt_leave {
+        font-size: 12px !important;
+    }
+
+    .my_select {
+        width: 130px !important;
+        font-size: 12px;
+    }
+
+    .my_inp_200 {
+        width: 100px !important;
+        display: inline-block;
+        text-align: center;
+    }
+}
+@media (min-width: 1200px) and (max-width: 1227px) {
+    .fnt_leave {
+        font-size: 12px !important;
+    }
+
+    .my_select {
+        width: 130px !important;
+        font-size: 12px;
+    }
+
+    .my_inp_200 {
+        width: 70px !important;
+        display: inline-block;
+        text-align: center;
+    }
+}
+@media (min-width: 901px) and (max-width: 1087px) {
+    .fnt_leave {
+        font-size: 12px !important;
+    }
+
+    .my_select {
+        width: 130px !important;
+        font-size: 12px;
+    }
+
+    .my_inp_200 {
+        width: 65px !important;
+        display: inline-block;
+        text-align: center;
+    }
+}
+
+@media (min-width: 550px) and (max-width: 767px) {
+    .fnt_leave {
+        font-size: 12px !important;
+        line-height: 30px;
+    }
+
+    .my_select {
+        width: 110px !important;
+        font-size: 10px;
+        height: 28px !important;
+    }
+
+    .my_inp_200 {
+        width: 180px !important;
+        display: inline-block;
+        text-align: center;
+    }
+}
+
+@media (min-width: 0px) and (max-width: 404px) {
+    .fnt_leave {
+        font-size: 11px !important;
+        line-height: 30px;
+    }
+
+    .my_select {
+        width: 110px !important;
+        font-size: 10px;
+        height: 28px !important;
+    }
+
+    .my_inp_200 {
+        width: 90px !important;
+        display: inline-block;
+        text-align: center;
+    }
+}
+
+@media (min-width: 405px) and (max-width: 500px) {
+    .fnt_leave {
+        font-size: 11px !important;
+        line-height: 30px;
+    }
+
+    .my_select {
+        width: 110px !important;
+        font-size: 10px;
+        height: 28px !important;
+    }
+
+}

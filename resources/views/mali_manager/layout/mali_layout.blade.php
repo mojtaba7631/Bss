@@ -35,6 +35,7 @@
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
     <link rel="stylesheet" href="{{asset('public-admin/assets/css/sweet.css')}}">
+    <link rel="stylesheet" href="{{asset('public-admin/assets/css/responsive.css')}}">
 
     {{--    token--}}
     <meta name="csrf-token" content="{{ csrf_token() }}" />

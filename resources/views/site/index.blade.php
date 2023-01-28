@@ -46,6 +46,11 @@
                         <div class="col-12 mt-4">
                             <img class="logo_text" src="{{asset('home_assets/img/hamyaran1.png')}}" alt="سامانه نما">
                         </div>
+                        <div class="col-12 mt-4 text-center">
+                            <span class="support_style">
+                                جهت پشتیبانی سامانه لطفا در پیام رسان ایتا یا بله به تلفن همراه نماینده ی جهت تیکت (فقط متن) ارسال نمایید. کاظمی (09128383357)
+                            </span>
+                        </div>
                     </div>
                 </div>
             </div>

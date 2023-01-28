@@ -1191,14 +1191,14 @@ Route::group(['prefix' => 'adjustment-manager-access/dashboard', 'middleware' =>
 
 /**********************************************head_special_operation_center Dashboard******************************************************/
 
-//Route::group(['prefix' => 'head-special-manager-access/dashboard', 'middleware' => 'head_special'], function () {
-//    Route::get('/', [dashboardHeadSpecialController::class, 'index'])->name('head_special_operation_center');
-//    Route::get('leave_head_special', [leaveHeadSpecialController::class, 'index'])->name('leave_head_special_index');
-//    Route::get('leave_head_special_confirmation', [leaveHeadSpecialController::class, 'confirmation'])->name('leave_head_special_confirmation');
-//    Route::get('leave_head_special_create', [leaveHeadSpecialController::class, 'create'])->name('leave_head_special_create');
-//    Route::post('leave_head_special_store', [leaveHeadSpecialController::class, 'store'])->name('leave_head_special_store');
-//    Route::post('head_special_leave_agreement', [leaveHeadSpecialController::class, 'agreement'])->name('head_special_leave_agreement');
-//});
+Route::group(['prefix' => 'head-special-manager-access/dashboard', 'middleware' => 'head_special'], function () {
+    Route::get('/', [dashboardHeadSpecialController::class, 'index'])->name('head_special_operation_center');
+    Route::get('leave_head_special', [leaveHeadSpecialController::class, 'index'])->name('leave_head_special_index');
+    Route::get('leave_head_special_confirmation', [leaveHeadSpecialController::class, 'confirmation'])->name('leave_head_special_confirmation');
+    Route::get('leave_head_special_create', [leaveHeadSpecialController::class, 'create'])->name('leave_head_special_create');
+    Route::post('leave_head_special_store', [leaveHeadSpecialController::class, 'store'])->name('leave_head_special_store');
+    Route::post('head_special_leave_agreement', [leaveHeadSpecialController::class, 'agreement'])->name('head_special_leave_agreement');
+});
 /**********************************************head_special_operation_center Dashboard******************************************************/
 
 

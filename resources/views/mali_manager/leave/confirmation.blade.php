@@ -143,7 +143,7 @@
                 <div class="modal-body">
                     <p>لطفا در صورت امکان دلیل عدم تایید را ذکر نمایید</p>
                     <input type="text" class="form-control disapproval" placeholder="دلیل عدم موافقت" name="disapproval">
-                    <input type="text" id="leave_id_modal" class="leave_id_modal">
+                    <input type="hidden" id="leave_id_modal" class="leave_id_modal">
                 </div>
                 <!-- Modal footer -->
                 <div class="modal-footer">
@@ -167,7 +167,9 @@
             $('#leave_id_modal').val(leave_id);
             var my_modal = $('#my_modal');
             my_modal.show();
+
         })
+
 
         close_modal.click(function () {
             var my_modal = $('#my_modal');
@@ -226,8 +228,9 @@
 
             let disleave_id = $('#my_modal .leave_id_modal').val();
 
-            // let leave_id = jQuery(this).data("disleave");
             let disapproval = $('.disapproval').val();
+
+
             $.ajaxSetup({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -238,12 +241,15 @@
                 url: "{{route('maliManager_leave_disagreement')}}",
                 type: "post",
                 data: {
-                    'leave_id': disleave_id,
+                    'disleave_id': disleave_id,
                     'disapproval': disapproval,
                 },
                 success: function (res) {
                     // alert(JSON.stringify(res.responseJSON));
+                    // alert(res.status);
+
                     if (res.status == true) {
+                        // alert('bia too');
                         Swal.fire({
                             icon: 'success',
                             title: res.message,
@@ -252,7 +258,7 @@
                     }
                     window.location.href = "{{route('maliManager_leave_confirmation')}}"
                 }, error: function (err) {
-                    //
+                    alert('kjjhk');
                 }
             });
         });

@@ -16,7 +16,6 @@ class Mission extends Migration
         Schema::create('mission', function (Blueprint $table) {
             $table->id();
             $table->integer('user_id')->unsigned();
-            $table->integer('parent')->unsigned();
             $table->integer('day_leave_count')->comment('Number of days leave')->nullable();
             $table->integer('hour_leave_count')->comment('Number of hours leave')->nullable();
             $table->boolean('type')->default(0)->comment('0 is hour leave , 1 is day leave');
@@ -24,10 +23,10 @@ class Mission extends Migration
             $table->integer('end_hour')->nullable();
             $table->timestamp('start_day')->nullable();
             $table->timestamp('end_day')->nullable();
-            $table->boolean('confirmation')->default(0)->comment('1 is confirm , 0 is disapproval');// taeid shode ya nashode?
-            $table->longText('disapproval_reason')->nullable();  // dalile adame taeid
-            $table->boolean('main_manager_approval')->default(0)->comment('The manager who disapproved');// taeide modire mostaghim
-            $table->boolean('finance_manager_approval')->default(0)->comment('The finance manager who disapproved');// taeide modire mali
+            $table->boolean('confirmation')->default(0)->comment('1 is confirm , 0 is disapproval');
+            $table->longText('disapproval_reason')->nullable();
+            $table->boolean('main_manager_approval')->default(0)->comment('The manager who disapproved');
+            $table->boolean('finance_manager_approval')->default(0)->comment('The finance manager who disapproved');
             $table->boolean('coordinator_approval')->default(0)->comment('Deputy Coordinator');
             $table->rememberToken();
             $table->timestamps();

@@ -319,6 +319,7 @@
             autoClose: true,
             initialValue: false,
             onSelect: function (unix) {
+                // alert(JSON.stringify(from));
                 from.touched = true;
                 if (to && to.options && to.options.minDate != unix) {
                     var cachedValue = to.getState().selected.unixDate;
@@ -353,16 +354,21 @@
         }
 
         function calculate_difference_dates() {
-            var date1 = new Date(from_selected_date['month'] + "/" + from_selected_date['day'] + "/" + from_selected_date['year']);
-            var date2 = new Date(to_selected_date['month'] + "/" + to_selected_date['day'] + "/" + to_selected_date['year']);
+
+            var from_month = from_selected_date['month']+1;
+            var to_month = to_selected_date['month']+1;
+
+            var date1 = new Date(from_month + "/" + from_selected_date['day'] + "/" + from_selected_date['year']);
+
+            var date2 = new Date(to_month + "/" + to_selected_date['day'] + "/" + to_selected_date['year']);
+
 
             // To calculate the time difference of two dates
             var Difference_In_Time = date2.getTime() - date1.getTime();
 
-
-
             // To calculate the no. of days between two dates
             var Difference_In_Days = Math.ceil(Difference_In_Time / (1000 * 3600 * 24));
+
 
             if (!isNaN(Difference_In_Days) && Difference_In_Days !== undefined && Difference_In_Days > 0) {
                 total_days_count_show.text(Difference_In_Days + " روز");

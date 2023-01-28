@@ -31,6 +31,12 @@ ul {
     padding: 0;
 }
 
+.support_style{
+    font-family: "IS";
+    font-weight: bold;
+    font-size: 15px;
+}
+
 .text_11pt {
     font-size: 11pt;
 }
