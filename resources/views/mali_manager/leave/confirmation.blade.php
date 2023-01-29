@@ -1,6 +1,9 @@
 @extends('mali_manager.layout.mali_layout')
 @section('title',"لیست تایید مرخصی ها")
 @section('css')
+    <style>
+    /*for me*/
+    </style>
 @endsection
 @section('content')
     <div id="main-content">
