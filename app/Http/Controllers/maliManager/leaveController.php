@@ -163,7 +163,7 @@ class leaveController extends Controller
 
         $input = $request->all();
 
-        dd($input);
+
 
         $leave_info = Leave::query()
             ->where('id',$input['leave_id'])
@@ -185,7 +185,7 @@ class leaveController extends Controller
     {
 
         $input = $request->all();
-        dd($input);
+
 
         $leave_info = Leave::query()
             ->where('id',$input['leave_id'])

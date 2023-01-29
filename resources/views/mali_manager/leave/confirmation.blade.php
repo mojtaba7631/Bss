@@ -129,9 +129,7 @@
     </div>
     <!-- The Modal -->
     <div class="modal" id="my_modal">
-        <div class="modal-dialog">
-            <form action="#" enctype="multipart/form-data"
-                  class="modal-content">
+        <div class="modal-dialog modal-content" >
                 @csrf
                 <!-- Modal Header -->
                 <div class="modal-header">
@@ -152,7 +150,7 @@
                         عدم تایید مرخصی
                     </button>
                 </div>
-            </form>
+
 
         </div>
     </div>
@@ -163,6 +161,7 @@
             var un_confirm_btn = $('.un_confirm_btn');
 
             un_confirm_btn.on('click', function () {
+
                 let leave_id = jQuery(this).data("disleave");
                 $('#leave_id_modal').val(leave_id);
                 var my_modal = $('#my_modal');
@@ -202,7 +201,7 @@
                             })
                             // window.setInterval('refresh("not")', 3000);
                         }
-                        {{--window.location.href = "{{route('maliManager_leave_confirmation')}}"--}}
+                        window.location.href = "{{route('maliManager_leave_confirmation')}}"
                     }, error: function (err) {
                         //
                     }
@@ -229,7 +228,7 @@
                     'disapproval': disapproval,
                 },
                 success: function (res) {
-                    alert(JSON.stringify(res.responseJSON));
+
                     if (res.status == true) {
                         Swal.fire({
                             icon: 'success',
@@ -237,7 +236,7 @@
                         })
                         // window.setInterval('refresh("not")', 3000);
                     }
-                    {{--window.location.href = "{{route('maliManager_leave_confirmation')}}"--}}
+                    window.location.href = "{{route('maliManager_leave_confirmation')}}"
                 }, error: function (err) {
                     //
                 }
