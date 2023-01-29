@@ -53,7 +53,6 @@ class leaveController extends Controller
         $leaves = Leave::query()
             ->where('main_manager_approval', 1)
             ->where('finance_manager_approval', 0)
-            ->where('confirmation', 0)
             ->paginate(10);
 
         foreach ($leaves as $leave) {
@@ -164,37 +163,39 @@ class leaveController extends Controller
 
         $input = $request->all();
 
+        dd($input);
+
         $leave_info = Leave::query()
             ->where('id',$input['leave_id'])
             ->first();
 
-        $leave_info->update([
-            'finance_manager_approval' => 1,
-            'confirmation' => 1,
-            'status' => 1,
-        ]);
+            $leave_info->update([
+                'finance_manager_approval' =>1,
+                'confirmation' => 1,
+                'status' => 1,
+            ]);
 
-        return response()->json([
-            'status' => true,
-            'message' => 'مرخصی کاربر مورد نظر تایید شد',
-        ]);
+            return response()->json([
+                'status' => true,
+                'message' => 'مرخصی کاربر مورد نظر تایید شد',
+            ]);
     }
 
     function disagreement(Request $request)
     {
 
         $input = $request->all();
-
+        dd($input);
 
         $leave_info = Leave::query()
-            ->where('id',$input['disleave_id'])
+            ->where('id',$input['leave_id'])
             ->first();
+
 
         $leave_info->update([
             'finance_manager_approval' => 5,
             'confirmation' => 0,
             'status' => 5,
-            'disapproval_reason' => $input['disapproval']
         ]);
 
         return response()->json([

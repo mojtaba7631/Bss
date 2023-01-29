@@ -108,7 +108,7 @@
                                         <div class="col-12 fnt_leave">
                                             اینجانب {{$user_info['name'] . ' ' . $user_info['family']}} به
                                             سمت {{$role_title}} در
-                                            مرکز نوسازی تقاضای مرخصی <select
+                                            مرکز {{$center_title}} تقاضای مرخصی <select
                                                 class="form-control my_select my_select_theme" id="type_select_leave"
                                                 name="type_select_leave">
                                                 <option value="0">ساعتی یا روزانه</option>
