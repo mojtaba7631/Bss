@@ -1,5 +1,5 @@
 @extends('mali_manager.layout.mali_layout')
-@section('title',"لیست تایید مرخصی ها")
+@section('title',"لیست تایید ماموریت ها")
 @section('css')
     <style>
     /*for me0022*/
@@ -11,14 +11,14 @@
             <div class="block-header">
                 <div class="row clearfix">
                     <div class="col-md-6 col-sm-12">
-                        <h1>لیست تایید مرخصی ها</h1>
+                        <h1>لیست تایید ماموریت ها</h1>
                         <nav aria-label="breadcrumb">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item">
                                     <a href="#">نما</a>
                                 </li>
                                 <li class="breadcrumb-item active" aria-current="page">
-                                    لیست تایید مرخصی ها
+                                    لیست تایید ماموریت ها
                                 </li>
                             </ol>
                         </nav>
@@ -36,12 +36,12 @@
                                             <thead>
                                             <tr>
                                                 <th>#</th>
-                                                <th>نوع مرخصی</th>
+                                                <th>نوع ماموریت</th>
                                                 <th>نام کاربر</th>
                                                 <th>از روز - ساعت</th>
                                                 <th>تا روز - ساعت</th>
-                                                <th>وضعیت مرخصی</th>
-                                                <th>جواب مرخصی</th>
+                                                <th>وضعیت ماموریت</th>
+                                                <th>جواب ماموریت</th>
                                                 <th>عملیات</th>
                                             </tr>
                                             </thead>
@@ -94,12 +94,12 @@
                                                         {{$leave->disapproval_reason}}
                                                     </td>
                                                     <td>
-                                                        <a class="btn btn-success confirm_btn" title="تایید مرخصی"
+                                                        <a class="btn btn-success confirm_btn" title="تایید ماموریت"
                                                            id="confirm_btn"
                                                            data-leave="{{ $leave['id'] }}" data-val="1">
                                                             <i class="fa fa-check"></i>
                                                         </a>
-                                                        <a class="btn btn-danger un_confirm_btn" title="عدم تایید مرخصی"
+                                                        <a class="btn btn-danger un_confirm_btn" title="عدم تایید ماموریت"
                                                            id="un_confirm_btn"
                                                            data-disleave="{{ $leave['id'] }}" data-val="0">
                                                             <i class="fa fa-close"></i>
@@ -118,7 +118,7 @@
                                     <div class="row">
                                         <div class="col-12">
                                             <p class="alert alert-danger mb-0">
-                                                مرخصی ای یافت نشد
+                                                ماموریت ای یافت نشد
                                             </p>
                                         </div>
                                     </div>
@@ -150,7 +150,7 @@
                 <!-- Modal footer -->
                 <div class="modal-footer">
                     <button id="submit_leave_btn" class="btn btn-danger mr-1 ml-1 submit_leave_btn">
-                        عدم تایید مرخصی
+                        عدم تایید ماموریت
                     </button>
                 </div>
 

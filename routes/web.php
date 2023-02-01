@@ -38,6 +38,8 @@ use App\Http\Controllers\mainManager\payment_commandController as main_payment_c
 use App\Http\Controllers\mainManager\proceedingController as main_proceedingController;
 use App\Http\Controllers\mainManager\DebtsContorller as main_DebtController;
 use App\Http\Controllers\mainManager\leaveController as leaveMainManagerController;
+use App\Http\Controllers\mainManager\missionController as missionMainManagerController;
+
 
 
 use App\Http\Controllers\maliManager\contractController as maliManagerContractController;
@@ -51,6 +53,8 @@ use App\Http\Controllers\maliManager\proceedingController as proceedingControlle
 use App\Http\Controllers\maliManager\DebtsContorller as maliDebtController;
 use App\Http\Controllers\maliManager\maliPayableController;
 use App\Http\Controllers\maliManager\leaveController as maliLeaveController;
+use App\Http\Controllers\maliManager\missionController as maliMissionController;
+
 
 use App\Http\Controllers\realUser\alertController as realAlertController;
 use App\Http\Controllers\realUser\contractController as realContractController;
@@ -83,6 +87,8 @@ use App\Http\Controllers\expert\expertLetterController as letter_expertControlle
 use App\Http\Controllers\expert\contractController as contract_expertController;
 use App\Http\Controllers\expert\reportController as report_expertController;
 use App\Http\Controllers\expert\leaveController as leave_expertController;
+use App\Http\Controllers\expert\missionController as mission_expertController;
+
 
 use App\Http\Controllers\personnel\leaveController as leave_personnelController;
 use App\Http\Controllers\personnel\dashboardController as dashboard_personnelController;
@@ -90,49 +96,74 @@ use App\Http\Controllers\personnel\missionController as mission_personnelControl
 
 use App\Http\Controllers\deputy_plan_program\dashboardController as dashboard_deputy_planController;
 use App\Http\Controllers\deputy_plan_program\leaveController as leave_deputy_planController;
+use App\Http\Controllers\deputy_plan_program\missionController as mission_deputy_planController;
+
 
 
 use App\Http\Controllers\support_manager\dashboardController as dashboardSupportManagerController;
 use App\Http\Controllers\support_manager\leaveController as leaveSupportManagerController;
+use App\Http\Controllers\support_manager\missionController as missionSupportManagerController;
+
 
 
 use App\Http\Controllers\relations_manager\dashboardController as dashboardRelationsManagerController;
 use App\Http\Controllers\relations_manager\leaveController as leaveRelationManagerController;
+use App\Http\Controllers\relations_manager\missionController as missionRelationManagerController;
+
 
 use App\Http\Controllers\support_expert\dashboardController as dashboardSupport_expertController;
 use App\Http\Controllers\support_expert\leaveController as leaveSupportExpertController;
+use App\Http\Controllers\support_expert\missionController as missionSupportExpertController;
+
 
 use App\Http\Controllers\special_expert\dashboardController as dashboardSpecial_expertController;
 use App\Http\Controllers\special_expert\leaveController as leaveSpecialExpertController;
+use App\Http\Controllers\special_expert\missionController as missionSpecialExpertController;
 
 use App\Http\Controllers\discourse_expert\dashboardController as dashboardDiscourse_expertController;
 use App\Http\Controllers\discourse_expert\leaveController as leaveDiscourseExpertController;
+use App\Http\Controllers\discourse_expert\missionController as missionDiscourseExpertController;
+
 
 
 use App\Http\Controllers\innovation_expert\dashboardController as dashboardInnovation_expertController;
 use App\Http\Controllers\innovation_expert\leaveController as leaveInnovationExpertController;
+use App\Http\Controllers\innovation_expert\missionController as missionInnovationExpertController;
+
 
 
 use App\Http\Controllers\adjustment_expert\dashboardController as dashboardAdjustment_expertController;
 use App\Http\Controllers\adjustment_expert\leaveController as leaveAdjustmentExpertController;
+use App\Http\Controllers\adjustment_expert\missionController as missionAdjustmentExpertController;
+
 
 use App\Http\Controllers\head_special\dashboardController as dashboardHeadSpecialController;
 use App\Http\Controllers\head_special\leaveController as leaveHeadSpecialController;
+use App\Http\Controllers\head_special\missionController as missionHeadSpecialController;
+
 
 use App\Http\Controllers\head_discourse\dashboardController as dashboardHead_discourseController;
 use App\Http\Controllers\head_discourse\leaveController as leaveHeadDiscourseController;
+use App\Http\Controllers\head_discourse\missionController as missionHeadDiscourseController;
+
 
 
 use App\Http\Controllers\adjustment_manager\dashboardController as dashboardAdjustment_managerController;
 use App\Http\Controllers\adjustment_manager\leaveController as leaveAdjustmentManagerController;
+use App\Http\Controllers\adjustment_manager\missionController as missionAdjustmentManagerController;
+
 
 
 use App\Http\Controllers\head_innovation\dashboardController as dashboardHead_innovationController;
 use App\Http\Controllers\head_innovation\leaveController as leaveHeadInnovationController;
+use App\Http\Controllers\head_innovation\missionController as missionHeadInnovationController;
+
 
 
 use App\Http\Controllers\head_development\dashboardController as dashboardHead_developmentController;
 use App\Http\Controllers\head_development\leaveController as leaveHeadDevelopmentController;
+use App\Http\Controllers\head_development\missionController as missionHeadDevelopmentController;
+
 
 
 use Illuminate\Support\Facades\Route;
@@ -265,26 +296,24 @@ Route::group(['prefix' => 'admin-access/dashboard', 'middleware' => 'adminAuth']
     /********** Main Dashboard letter *****************/
 });
 /*****************************************************Main Dashboard***************************************************/
-/*****************************************************************************************************************/
-/*****************************************************************************************************************/
-/*****************************************************************************************************************/
-/*****************************************************************************************************************/
-/*****************************************************************************************************************/
-/*****************************************************************************************************************/
+
+
+
+
 /***************************************************LegalUser Dashboard************************************************/
 Route::group(['prefix' => 'legalUser-access/dashboard', 'middleware' => ['legalUserAuth']], function () {
 
     Route::get('/', [legalDashboardController::class, 'index'])->name('legalUser_index');
 
-    /****************************** LegalUser Profile *************************************************/
+    /****************************** LegalUser Profile **************/
     Route::group(['prefix' => 'profile'], function () {
         Route::get('/', [legalDashboardController::class, 'profile'])->name('legal_profile');
         Route::post('update', [legalDashboardController::class, 'update_profile'])->name('legal_profile_update');
         Route::post('change_pass', [legalDashboardController::class, 'change_pass'])->name('legal_change_pass');
     });
-    /****************************** LegalUser profile *************************************************/
+    /****************************** LegalUser profile **************/
 
-    /****************************** LegalUser Projects *************************************************/
+    /****************************** LegalUser Projects *************/
     Route::group(['prefix' => 'projects'], function () {
         Route::get('/', [legalProjectController::class, 'index'])->name('legal_project_in_process');
         Route::post('search_index', [legalProjectController::class, 'search_index'])->name('legal_project_in_process_Search');
@@ -300,9 +329,9 @@ Route::group(['prefix' => 'legalUser-access/dashboard', 'middleware' => ['legalU
         Route::post('delete_pro', [legalProjectController::class, 'delete_project'])->name('legal_project_delete');
         Route::get('download_propusal/{project}', [legalProjectController::class, 'download_propusal'])->name('legal_download_propusal');
     });
-    /****************************** LegalUser Projects *************************************************/
+    /****************************** LegalUser Projects ************/
 
-    /****************************** LegalUser Contract *************************************************/
+    /****************************** LegalUser Contract ************/
     Route::group(['prefix' => 'contracts'], function () {
         Route::get('/', [legalContractController::class, 'index'])->name('legal_contract_index');
         Route::get('add/{project_id}', [legalContractController::class, 'add'])->name('legal_contract_add');
@@ -317,15 +346,15 @@ Route::group(['prefix' => 'legalUser-access/dashboard', 'middleware' => ['legalU
         Route::post('delete', [legalContractController::class, 'delete_contract'])->name('legal_contract_delete');
         Route::get('legal_view/{project}', [legalContractController::class, 'view'])->name('legal_contract_view');
     });
-    /****************************** LegalUser Contract *************************************************/
+    /****************************** LegalUser Contract ***********/
 
-    /****************************** LegalUser alerts *************************************************/
+    /****************************** LegalUser alerts *************/
     Route::group(['prefix' => 'alerts'], function () {
         Route::get('/', [legalAlertController::class, 'index'])->name('legal_alerts_index');
     });
-    /****************************** LegalUser alerts *************************************************/
+    /****************************** LegalUser alerts **************/
 
-    /****************************** LegalUser report *************************************************/
+    /****************************** LegalUser report *************/
     Route::group(['prefix' => 'reports'], function () {
         Route::get('/', [legalReportController::class, 'index'])->name('legal_reports_index');
         Route::post('search_index_legal', [legalReportController::class, 'search_index_legal'])->name('legal_reports_search_index');
@@ -334,15 +363,15 @@ Route::group(['prefix' => 'legalUser-access/dashboard', 'middleware' => ['legalU
         Route::get('report/download/{report}', [legalReportController::class, 'download_file'])->name('legal_reports_download_file');
         Route::get('report/download_finance_file/{report}', [legalReportController::class, 'download_finance_file'])->name('legal_reports_download_finance_file');
     });
-    /****************************** LegalUser report *************************************************/
+    /****************************** LegalUser report *************/
 
-    /****************************** LegalUser Ticket *************************************************/
+    /****************************** LegalUser Ticket ************/
     Route::group(['prefix' => 'tickets'], function () {
         Route::get('/{contact_id?}', [legalTicketController::class, 'index'])->name('legal_ticket_index');
         Route::post('send//{contact_id}', [legalTicketController::class, 'send'])->name('legal_ticket_send');
         Route::get('ticket/download-attachment/{ticket_id}', [legalTicketController::class, 'download'])->name('legal_ticket_download_ticket');
     });
-    /****************************** LegalUser Ticket *************************************************/
+    /****************************** LegalUser Ticket ************/
 
     /********** LegalUser letter *****************/
     Route::group(['prefix' => 'letter', 'middleware' => 'legalUserAuth'], function () {
@@ -359,12 +388,10 @@ Route::group(['prefix' => 'legalUser-access/dashboard', 'middleware' => ['legalU
 
 });
 /***************************************************LegalUser Dashboard************************************************/
-/*****************************************************************************************************************/
-/*****************************************************************************************************************/
-/*****************************************************************************************************************/
-/*****************************************************************************************************************/
-/*****************************************************************************************************************/
-/*****************************************************************************************************************/
+
+
+
+
 /****************************************Tarh va Barnameh Manager Dashboard********************************************/
 Route::group(['prefix' => 'tarhoBarname_manager-access/dashboard', 'middleware' => ['tarhoBarnameManagerAuth']], function () {
 
@@ -478,12 +505,11 @@ Route::group(['prefix' => 'tarhoBarname_manager-access/dashboard', 'middleware' 
 
 });
 /****************************************Tarh va Barnameh Manager Dashboard********************************************/
-/*****************************************************************************************************************/
-/*****************************************************************************************************************/
-/*****************************************************************************************************************/
-/*****************************************************************************************************************/
-/*****************************************************************************************************************/
-/*****************************************************************************************************************/
+
+
+
+
+
 /***************************************************Employer Dashboard************************************************/
 Route::group(['prefix' => 'employer-access/dashboard', 'middleware' => 'employerAuth'], function () {
     Route::get('/', [employerDashboardController::class, 'index'])->name('employer_index');
@@ -561,12 +587,11 @@ Route::group(['prefix' => 'employer-access/dashboard', 'middleware' => 'employer
 
 });
 /***************************************************Employer Dashboard************************************************/
-/*****************************************************************************************************************/
-/*****************************************************************************************************************/
-/*****************************************************************************************************************/
-/*****************************************************************************************************************/
-/*****************************************************************************************************************/
-/*****************************************************************************************************************/
+
+
+
+
+
 /***********************************************Main Manager Dashboard************************************************/
 Route::group(['prefix' => 'mainManager-access/dashboard', 'middleware' => 'mainManagerAuth'], function () {
     Route::get('/', [mainManagerDashboardController::class, 'index'])->name('main_manager_index');
@@ -678,14 +703,27 @@ Route::group(['prefix' => 'mainManager-access/dashboard', 'middleware' => 'mainM
 
     /**********Main Manager Leave**********************/
 
+    /**********Main Manager Mission**********************/
+
+    Route::group(['prefix' => 'mission-main', 'middleware' => 'mainManagerAuth'], function () {
+        Route::get('mission_mainManager', [missionMainManagerController::class, 'index'])->name('mission_mainManager_index');
+        Route::get('mission_mainManager_confirmation', [missionMainManagerController::class, 'confirmation'])->name('mission_mainManager_confirmation');
+        Route::get('mission_mainManager_create', [missionMainManagerController::class, 'create'])->name('mission_mainManager_create');
+        Route::post('mission_mainManager_store', [missionMainManagerController::class, 'store'])->name('mission_mainManager_store');
+        Route::post('mainManager_mission_agreement', [missionMainManagerController::class, 'agreement'])->name('mainManager_mission_agreement');
+        Route::post('mainManager_mission_disagreement', [missionMainManagerController::class, 'disagreement'])->name('mainManager_mission_disagreement');
+
+    });
+
+    /**********Main Manager Mission**********************/
+
 });
 /***********************************************Main Manager Dashboard************************************************/
-/*****************************************************************************************************************/
-/*****************************************************************************************************************/
-/*****************************************************************************************************************/
-/*****************************************************************************************************************/
-/*****************************************************************************************************************/
-/*****************************************************************************************************************/
+
+
+
+
+
 /********************************************Supervisor Dashboard******************************************************/
 Route::group(['prefix' => 'supervisor-access/dashboard', 'middleware' => 'SupervisorAuth'], function () {
     Route::get('/', [SupervisorDashboardController::class, 'index'])->name('Supervisor_index');
@@ -748,12 +786,11 @@ Route::group(['prefix' => 'supervisor-access/dashboard', 'middleware' => 'Superv
     /********** Supervisor letter *****************/
 });
 /********************************************Supervisor Dashboard******************************************************/
-/*****************************************************************************************************************/
-/*****************************************************************************************************************/
-/*****************************************************************************************************************/
-/*****************************************************************************************************************/
-/*****************************************************************************************************************/
-/*****************************************************************************************************************/
+
+
+
+
+
 /**************************************************Mali Dashboard******************************************************/
 Route::group(['prefix' => 'maliManager-access/dashboard', 'middleware' => 'maliManagerAuth'], function () {
     Route::get('/', [maliManagerDashboardController::class, 'index'])->name('maliManager_index');
@@ -866,14 +903,26 @@ Route::group(['prefix' => 'maliManager-access/dashboard', 'middleware' => 'maliM
     });
 
     /********** Mali Manager leave ****************************************************************************/
+
+    /********** Mali Manager Mission ****************************************************************************/
+
+    Route::group(['prefix' => 'mission', 'middleware' => 'maliManagerAuth'], function () {
+        Route::get('finance_mission', [maliMissionController::class, 'index'])->name('maliManager_mission_index');
+        Route::get('finance_mission_confirmation', [maliMissionController::class, 'confirmation'])->name('maliManager_mission_confirmation');
+        Route::get('finance_mission_create', [maliMissionController::class, 'create'])->name('maliManager_mission_create');
+        Route::post('finance_mission_store', [maliMissionController::class, 'store'])->name('maliManager_mission_store');
+        Route::post('finance_mission_agreement', [maliMissionController::class, 'agreement'])->name('maliManager_mission_agreement');
+        Route::post('finance_mission_disagreement', [maliMissionController::class, 'disagreement'])->name('maliManager_mission_disagreement');
+    });
+
+    /********** Mali Manager mission ****************************************************************************/
 });
 /**************************************************Mali Dashboard******************************************************/
-/*****************************************************************************************************************/
-/*****************************************************************************************************************/
-/*****************************************************************************************************************/
-/*****************************************************************************************************************/
-/*****************************************************************************************************************/
-/*****************************************************************************************************************/
+
+
+
+
+
 /**********************************************RealUser Dashboard******************************************************/
 Route::group(['prefix' => 'realUser-access/dashboard', 'middleware' => 'realUserAuth'], function () {
     Route::get('/', [realDashboardController::class, 'index'])->name('realUser_index');
@@ -964,12 +1013,11 @@ Route::group(['prefix' => 'realUser-access/dashboard', 'middleware' => 'realUser
 
 });
 /**********************************************RealUser Dashboard******************************************************/
-/*****************************************************************************************************************/
-/*****************************************************************************************************************/
-/*****************************************************************************************************************/
-/*****************************************************************************************************************/
-/*****************************************************************************************************************/
-/*****************************************************************************************************************/
+
+
+
+
+
 /**********************************************Expert Dashboard******************************************************/
 Route::group(['prefix' => 'expert-access/dashboard', 'middleware' => 'expert'], function () {
     Route::get('/', [letter_expertController::class, 'index'])->name('expert_index');
@@ -1014,8 +1062,26 @@ Route::group(['prefix' => 'expert-access/dashboard', 'middleware' => 'expert'], 
 
     /**********Expert Leave**********************/
 
+    /**********Expert Mission**********************/
+
+    Route::group(['prefix' => 'mission-expert', 'middleware' => 'expert'], function () {
+        Route::get('mission_head_expert', [mission_expertController::class, 'index'])->name('mission_expert_index');
+        Route::get('mission_expert_confirmation', [mission_expertController::class, 'confirmation'])->name('mission_expert_confirmation');
+        Route::get('mission_expert_create', [mission_expertController::class, 'create'])->name('mission_expert_create');
+        Route::post('mission_expert_store', [mission_expertController::class, 'store'])->name('mission_expert_store');
+        Route::post('expert_mission_agreement', [mission_expertController::class, 'agreement'])->name('expert_mission_agreement');
+        Route::post('expert_mission_disagreement', [mission_expertController::class, 'disagreement'])->name('expert_mission_disagreement');
+
+    });
+
+    /**********Expert Mission**********************/
+
 });
 /**********************************************Expert Dashboard******************************************************/
+
+
+
+
 
 
 /**********************************************Personnel Dashboard******************************************************/
@@ -1029,7 +1095,13 @@ Route::group(['prefix' => 'personnel-access/dashboard', 'middleware' => 'personn
 });
 /**********************************************Personnel Dashboard******************************************************/
 
-/**********************************************deputy_plan_program Dashboard******************************************************/
+
+
+
+
+/**********************************************deputy_plan_program Dashboard********************************************/
+
+//************************ deputy leave ******************
 
 Route::group(['prefix' => 'deputy-plan-program-access/dashboard', 'middleware' => 'deputy_plan_program'], function () {
     Route::get('/', [dashboard_deputy_planController::class, 'index'])->name('deputy_plan_program_index');
@@ -1041,11 +1113,31 @@ Route::group(['prefix' => 'deputy-plan-program-access/dashboard', 'middleware' =
     Route::post('deputy_leave_disagreement', [leave_deputy_planController::class, 'disagreement'])->name('deputy_leave_disagreement');
 
 });
+//************************ deputy leave ******************
 
-/**********************************************deputy_plan_program Dashboard******************************************************/
+
+//************************ deputy mission ******************
+
+Route::group(['prefix' => 'mission', 'middleware' => 'deputy_plan_program'], function () {
+    Route::get('mission_deputy', [mission_deputy_planController::class, 'index'])->name('mission_deputy_index');
+    Route::get('mission_deputy_confirmation', [mission_deputy_planController::class, 'confirmation'])->name('mission_deputy_confirmation');
+    Route::get('mission_deputy_create', [mission_deputy_planController::class, 'create'])->name('mission_deputy_create');
+    Route::post('mission_deputy_store', [mission_deputy_planController::class, 'store'])->name('mission_deputy_store');
+    Route::post('deputy_mission_agreement', [mission_deputy_planController::class, 'agreement'])->name('deputy_mission_agreement');
+    Route::post('deputy_mission_disagreement', [mission_deputy_planController::class, 'disagreement'])->name('deputy_mission_disagreement');
+
+});
+//************************ deputy mission ******************
+
+/**********************************************deputy_plan_program Dashboard********************************************/
 
 
-/**********************************************support_manager Dashboard******************************************************/
+
+
+
+/**********************************************support_manager Dashboard************************************************/
+
+//************************ support_manager leave ******************
 
 Route::group(['prefix' => 'support-manager-access/dashboard', 'middleware' => 'support_manager'], function () {
     Route::get('/', [dashboardSupportManagerController::class, 'index'])->name('support_manager_index');
@@ -1058,10 +1150,32 @@ Route::group(['prefix' => 'support-manager-access/dashboard', 'middleware' => 's
 
 });
 
-/**********************************************support_manager Dashboard******************************************************/
+//************************ support_manager leave ******************
 
 
-/**********************************************relations_manager Dashboard******************************************************/
+//************************ support_manager mission ******************
+
+Route::group(['prefix' => 'mission', 'middleware' => 'support_manager'], function () {
+    Route::get('mission_support_manager', [missionSupportManagerController::class, 'index'])->name('mission_support_manager_index');
+    Route::get('mission_support_confirmation', [missionSupportManagerController::class, 'confirmation'])->name('mission_support_confirmation');
+    Route::get('mission_support_create', [missionSupportManagerController::class, 'create'])->name('mission_support_create');
+    Route::post('mission_support_store', [missionSupportManagerController::class, 'store'])->name('mission_support_store');
+    Route::post('support_mission_agreement', [missionSupportManagerController::class, 'agreement'])->name('support_mission_agreement');
+    Route::post('support_mission_disagreement', [missionSupportManagerController::class, 'disagreement'])->name('support_mission_disagreement');
+
+});
+
+//************************ support_manager mission ******************
+
+/**********************************************support_manager Dashboard************************************************/
+
+
+
+
+
+/**********************************************relations_manager Dashboard**********************************************/
+
+//************************ relations_manager leave ******************
 
 Route::group(['prefix' => 'relations-manager-access/dashboard', 'middleware' => 'relations_manager'], function () {
     Route::get('/', [dashboardRelationsManagerController::class, 'index'])->name('relations_manager_index');
@@ -1073,14 +1187,32 @@ Route::group(['prefix' => 'relations-manager-access/dashboard', 'middleware' => 
     Route::post('relations_manager_leave_disagreement', [leaveRelationManagerController::class, 'disagreement'])->name('relations_manager_leave_disagreement');
 
 });
+//************************ relations_manager leave ******************
 
-/**********************************************relations_manager Dashboard******************************************************/
+
+//************************ relations_manager mission ******************
+
+Route::group(['prefix' => 'mission', 'middleware' => 'relations_manager'], function () {
+    Route::get('mission_relations_manager', [missionRelationManagerController::class, 'index'])->name('mission_relations_manager_index');
+    Route::get('mission_relations_manager_confirmation', [missionRelationManagerController::class, 'confirmation'])->name('mission_relations_manager_confirmation');
+    Route::get('mission_relations_manager_create', [missionRelationManagerController::class, 'create'])->name('mission_relations_manager_create');
+    Route::post('mission_relations_manager_store', [missionRelationManagerController::class, 'store'])->name('mission_relations_manager_store');
+    Route::post('relations_manager_mission_agreement',[missionRelationManagerController::class,'agreement'])->name('relations_manager_mission_agreement');
+    Route::post('relations_manager_mission_disagreement', [missionRelationManagerController::class, 'disagreement'])->name('relations_manager_mission_disagreement');
+
+});
+//************************ relations_manager mission ******************
+
+/**********************************************relations_manager Dashboard**********************************************/
 
 
-/**********************************************support_expert Dashboard******************************************************/
+
+
+
+/**********************************************support_expert Dashboard*************************************************/
+//************************ support_expert leave ******************
 
 Route::group(['prefix' => 'support-expert-access/dashboard', 'middleware' => 'support_expert'], function () {
-
     Route::get('/', [dashboardSupport_expertController::class, 'index'])->name('support_expert_index');
     Route::get('leave_support_expert', [leaveSupportExpertController::class, 'index'])->name('leave_support_expert_index');
     Route::get('leave_support_expert_confirmation', [leaveSupportExpertController::class, 'confirmation'])->name('leave_support_expert_confirmation');
@@ -1089,12 +1221,29 @@ Route::group(['prefix' => 'support-expert-access/dashboard', 'middleware' => 'su
     Route::post('support_expert_leave_agreement',[leaveSupportExpertController::class,'agreement'])->name('support_expert_leave_agreement');
     Route::post('support_expert_leave_disagreement', [leaveSupportExpertController::class, 'disagreement'])->name('support_expert_leave_disagreement');
 });
+//************************ support_expert leave ******************
 
-/**********************************************support_expert Dashboard******************************************************/
+
+//************************ support_expert mission ******************
+Route::group(['prefix' => 'mission', 'middleware' => 'support_expert'], function () {
+    Route::get('mission_support_expert', [missionSupportExpertController::class, 'index'])->name('mission_support_expert_index');
+    Route::get('mission_support_expert_confirmation', [missionSupportExpertController::class, 'confirmation'])->name('mission_support_expert_confirmation');
+    Route::get('mission_support_expert_create', [missionSupportExpertController::class, 'create'])->name('mission_support_expert_create');
+    Route::post('mission_support_expert_store', [missionSupportExpertController::class, 'store'])->name('mission_support_expert_store');
+    Route::post('support_expert_mission_agreement',[missionSupportExpertController::class,'agreement'])->name('support_expert_mission_agreement');
+    Route::post('support_expert_mission_disagreement', [missionSupportExpertController::class, 'disagreement'])->name('support_expert_mission_disagreement');
+});
+//************************ support_expert mission ******************
+
+/**********************************************support_expert Dashboard*************************************************/
 
 
-/**********************************************special_expert Dashboard******************************************************/
 
+
+
+/**********************************************special_expert Dashboard************************************************/
+
+//************************ special_expert leave ******************
 Route::group(['prefix' => 'special-expert-access/dashboard', 'middleware' => 'special_expert'], function () {
     Route::get('/', [dashboardSpecial_expertController::class, 'index'])->name('special_expert_index');
     Route::get('leave_special_expert', [leaveSpecialExpertController::class, 'index'])->name('leave_special_expert_index');
@@ -1105,12 +1254,28 @@ Route::group(['prefix' => 'special-expert-access/dashboard', 'middleware' => 'sp
     Route::post('special_expert_leave_disagreement', [leaveSpecialExpertController::class, 'disagreement'])->name('special_expert_leave_disagreement');
 
 });
+//************************ special_expert leave ******************
 
-/**********************************************special_expert Dashboard******************************************************/
+//************************ special_expert mission ******************
+Route::group(['prefix' => 'mission', 'middleware' => 'special_expert'], function () {
+    Route::get('mission_special_expert', [missionSpecialExpertController::class, 'index'])->name('mission_special_expert_index');
+    Route::get('mission_special_expert_confirmation', [missionSpecialExpertController::class, 'confirmation'])->name('mission_special_expert_confirmation');
+    Route::get('mission_special_expert_create', [missionSpecialExpertController::class, 'create'])->name('mission_special_expert_create');
+    Route::post('mission_special_expert_store', [missionSpecialExpertController::class, 'store'])->name('mission_special_expert_store');
+    Route::post('special_expert_mission_agreement',[missionSpecialExpertController::class,'agreement'])->name('special_expert_mission_agreement');
+    Route::post('special_expert_mission_disagreement', [missionSpecialExpertController::class, 'disagreement'])->name('special_expert_mission_disagreement');
+});
+//************************ special_expert mission ******************
+
+/**********************************************special_expert Dashboard*************************************************/
 
 
-/**********************************************discourse_expert Dashboard******************************************************/
 
+
+
+/**********************************************discourse_expert Dashboard***********************************************/
+
+//************************ discourse_expert leave ******************
 Route::group(['prefix' => 'discourse-expert-access/dashboard', 'middleware' => 'discourse_expert'], function () {
     Route::get('/', [dashboardDiscourse_expertController::class, 'index'])->name('discourse_expert_index');
     Route::get('discourse_expert', [leaveDiscourseExpertController::class, 'index'])->name('leave_discourse_expert_index');
@@ -1121,12 +1286,28 @@ Route::group(['prefix' => 'discourse-expert-access/dashboard', 'middleware' => '
     Route::post('discourse_expert_leave_disagreement', [leaveDiscourseExpertController::class, 'disagreement'])->name('discourse_expert_leave_disagreement');
 
 });
+//************************ discourse_expert leave ******************
 
-/**********************************************discourse_expert Dashboard******************************************************/
+//************************ discourse_expert mission ******************
+Route::group(['prefix' => 'mission', 'middleware' => 'discourse_expert'], function () {
+    Route::get('mission_discourse_expert', [missionDiscourseExpertController::class, 'index'])->name('mission_discourse_expert_index');
+    Route::get('mission_discourse_expert_confirmation', [missionDiscourseExpertController::class, 'confirmation'])->name('mission_discourse_expert_confirmation');
+    Route::get('mission_discourse_expert_create', [missionDiscourseExpertController::class, 'create'])->name('mission_discourse_expert_create');
+    Route::post('mission_discourse_expert_store', [missionDiscourseExpertController::class, 'store'])->name('mission_discourse_expert_store');
+    Route::post('discourse_expert_mission_agreement',[missionDiscourseExpertController::class,'agreement'])->name('discourse_expert_mission_agreement');
+    Route::post('discourse_expert_mission_disagreement', [missionDiscourseExpertController::class, 'disagreement'])->name('discourse_expert_mission_disagreement');
+});
+//************************ discourse_expert mission ******************
+
+/**********************************************discourse_expert Dashboard***********************************************/
 
 
-/**********************************************innovation_expert Dashboard******************************************************/
 
+
+
+/**************************************innovation_expert Dashboard******************************************************/
+
+//************************ innovation_expert leave ******************
 Route::group(['prefix' => 'innovation-expert-access/dashboard', 'middleware' => 'innovation_expert'], function () {
     Route::get('/', [dashboardInnovation_expertController::class, 'index'])->name('innovation_expert_index');
     Route::get('leave_innovation_expert', [leaveInnovationExpertController::class, 'index'])->name('leave_innovation_expert_index');
@@ -1137,11 +1318,28 @@ Route::group(['prefix' => 'innovation-expert-access/dashboard', 'middleware' => 
     Route::post('innovation_expert_leave_disagreement', [leaveInnovationExpertController::class, 'disagreement'])->name('innovation_expert_leave_disagreement');
 
 });
+//************************ innovation_expert leave ******************
 
-/**********************************************innovation_expert Dashboard******************************************************/
+//************************ innovation_expert mission ******************
+Route::group(['prefix' => 'mission', 'middleware' => 'innovation_expert'], function () {
+    Route::get('mission_innovation_expert', [missionInnovationExpertController::class, 'index'])->name('mission_innovation_expert_index');
+    Route::get('mission_innovation_expert_confirmation', [missionInnovationExpertController::class, 'confirmation'])->name('mission_innovation_expert_confirmation');
+    Route::get('mission_innovation_expert_create', [missionInnovationExpertController::class, 'create'])->name('mission_innovation_expert_create');
+    Route::post('mission_innovation_expert_store', [missionInnovationExpertController::class, 'store'])->name('mission_innovation_expert_store');
+    Route::post('innovation_expert_mission_agreement',[missionInnovationExpertController::class,'agreement'])->name('innovation_expert_mission_agreement');
+    Route::post('innovation_expert_mission_disagreement', [missionInnovationExpertController::class, 'disagreement'])->name('innovation_expert_mission_disagreement');
+});
+//************************ innovation_expert mission ******************
+
+/**************************************innovation_expert Dashboard******************************************************/
 
 
-/**********************************************adjustment_expert Dashboard******************************************************/
+
+
+
+/**************************************adjustment_expert Dashboard******************************************************/
+
+//************************ adjustment_expert leave ******************
 
 Route::group(['prefix' => 'adjustment-expert-access/dashboard', 'middleware' => 'adjustment_expert'], function () {
     Route::get('/', [dashboardAdjustment_expertController::class, 'index'])->name('adjustment_expert_index');
@@ -1153,12 +1351,28 @@ Route::group(['prefix' => 'adjustment-expert-access/dashboard', 'middleware' => 
     Route::post('adjustment_expert_leave_disagreement', [leaveAdjustmentExpertController::class, 'disagreement'])->name('adjustment_expert_leave_disagreement');
 
 });
+//************************ adjustment_expert leave ******************
 
-/**********************************************adjustment_expert Dashboard******************************************************/
+//************************ adjustment_expert mission ******************
+Route::group(['prefix' => 'mission', 'middleware' => 'adjustment_expert'], function () {
+    Route::get('mission_adjustment_expert', [missionAdjustmentExpertController::class, 'index'])->name('mission_adjustment_expert_index');
+    Route::get('mission_adjustment_expert_confirmation', [missionAdjustmentExpertController::class, 'confirmation'])->name('mission_adjustment_expert_confirmation');
+    Route::get('mission_adjustment_expert_create', [missionAdjustmentExpertController::class, 'create'])->name('mission_adjustment_expert_create');
+    Route::post('mission_adjustment_expert_store', [missionAdjustmentExpertController::class, 'store'])->name('mission_adjustment_expert_store');
+    Route::post('adjustment_expert_mission_agreement',[missionAdjustmentExpertController::class,'agreement'])->name('adjustment_expert_mission_agreement');
+    Route::post('adjustment_expert_mission_disagreement', [missionAdjustmentExpertController::class, 'disagreement'])->name('adjustment_expert_mission_disagreement');
+});
+//************************ adjustment_expert mission ******************
+
+/**************************************adjustment_expert Dashboard******************************************************/
 
 
-/**********************************************head_discourse Dashboard******************************************************/
 
+
+
+/**********************************************head_discourse Dashboard*************************************************/
+
+//************************ head_discourse leave ******************
 Route::group(['prefix' => 'head-discourse-access/dashboard', 'middleware' => 'head_discourse'], function () {
     Route::get('/', [dashboardHead_discourseController::class, 'index'])->name('head_discourse_index');
     Route::get('leave_head_discourse', [leaveHeadDiscourseController::class, 'index'])->name('leave_head_discourse_index');
@@ -1169,12 +1383,28 @@ Route::group(['prefix' => 'head-discourse-access/dashboard', 'middleware' => 'he
     Route::post('head_discourse_leave_disagreement', [leaveHeadDiscourseController::class, 'disagreement'])->name('head_discourse_leave_disagreement');
 
 });
+//************************ head_discourse leave ******************
 
-/**********************************************head_discourse Dashboard******************************************************/
+//************************ head_discourse mission ******************
+Route::group(['prefix' => 'mission', 'middleware' => 'head_discourse'], function () {
+    Route::get('mission_head_discourse', [missionHeadDiscourseController::class, 'index'])->name('mission_head_discourse_index');
+    Route::get('mission_head_discourse_confirmation', [missionHeadDiscourseController::class, 'confirmation'])->name('mission_head_discourse_confirmation');
+    Route::get('mission_head_discourse_create', [missionHeadDiscourseController::class, 'create'])->name('mission_head_discourse_create');
+    Route::post('mission_head_discourse_store', [missionHeadDiscourseController::class, 'store'])->name('mission_head_discourse_store');
+    Route::post('head_discourse_mission_agreement',[missionHeadDiscourseController::class,'agreement'])->name('head_discourse_mission_agreement');
+    Route::post('head_discourse_mission_disagreement', [missionHeadDiscourseController::class, 'disagreement'])->name('head_discourse_mission_disagreement');
+});
+//************************ head_discourse mission ******************
+
+/**********************************************head_discourse Dashboard*************************************************/
 
 
-/**********************************************adjustment_manager Dashboard******************************************************/
 
+
+
+/**********************************************adjustment_manager Dashboard*********************************************/
+
+//************************ adjustment_manager leave ******************
 Route::group(['prefix' => 'adjustment-manager-access/dashboard', 'middleware' => 'adjustment_manager'], function () {
     Route::get('/', [dashboardAdjustment_managerController::class, 'index'])->name('adjustment_manager_index');
     Route::get('leave_adjustment_manager', [leaveAdjustmentManagerController::class, 'index'])->name('leave_adjustment_manager_index');
@@ -1185,12 +1415,28 @@ Route::group(['prefix' => 'adjustment-manager-access/dashboard', 'middleware' =>
     Route::post('adjustment_manager_leave_disagreement', [leaveAdjustmentManagerController::class, 'disagreement'])->name('adjustment_manager_leave_disagreement');
 
 });
+//************************ adjustment_manager leave ******************
 
-/**********************************************adjustment_manager Dashboard******************************************************/
+//************************ adjustment_manager mission ******************
+Route::group(['prefix' => 'mission', 'middleware' => 'adjustment_manager'], function () {
+    Route::get('mission_adjustment_manager', [missionAdjustmentManagerController::class, 'index'])->name('mission_adjustment_manager_index');
+    Route::get('mission_adjustment_manager_confirmation', [missionAdjustmentManagerController::class, 'confirmation'])->name('mission_adjustment_manager_confirmation');
+    Route::get('mission_adjustment_manager_create', [missionAdjustmentManagerController::class, 'create'])->name('mission_adjustment_manager_create');
+    Route::post('mission_adjustment_manager_store', [missionAdjustmentManagerController::class, 'store'])->name('mission_adjustment_manager_store');
+    Route::post('adjustment_manager_mission_agreement',[missionAdjustmentManagerController::class,'agreement'])->name('adjustment_manager_mission_agreement');
+    Route::post('adjustment_manager_mission_disagreement', [missionAdjustmentManagerController::class, 'disagreement'])->name('adjustment_manager_mission_disagreement');
+});
+//************************ adjustment_manager mission ******************
+
+/**********************************************adjustment_manager Dashboard*********************************************/
 
 
-/**********************************************head_special_operation_center Dashboard******************************************************/
 
+
+
+/****************************head_special_operation_center Dashboard****************************************************/
+
+//************************ head_special_operation_center leave ******************
 Route::group(['prefix' => 'head-special-manager-access/dashboard', 'middleware' => 'head_special'], function () {
     Route::get('/', [dashboardHeadSpecialController::class, 'index'])->name('head_special_operation_center');
     Route::get('leave_head_special', [leaveHeadSpecialController::class, 'index'])->name('leave_head_special_index');
@@ -1199,11 +1445,29 @@ Route::group(['prefix' => 'head-special-manager-access/dashboard', 'middleware' 
     Route::post('leave_head_special_store', [leaveHeadSpecialController::class, 'store'])->name('leave_head_special_store');
     Route::post('head_special_leave_agreement', [leaveHeadSpecialController::class, 'agreement'])->name('head_special_leave_agreement');
 });
-/**********************************************head_special_operation_center Dashboard******************************************************/
+//************************ head_special_operation_center leave ******************
 
 
-/**********************************************head_innovation Dashboard******************************************************/
+//************************ head_special_operation_center mission ******************
+Route::group(['prefix' => 'mission', 'middleware' => 'head_special'], function () {
+    Route::get('mission_head_special', [missionHeadSpecialController::class, 'index'])->name('mission_head_special_index');
+    Route::get('mission_head_special_confirmation', [missionHeadSpecialController::class, 'confirmation'])->name('mission_head_special_confirmation');
+    Route::get('mission_head_special_create', [missionHeadSpecialController::class, 'create'])->name('mission_head_special_create');
+    Route::post('mission_head_special_store', [missionHeadSpecialController::class, 'store'])->name('mission_head_special_store');
+    Route::post('head_special_mission_agreement',[missionHeadSpecialController::class,'agreement'])->name('head_special_mission_agreement');
+    Route::post('head_special_mission_disagreement', [missionHeadSpecialController::class, 'disagreement'])->name('head_special_mission_disagreement');
+});
+//************************ head_special_operation_center mission ******************
 
+/**********************************************head_special_operation_center Dashboard**********************************/
+
+
+
+
+
+/**********************************************head_innovation Dashboard************************************************/
+
+//************************ head_innovation leave ******************
 Route::group(['prefix' => 'head-innovation-access/dashboard', 'middleware' => 'head_innovation'], function () {
     Route::get('/', [dashboardHead_innovationController::class, 'index'])->name('head_innovation_index');
     Route::get('leave_head_innovation', [leaveHeadInnovationController::class, 'index'])->name('leave_head_innovation_index');
@@ -1214,26 +1478,28 @@ Route::group(['prefix' => 'head-innovation-access/dashboard', 'middleware' => 'h
     Route::post('head_innovation_leave_disagreement', [leaveHeadInnovationController::class, 'disagreement'])->name('head_innovation_leave_disagreement');
 
 });
+//************************ head_innovation leave ******************
 
-/**********************************************head_innovation Dashboard******************************************************/
-
-
-/**********************************************head_special_operation_center Dashboard******************************************************/
-
-Route::group(['prefix' => 'head-special-manager-access/dashboard', 'middleware' => 'head_special'], function () {
-    Route::get('/', [dashboardHeadSpecialController::class, 'index'])->name('head_special_operation_center');
-    Route::get('leave_head_special', [leaveHeadSpecialController::class, 'index'])->name('leave_head_special_index');
-    Route::get('leave_head_special_confirmation', [leaveHeadSpecialController::class, 'confirmation'])->name('leave_head_special_confirmation');
-    Route::get('leave_head_special_create', [leaveHeadSpecialController::class, 'create'])->name('leave_head_special_create');
-    Route::post('leave_head_special_store', [leaveHeadSpecialController::class, 'store'])->name('leave_head_special_store');
-    Route::post('head_special_leave_agreement', [leaveHeadSpecialController::class, 'agreement'])->name('head_special_leave_agreement');
-    Route::post('head_special_leave_disagreement', [leaveHeadSpecialController::class, 'disagreement'])->name('head_special_leave_disagreement');
+//************************ head_innovation mission ******************
+Route::group(['prefix' => 'mission', 'middleware' => 'head_innovation'], function () {
+    Route::get('mission_head_innovation', [missionHeadInnovationController::class, 'index'])->name('mission_head_innovation_index');
+    Route::get('mission_head_innovation_confirmation', [missionHeadInnovationController::class, 'confirmation'])->name('mission_head_innovation_confirmation');
+    Route::get('mission_head_innovation_create', [missionHeadInnovationController::class, 'create'])->name('mission_head_innovation_create');
+    Route::post('mission_head_innovation_store', [missionHeadInnovationController::class, 'store'])->name('mission_head_innovation_store');
+    Route::post('head_innovation_mission_agreement',[missionHeadInnovationController::class,'agreement'])->name('head_innovation_mission_agreement');
+    Route::post('head_innovation_mission_disagreement', [missionHeadInnovationController::class, 'disagreement'])->name('head_innovation_mission_disagreement');
 });
-/**********************************************head_special_operation_center Dashboard******************************************************/
+//************************ head_innovation mission ******************
+
+/**********************************************head_innovation Dashboard************************************************/
 
 
-/**********************************************head_development Dashboard******************************************************/
 
+
+
+/**********************************************head_development Dashboard***********************************************/
+
+//************************ head_development leave ******************
 Route::group(['prefix' => 'head-development-access/dashboard', 'middleware' => 'head_development'], function () {
     Route::get('/', [dashboardHead_developmentController::class, 'index'])->name('head_development_index');
     Route::get('leave_head_development', [leaveHeadDevelopmentController::class, 'index'])->name('leave_head_development_index');
@@ -1244,8 +1510,20 @@ Route::group(['prefix' => 'head-development-access/dashboard', 'middleware' => '
     Route::post('head_development_leave_disagreement', [leaveHeadDevelopmentController::class, 'disagreement'])->name('head_development_leave_disagreement');
 
 });
+//************************ head_development leave ******************
 
-/**********************************************head_development Dashboard******************************************************/
+//************************ head_development mission ******************
+Route::group(['prefix' => 'mission', 'middleware' => 'head_development'], function () {
+    Route::get('mission_head_development', [missionHeadDevelopmentController::class, 'index'])->name('mission_head_development_index');
+    Route::get('mission_head_development_confirmation', [missionHeadDevelopmentController::class, 'confirmation'])->name('mission_head_development_confirmation');
+    Route::get('mission_head_development_create', [missionHeadDevelopmentController::class, 'create'])->name('mission_head_development_create');
+    Route::post('mission_head_development_store', [missionHeadDevelopmentController::class, 'store'])->name('mission_head_development_store');
+    Route::post('head_development_mission_agreement',[missionHeadDevelopmentController::class,'agreement'])->name('head_development_mission_agreement');
+    Route::post('head_development_mission_disagreement', [missionHeadDevelopmentController::class, 'disagreement'])->name('head_development_mission_disagreement');
+});
+//************************ head_development mission ******************
+
+/**********************************************head_development Dashboard***********************************************/
 
 
 

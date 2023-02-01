@@ -1,9 +1,6 @@
-@extends('mali_manager.layout.mali_layout')
-@section('title',"لیست تایید مرخصی ها")
+@extends('adjustment_manager.layout.adjustment_manager_layout')
+@section('title',"لیست تایید ماموریت ها")
 @section('css')
-    <style>
-    /*for me0022*/
-    </style>
 @endsection
 @section('content')
     <div id="main-content">
@@ -11,14 +8,14 @@
             <div class="block-header">
                 <div class="row clearfix">
                     <div class="col-md-6 col-sm-12">
-                        <h1>لیست تایید مرخصی ها</h1>
+                        <h1>لیست تایید ماموریت ها</h1>
                         <nav aria-label="breadcrumb">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item">
                                     <a href="#">نما</a>
                                 </li>
                                 <li class="breadcrumb-item active" aria-current="page">
-                                    لیست تایید مرخصی ها
+                                    لیست تایید ماموریت ها
                                 </li>
                             </ol>
                         </nav>
@@ -36,12 +33,11 @@
                                             <thead>
                                             <tr>
                                                 <th>#</th>
-                                                <th>نوع مرخصی</th>
+                                                <th>نوع ماموریت</th>
                                                 <th>نام کاربر</th>
                                                 <th>از روز - ساعت</th>
                                                 <th>تا روز - ساعت</th>
-                                                <th>وضعیت مرخصی</th>
-                                                <th>جواب مرخصی</th>
+                                                <th>وضعیت ماموریت</th>
                                                 <th>عملیات</th>
                                             </tr>
                                             </thead>
@@ -54,7 +50,6 @@
                                             @foreach($leaves as $leave)
                                                 <tr>
                                                     <td>
-
                                                         {{convertToPersianNumber($row)}}
                                                     </td>
                                                     <td>
@@ -69,11 +64,7 @@
                                                         @endif
                                                     </td>
                                                     <td>
-                                                        @if ( $leave['leave_user_info']['type'] == 0 )
-                                                            {{$leave['leave_user_info']['name'] . ' ' . $leave['leave_user_info']['family']}}
-                                                        @else
-                                                            {{$leave['leave_user_info']['ceo_name'] . ' ' . $leave['leave_user_info']['ceo_family']}}
-                                                        @endif
+                                                        {{$leave['name'] . ' ' . $leave['family']}}
                                                     </td>
                                                     <td>
                                                         <p>
@@ -91,17 +82,14 @@
                                                         </span>
                                                     </td>
                                                     <td>
-                                                        {{$leave->disapproval_reason}}
-                                                    </td>
-                                                    <td>
-                                                        <a class="btn btn-success confirm_btn" title="تایید مرخصی"
+                                                        <a class="btn btn-success confirm_btn" title="تایید ماموریت"
                                                            id="confirm_btn"
-                                                           data-leave="{{ $leave['id'] }}" data-val="1">
+                                                           data-leave="{{ $leave['leave_id'] }}">
                                                             <i class="fa fa-check"></i>
                                                         </a>
-                                                        <a class="btn btn-danger un_confirm_btn" title="عدم تایید مرخصی"
+                                                        <a class="btn btn-danger un_confirm_btn" title="عدم تایید ماموریت"
                                                            id="un_confirm_btn"
-                                                           data-disleave="{{ $leave['id'] }}" data-val="0">
+                                                           data-disleave="{{ $leave['leave_id'] }}">
                                                             <i class="fa fa-close"></i>
                                                         </a>
                                                     </td>
@@ -118,7 +106,7 @@
                                     <div class="row">
                                         <div class="col-12">
                                             <p class="alert alert-danger mb-0">
-                                                مرخصی ای یافت نشد
+                                                ماموریت ای یافت نشد
                                             </p>
                                         </div>
                                     </div>
@@ -132,44 +120,38 @@
     </div>
     <!-- The Modal -->
     <div class="modal" id="my_modal">
-        <div class="modal-dialog modal-content" >
+        <div class="modal-dialog">
+            <form action="" enctype="multipart/form-data"
+                  class="modal-content">
                 @csrf
                 <!-- Modal Header -->
                 <div class="modal-header">
-                    <h4 class="modal-title">توضیحات</h4>
+                    <h4 class="modal-title">تایید ماموریت</h4>
                     <button type="button" class="close close_modal" data-dismiss="modal">&times;</button>
                 </div>
 
                 <!-- Modal body -->
                 <div class="modal-body">
-                    <p>لطفا در صورت امکان دلیل عدم تایید را ذکر نمایید</p>
-                    <input type="text" class="form-control disapproval" placeholder="دلیل عدم موافقت"
-                           name="disapproval">
-                    <input type="hidden" id="leave_id_modal" class="leave_id_modal">
-                </div>
-                <!-- Modal footer -->
-                <div class="modal-footer">
-                    <button id="submit_leave_btn" class="btn btn-danger mr-1 ml-1 submit_leave_btn">
-                        عدم تایید مرخصی
-                    </button>
+                    <p>آیا با تایید ماموریت موافقید؟</p>
+                    <input type="text" class="form-control" placeholder="دلیل عدم موافقت">
                 </div>
 
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                    <button id="submit_leave_btn" type="submit" class="btn btn-success mr-1 ml-1 submit_leave_btn">
+                        بله
+                    </button>
+                    <button type="button" class="btn btn-danger" id="unsubmit_leave_btn" data-dismiss="modal">خیر
+                    </button>
+                </div>
+            </form>
 
         </div>
     </div>
+
 @endsection
 @section('js')
     <script>
-
-            var un_confirm_btn = $('.un_confirm_btn');
-
-            un_confirm_btn.on('click', function () {
-
-                let leave_id = jQuery(this).data("disleave");
-                $('#leave_id_modal').val(leave_id);
-                var my_modal = $('#my_modal');
-                my_modal.show();
-            })
 
         var close_modal = $('.close_modal');
 
@@ -178,60 +160,23 @@
             my_modal.hide();
         })
 
-
-            jQuery(document).on('click', '.confirm_btn', function (e) {
-                let leave_id = jQuery(this).data("leave");
-
-                $.ajaxSetup({
-                    headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                    }
-                });
-
-                $.ajax({
-                    url: "{{route('maliManager_leave_agreement')}}",
-                    type: "post",
-                    // dataType: "json",
-                    data: {
-                        'leave_id': leave_id
-                    },
-                    success: function (res) {
-                        // alert(JSON.stringify(res.responseJSON));
-                        if (res.status == true) {
-                            Swal.fire({
-                                icon: 'success',
-                                title: res.message,
-                            })
-                            // window.setInterval('refresh("not")', 3000);
-                        }
-                        window.location.href = "{{route('maliManager_leave_confirmation')}}"
-                    }, error: function (err) {
-                        //
-                    }
-                });
-            });
-
-
-        jQuery(document).on('click', '.submit_leave_btn', function (e) {
-
-            let disleave_id = $('#my_modal .leave_id_modal').val();
-
-            // let leave_id = jQuery(this).data("disleave");
-            let disapproval = $('.disapproval').val();
+        jQuery(document).on('click', '.confirm_btn', function (e) {
+            let leave_id = jQuery(this).data("leave");
             $.ajaxSetup({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 }
             });
+
             $.ajax({
-                url: "{{route('maliManager_leave_disagreement')}}",
+                url: "{{route('leave_adjustment_manager_agreement')}}",
                 type: "post",
+                // dataType: "json",
                 data: {
-                    'leave_id': disleave_id,
-                    'disapproval': disapproval,
+                    'leave_id': leave_id,
                 },
                 success: function (res) {
-
+                    // alert(JSON.stringify(res.responseJSON));
                     if (res.status == true) {
                         Swal.fire({
                             icon: 'success',
@@ -239,7 +184,38 @@
                         })
                         // window.setInterval('refresh("not")', 3000);
                     }
-                    window.location.href = "{{route('maliManager_leave_confirmation')}}"
+                    window.location.href = "{{route('leave_adjustment_manager_confirmation')}}"
+                }, error: function (err) {
+                    //
+                }
+            });
+        });
+
+
+        jQuery(document).on('click', '.un_confirm_btn', function (e) {
+            let leave_id = jQuery(this).data("disleave");
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+
+            $.ajax({
+                url: "{{route('adjustment_manager_leave_disagreement')}}",
+                type: "post",
+                data: {
+                    'leave_id': leave_id,
+                },
+                success: function (res) {
+                    // alert(JSON.stringify(res.responseJSON));
+                    if (res.status == true) {
+                        Swal.fire({
+                            icon: 'success',
+                            title: res.message,
+                        })
+                        // window.setInterval('refresh("not")', 3000);
+                    }
+                    window.location.href = "{{route('leave_adjustment_manager_confirmation')}}"
                 }, error: function (err) {
                     //
                 }

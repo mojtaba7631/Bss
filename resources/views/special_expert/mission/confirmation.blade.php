@@ -1,9 +1,6 @@
-@extends('mali_manager.layout.mali_layout')
-@section('title',"لیست تایید مرخصی ها")
+@extends('special_expert.layout.special_expert_layout')
+@section('title',"لیست تایید ماموریت ها")
 @section('css')
-    <style>
-    /*for me0022*/
-    </style>
 @endsection
 @section('content')
     <div id="main-content">
@@ -11,14 +8,14 @@
             <div class="block-header">
                 <div class="row clearfix">
                     <div class="col-md-6 col-sm-12">
-                        <h1>لیست تایید مرخصی ها</h1>
+                        <h1>لیست تایید ماموریت ها</h1>
                         <nav aria-label="breadcrumb">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item">
                                     <a href="#">نما</a>
                                 </li>
                                 <li class="breadcrumb-item active" aria-current="page">
-                                    لیست تایید مرخصی ها
+                                    لیست تایید ماموریت ها
                                 </li>
                             </ol>
                         </nav>
@@ -30,35 +27,33 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-body">
-                                @if(!empty($leaves->all()))
+                                @if(!empty($missions->all()))
                                     <div class="table-responsive">
                                         <table class="table table-hover table-custom spacing8 text-center">
                                             <thead>
                                             <tr>
                                                 <th>#</th>
-                                                <th>نوع مرخصی</th>
+                                                <th>نوع ماموریت</th>
                                                 <th>نام کاربر</th>
                                                 <th>از روز - ساعت</th>
                                                 <th>تا روز - ساعت</th>
-                                                <th>وضعیت مرخصی</th>
-                                                <th>جواب مرخصی</th>
+                                                <th>وضعیت ماموریت</th>
                                                 <th>عملیات</th>
                                             </tr>
                                             </thead>
                                             @if(!$searched)
-                                                @php $row = (($leaves->currentPage() - 1) * $leaves->perPage() ) + 1; @endphp
+                                                @php $row = (($missions->currentPage() - 1) * $missions->perPage() ) + 1; @endphp
                                             @else
                                                 @php $row = 1; @endphp
                                             @endif
                                             <tbody>
-                                            @foreach($leaves as $leave)
+                                            @foreach($missions as $mission)
                                                 <tr>
                                                     <td>
-
                                                         {{convertToPersianNumber($row)}}
                                                     </td>
                                                     <td>
-                                                        @if($leave->type == 1)
+                                                        @if($mission->type == 1)
                                                             <p class="badge badge-success">
                                                                 ساعتی
                                                             </p>
@@ -69,39 +64,32 @@
                                                         @endif
                                                     </td>
                                                     <td>
-                                                        @if ( $leave['leave_user_info']['type'] == 0 )
-                                                            {{$leave['leave_user_info']['name'] . ' ' . $leave['leave_user_info']['family']}}
-                                                        @else
-                                                            {{$leave['leave_user_info']['ceo_name'] . ' ' . $leave['leave_user_info']['ceo_family']}}
-                                                        @endif
+                                                        {{$mission['name'] . ' ' . $mission['family']}}
                                                     </td>
                                                     <td>
                                                         <p>
-                                                            {{$leave['start_day'] .' ' . ' ساعت - ' . $leave->start_hour}}
+                                                            {{$mission['start_day'] .' ' . ' ساعت - ' . $mission->start_hour}}
                                                         </p>
                                                     </td>
                                                     <td>
                                                         <p>
-                                                            {{$leave['end_day'] .' ' . ' ساعت - ' . $leave->end_hour}}
+                                                            {{$mission['end_day'] .' ' . ' ساعت - ' . $mission->end_hour}}
                                                         </p>
                                                     </td>
                                                     <td>
-                                                        <span class="{{$leave['status']['status_css']}}">
-                                                        {{$leave['status']['title']}}
+                                                        <span class="{{$mission['status']['status_css']}}">
+                                                        {{$mission['status']['title']}}
                                                         </span>
                                                     </td>
                                                     <td>
-                                                        {{$leave->disapproval_reason}}
-                                                    </td>
-                                                    <td>
-                                                        <a class="btn btn-success confirm_btn" title="تایید مرخصی"
+                                                        <a class="btn btn-success confirm_btn" title="تایید ماموریت"
                                                            id="confirm_btn"
-                                                           data-leave="{{ $leave['id'] }}" data-val="1">
+                                                           data-leave="{{ $mission['leave_id'] }}">
                                                             <i class="fa fa-check"></i>
                                                         </a>
-                                                        <a class="btn btn-danger un_confirm_btn" title="عدم تایید مرخصی"
+                                                        <a class="btn btn-danger un_confirm_btn" title="عدم تایید ماموریت"
                                                            id="un_confirm_btn"
-                                                           data-disleave="{{ $leave['id'] }}" data-val="0">
+                                                           data-disleave="{{ $mission['leave_id'] }}">
                                                             <i class="fa fa-close"></i>
                                                         </a>
                                                     </td>
@@ -111,14 +99,14 @@
                                             </tbody>
                                         </table>
                                         @if(!$searched)
-                                            {{$leaves->links()}}
+                                            {{$missions->links()}}
                                         @endif
                                     </div>
                                 @else
                                     <div class="row">
                                         <div class="col-12">
                                             <p class="alert alert-danger mb-0">
-                                                مرخصی ای یافت نشد
+                                                ماموریتی یافت نشد
                                             </p>
                                         </div>
                                     </div>
@@ -132,44 +120,43 @@
     </div>
     <!-- The Modal -->
     <div class="modal" id="my_modal">
-        <div class="modal-dialog modal-content" >
+        <div class="modal-dialog modal-content">
                 @csrf
                 <!-- Modal Header -->
-                <div class="modal-header">
-                    <h4 class="modal-title">توضیحات</h4>
-                    <button type="button" class="close close_modal" data-dismiss="modal">&times;</button>
-                </div>
+            <div class="modal-header">
+                <h4 class="modal-title">توضیحات</h4>
+                <button type="button" class="close close_modal" data-dismiss="modal">&times;</button>
+            </div>
 
-                <!-- Modal body -->
-                <div class="modal-body">
-                    <p>لطفا در صورت امکان دلیل عدم تایید را ذکر نمایید</p>
-                    <input type="text" class="form-control disapproval" placeholder="دلیل عدم موافقت"
-                           name="disapproval">
-                    <input type="hidden" id="leave_id_modal" class="leave_id_modal">
-                </div>
-                <!-- Modal footer -->
-                <div class="modal-footer">
-                    <button id="submit_leave_btn" class="btn btn-danger mr-1 ml-1 submit_leave_btn">
-                        عدم تایید مرخصی
-                    </button>
-                </div>
-
+            <!-- Modal body -->
+            <div class="modal-body">
+                <p>لطفا در صورت امکان دلیل عدم تایید را ذکر نمایید</p>
+                <input type="text" class="form-control disapproval" placeholder="دلیل عدم موافقت"
+                       name="disapproval">
+                <input type="hidden" id="leave_id_modal" class="leave_id_modal">
+            </div>
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <button id="submit_leave_btn" class="btn btn-danger mr-1 ml-1 submit_leave_btn">
+                    عدم تایید ماموریت
+                </button>
+            </div>
 
         </div>
     </div>
+
 @endsection
 @section('js')
     <script>
+        var un_confirm_btn = $('.un_confirm_btn');
 
-            var un_confirm_btn = $('.un_confirm_btn');
+        un_confirm_btn.on('click', function () {
 
-            un_confirm_btn.on('click', function () {
-
-                let leave_id = jQuery(this).data("disleave");
-                $('#leave_id_modal').val(leave_id);
-                var my_modal = $('#my_modal');
-                my_modal.show();
-            })
+            let leave_id = jQuery(this).data("disleave");
+            $('#leave_id_modal').val(leave_id);
+            var my_modal = $('#my_modal');
+            my_modal.show();
+        })
 
         var close_modal = $('.close_modal');
 
@@ -178,39 +165,37 @@
             my_modal.hide();
         })
 
+        jQuery(document).on('click', '.confirm_btn', function (e) {
+            let leave_id = jQuery(this).data("leave");
 
-            jQuery(document).on('click', '.confirm_btn', function (e) {
-                let leave_id = jQuery(this).data("leave");
-
-                $.ajaxSetup({
-                    headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                    }
-                });
-
-                $.ajax({
-                    url: "{{route('maliManager_leave_agreement')}}",
-                    type: "post",
-                    // dataType: "json",
-                    data: {
-                        'leave_id': leave_id
-                    },
-                    success: function (res) {
-                        // alert(JSON.stringify(res.responseJSON));
-                        if (res.status == true) {
-                            Swal.fire({
-                                icon: 'success',
-                                title: res.message,
-                            })
-                            // window.setInterval('refresh("not")', 3000);
-                        }
-                        window.location.href = "{{route('maliManager_leave_confirmation')}}"
-                    }, error: function (err) {
-                        //
-                    }
-                });
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
             });
 
+            $.ajax({
+                url: "{{route('special_expert_leave_agreement')}}",
+                type: "post",
+                // dataType: "json",
+                data: {
+                    'leave_id': leave_id
+                },
+                success: function (res) {
+                    // alert(JSON.stringify(res.responseJSON));
+                    if (res.status == true) {
+                        Swal.fire({
+                            icon: 'success',
+                            title: res.message,
+                        })
+                        // window.setInterval('refresh("not")', 3000);
+                    }
+                    window.location.href = "{{route('leave_special_expert_confirmation')}}"
+                }, error: function (err) {
+                    //
+                }
+            });
+        });
 
         jQuery(document).on('click', '.submit_leave_btn', function (e) {
 
@@ -224,7 +209,7 @@
                 }
             });
             $.ajax({
-                url: "{{route('maliManager_leave_disagreement')}}",
+                url: "{{route('special_expert_leave_disagreement')}}",
                 type: "post",
                 data: {
                     'leave_id': disleave_id,
@@ -239,7 +224,7 @@
                         })
                         // window.setInterval('refresh("not")', 3000);
                     }
-                    window.location.href = "{{route('maliManager_leave_confirmation')}}"
+                    window.location.href = "{{route('leave_special_expert_confirmation')}}"
                 }, error: function (err) {
                     //
                 }

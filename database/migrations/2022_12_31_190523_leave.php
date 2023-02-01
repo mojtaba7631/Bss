@@ -28,6 +28,7 @@ class Leave extends Migration
             $table->longText('disapproval_reason')->nullable(); // dalile adame taeid
             $table->boolean('main_manager_approval')->default(0)->comment('The manager who disapproved'); // taeide modire mostaghim
             $table->boolean('finance_manager_approval')->default(0)->comment('The finance manager who disapproved'); // taeide modire mali
+            $table->integer('status')->default(6);
             $table->rememberToken();
             $table->timestamps();
         });
